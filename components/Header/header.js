@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { headerStyle } from "../../styles/headerStyle/headerStyle";
 import Entypo from '@expo/vector-icons/Entypo';
 
@@ -11,7 +11,11 @@ export default function Header() {
   };
 
   if (!headerVisible) {
-    return null;
+    return (
+      <SafeAreaView style={headerStyle.header}>
+
+      </SafeAreaView>
+    );
   }
 
   return (
