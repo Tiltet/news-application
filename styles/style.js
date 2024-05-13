@@ -3,17 +3,21 @@ import { Platform, StatusBar, StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   main: {
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: '#666',
+    backgroundColor: '#fff',
     height: '100%',
   },
   container: {
-    flex: 1,
-    paddingVertical: '5%',
+    marginHorizontal: 10,
   },
   title: {
     textAlign: "center",
     fontSize: 36,
     color: 'white'
+  },
+  flexbox: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   }
 })
 
