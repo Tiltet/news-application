@@ -12,6 +12,11 @@ export const menuStyle = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: '#000',
   },
+  menu_block_first: {
+    paddingRight: 15,
+    borderRightWidth: 1,
+    borderRightColor: '#000',
+  },
   menu_block_last: {
     paddingHorizontal: 15,
   }
