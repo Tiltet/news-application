@@ -4,6 +4,7 @@ import Header from "./components/Header/header";
 import { styles } from "./styles/style";
 import Navigation from "./components/Navigation/navigation";
 import Menu from "./components/Menu/menu";
+import MainBlock from "./components/ManiBlock/mainBlock";
 
 export default function App() {
 
@@ -28,6 +29,7 @@ export default function App() {
       }>
         <Navigation/>
         <Menu/>
+        <MainBlock/>
       </ScrollView>
     </View>
   );

@@ -5,7 +5,7 @@ export const menuStyle = StyleSheet.create({
     paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',
-    textAlign: "center"
+    textAlign: "center",
   },
   menu_block: {
     paddingHorizontal: 15,

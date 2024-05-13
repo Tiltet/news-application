@@ -23,7 +23,7 @@ export default  function Menu() {
       </View>
       <View style={menuStyle.menu_block_last}>
         <TouchableOpacity>
-          <AntDesign name="pluscircle" size={13} color="#88A2FF" />
+          <AntDesign name="pluscircle" size={15} color="#88A2FF" />
         </TouchableOpacity>
       </View>
     </ScrollView>
