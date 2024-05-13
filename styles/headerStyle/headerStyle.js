@@ -12,7 +12,7 @@ export const headerStyle = StyleSheet.create({
     flexGrow: 1,
     textAlign: "center",
     paddingLeft: 15,
-    fontSize: 18,
+    fontSize: 9,
     color: '#fff',
     paddingTop: 8,
     paddingBottom: 8,
