@@ -15,7 +15,9 @@ export function NewsSlider() {
         <Image style={newsSliderStyle.image} source={image} />
         <TouchableOpacity style={newsSliderStyle.slider_block_text}>
           <Text style={newsSliderStyle.slider_block_title}>Обзор недели</Text>
-          <Text style={newsSliderStyle.slider_block_description}>Лидер левой партии призвал Турцию не умирать за грязные интересы США</Text>
+          <Text style={newsSliderStyle.slider_block_description}>
+            Лидер левой партии призвал Турцию не умирать за грязные интересы США
+          </Text>
         </TouchableOpacity>
       </View>
     ));

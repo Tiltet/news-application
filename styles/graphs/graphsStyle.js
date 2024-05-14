@@ -5,14 +5,14 @@ export const graphsStyle = StyleSheet.create({
     marginTop: 15,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   graphs_block: {
     display: 'flex',
     justifyContent: "space-between",
     borderRadius: 5,
     backgroundColor: '#EFEFEF',
-    width: '45%',
+    width: '49%',
     height: 120,
   },
   graphs_block_top: {

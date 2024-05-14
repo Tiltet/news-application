@@ -3,11 +3,11 @@ import { Dimensions, StyleSheet } from "react-native";
 export const newsSliderStyle = StyleSheet.create({
   slider: {
     marginTop: 15,
+    backgroundColor: '#F0F0F0',
     height: 100,
   },
   slider_block: {
     width: Dimensions.get("window").width,
-    backgroundColor: '#F0F0F0',
     paddingHorizontal: 10,
     paddingVertical: 15,
     display: 'flex',
@@ -30,7 +30,7 @@ export const newsSliderStyle = StyleSheet.create({
   },
   image: {
     borderRadius: 4,
-    maxWidth: 140,
+    maxWidth: "40%",
     height: '100%',
   },
-})
+});
