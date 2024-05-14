@@ -6,7 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 export default  function Menu() {
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={menuStyle.menu_container}>
-      <View style={menuStyle.menu_block}>
+      <View style={menuStyle.menu_block_first}>
         <TouchableOpacity>
           <Text>ПОЛИТИКА</Text>
         </TouchableOpacity>
@@ -23,7 +23,7 @@ export default  function Menu() {
       </View>
       <View style={menuStyle.menu_block_last}>
         <TouchableOpacity>
-          <AntDesign name="pluscircle" size={13} color="#88A2FF" />
+          <AntDesign name="pluscircle" size={15} color="#88A2FF" />
         </TouchableOpacity>
       </View>
     </ScrollView>

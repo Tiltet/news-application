@@ -5,10 +5,15 @@ export const menuStyle = StyleSheet.create({
     paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',
-    textAlign: "center"
+    textAlign: "center",
   },
   menu_block: {
     paddingHorizontal: 15,
+    borderRightWidth: 1,
+    borderRightColor: '#000',
+  },
+  menu_block_first: {
+    paddingRight: 15,
     borderRightWidth: 1,
     borderRightColor: '#000',
   },
