@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { styles } from "./styles/style";
 import { View, RefreshControl, ScrollView } from "react-native";
 import Header from "./components/Header/header";
-import { styles } from "./styles/style";
 import Navigation from "./components/Navigation/navigation";
 import Menu from "./components/Menu/menu";
 import MainBlock from "./components/ManiBlock/mainBlock";
+import { NewsSlider } from "./components/NewsSlyder/newsSlider";
+import { Graphs } from "./components/Graphs/graphs";
 
 export default function App() {
 
@@ -24,12 +26,17 @@ export default function App() {
   return (
     <View style={styles.main}>
       <Header visible={visible} setVisible={setVisible}/>
-      <ScrollView style={styles.container} refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-        <Navigation/>
-        <Menu/>
-        <MainBlock/>
+        <View style={styles.container}>
+          <Navigation/>
+          <Menu/>
+          <MainBlock/>
+        </View>
+        <NewsSlider/>
+        <Graphs/>
       </ScrollView>
     </View>
   );
