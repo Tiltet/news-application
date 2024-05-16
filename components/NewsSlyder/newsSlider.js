@@ -1,22 +1,25 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from 'react-native-swiper';
-import { newsSliderStyle } from "../../styles/newSlyder/newsSliderStyle";
+import { newsSliderStyle } from "../../styles/newsSlider/newsSliderStyle";
 
-export function NewsSlider() {
+export function NewsSlider( {swiperNews} ) {
+
   const images = [
     require('../../assets/img/flag.png'),
     require('../../assets/img/mainBlockImg.png'),
   ];
 
   const renderSlides = () => {
-    return images.map((image, index) => (
-      <View key={index} style={newsSliderStyle.slider_block}>
-        <Image style={newsSliderStyle.image} source={image} />
+    return swiperNews.map((item) => (
+      <View key={item.id} style={newsSliderStyle.slider_block}>
+        <Image style={newsSliderStyle.image} source={require('../../assets/img/newsImg.png')} />
         <TouchableOpacity style={newsSliderStyle.slider_block_text}>
-          <Text style={newsSliderStyle.slider_block_title}>Обзор недели</Text>
-          <Text style={newsSliderStyle.slider_block_description}>
-            Лидер левой партии призвал Турцию не умирать за грязные интересы США
+          <Text style={newsSliderStyle.slider_block_title}>{item.title}</Text>
+          <Text numberOfLines={2} ellipsizeMode="tail" style={newsSliderStyle.slider_block_description}>
+              {item.description.length > 100
+                ? item.description.substring(0, 100) + "..."
+                : item.description}
           </Text>
         </TouchableOpacity>
       </View>

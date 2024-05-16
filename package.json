@@ -18,10 +18,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
-    "react-native-autoheight-webview": "^1.6.5",
+    "react-native-fs": "^2.20.0",
     "react-native-swiper": "^1.6.0",
-    "react-native-web": "~0.19.10",
-    "rn-fetch-blob": "^0.12.0"
+    "react-native-web": "~0.19.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

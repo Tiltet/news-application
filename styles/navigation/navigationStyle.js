@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const navigationStyle = StyleSheet.create({
   nav_container: {
+
     paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',

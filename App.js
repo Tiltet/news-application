@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { styles } from "./styles/style";
-import { View, RefreshControl, ScrollView, Text } from "react-native";
+import { View, RefreshControl, ScrollView, Text, StatusBar } from "react-native";
 import Header from "./components/Header/header";
 import Navigation from "./components/Navigation/navigation";
 import Menu from "./components/Menu/menu";
-import MainBlock from "./components/ManiBlock/mainBlock";
-import { NewsSlider } from "./components/NewsSlyder/newsSlider";
-import { Graphs } from "./components/Graphs/graphs";
-import { LastNews } from "./components/LastNews/lastNews";
+import { HomePage } from "./pages/HomePage/homePage";
+import { Test } from "./components/TEST/test";
 
 export default function App() {
 
@@ -34,17 +32,15 @@ export default function App() {
         <View style={styles.container}>
           <Navigation/>
           <Menu/>
-          <MainBlock/>
         </View>
-        <NewsSlider/>
-        <View style={styles.container}>
-          <Graphs/>
-          <LastNews/>
-        </View>
+
+        <HomePage/>
+
         <View style={styles.footer}>
           <Text style={styles.footer_text}>©2024 Opozitia</Text>
         </View>
       </ScrollView>
+      <StatusBar barStyle="light-content" />
     </View>
   );
 }
