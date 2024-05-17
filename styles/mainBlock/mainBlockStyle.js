@@ -28,13 +28,14 @@ export const mainBlockStyle = StyleSheet.create({
     borderTopColor: '#000'
   },
   main_block_border_last: {
+    marginBottom: 15,
     borderTopWidth: 1,
     borderTopColor: '#000',
     borderBottomWidth: 1,
     borderBottomColor: '#000',
   },
   main_block_border_first: {
-    marginTop: 10,
+    marginTop: 15,
     borderTopWidth: 1,
     borderTopColor: '#000',
   },

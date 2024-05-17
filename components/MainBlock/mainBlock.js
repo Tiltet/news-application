@@ -6,13 +6,35 @@ export default function MainBlock({ bottomNewsThree }) {
 
   // ВЫВОДИМ НА СТРАНИЦУ ЗАГОЛОВКИ НОВОСТЕЙ
   const renderTopThreeNews = () => {
-    return bottomNewsThree.map((item) => (
-      <View style={mainBlockStyle.main_block_border_first} key={item.id}>
-        <TouchableOpacity>
-          <Text style={mainBlockStyle.main_block_text}>{item.title}</Text>
-        </TouchableOpacity>
-      </View>
-    ));
+    return bottomNewsThree.map((item, index) => {
+      if (index === 2) {
+        return (
+          <View style={mainBlockStyle.main_block_border_last} key={item.id}>
+            <TouchableOpacity>
+              <Text style={mainBlockStyle.main_block_text}>{item.title}</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+      else if (index === 0) {
+        return (
+          <View style={mainBlockStyle.main_block_border_first} key={item.id}>
+            <TouchableOpacity>
+              <Text style={mainBlockStyle.main_block_text}>{item.title}</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+      else {
+        return (
+          <View style={mainBlockStyle.main_block_border} key={item.id}>
+            <TouchableOpacity>
+              <Text style={mainBlockStyle.main_block_text}>{item.title}</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
+    });
   };
 
   // ВЫВОДИМ ВЕСЬ ГЛАВНЫЙ БЛОК

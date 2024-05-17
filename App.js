@@ -5,7 +5,6 @@ import Header from "./components/Header/header";
 import Navigation from "./components/Navigation/navigation";
 import Menu from "./components/Menu/menu";
 import { HomePage } from "./pages/HomePage/homePage";
-import { Test } from "./components/TEST/test";
 
 export default function App() {
 

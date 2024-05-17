@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { Modal, Image, Text, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
 import { navigationStyle } from "../../styles/navigation/navigationStyle";
 import { styles } from "../../styles/style";
+import SearchPage from "../../pages/SearchPage/searchPage";
 
 export default function Navigation() {
+
   const [isBlurVisible, setIsBlurVisible] = useState(false);
 
   const handlerSearchPress = () => {
     setIsBlurVisible(true);
   };
 
-  // Обработчик событий для закрытия модального окна при нажатии на экран
   const handleScreenPress = () => {
     setIsBlurVisible(false);
-    console.log(12);
   };
 
   return (
@@ -44,40 +44,9 @@ export default function Navigation() {
           </TouchableOpacity>
         </View>
       </View>
-
       {/* Модальное окно блура */}
       {isBlurVisible && (
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={isBlurVisible}
-          onRequestClose={() => {
-            setIsBlurVisible(false);
-          }}
-        >
-          <TouchableWithoutFeedback
-            onPress={handleScreenPress}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <View
-              style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(255,255,255,0.5)', // Прозрачный фон с эффектом блура
-              }}
-            >
-            </View>
-          </TouchableWithoutFeedback>
-        </Modal>
+        <SearchPage isBlurVisible={isBlurVisible} setIsBlurVisible={setIsBlurVisible} />
       )}
     </View>
   );

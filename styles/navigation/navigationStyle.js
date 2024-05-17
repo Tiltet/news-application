@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const navigationStyle = StyleSheet.create({
   nav_container: {
-
     paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',
@@ -28,5 +27,5 @@ export const navigationStyle = StyleSheet.create({
   },
   nav_weather_text: {
     fontSize: 11,
-  }
+  },
 })
