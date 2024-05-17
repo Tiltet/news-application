@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, Text, TouchableOpacity } from "react-native";
 import { headerStyle } from "../../styles/headerStyle/headerStyle";
 import Entypo from '@expo/vector-icons/Entypo';
 
-export default function Header() {
-  const [headerVisible, setHeaderVisible] = useState(true);
+export default function Header({ visible, setVisible }) {
 
   const handleToggleHeader = () => {
-    setHeaderVisible(!headerVisible);
+    setVisible(!visible);
   };
 
-  if (!headerVisible) {
-    return null;
+  if (!visible) {
+    return (
+      <SafeAreaView style={headerStyle.header}>
+
+      </SafeAreaView>
+    );
   }
 
   return (

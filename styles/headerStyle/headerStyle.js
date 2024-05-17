@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const headerStyle = StyleSheet.create({
   header: {
@@ -12,7 +12,7 @@ export const headerStyle = StyleSheet.create({
     flexGrow: 1,
     textAlign: "center",
     paddingLeft: 15,
-    fontSize: 18,
+    fontSize: 15,
     color: '#fff',
     paddingTop: 8,
     paddingBottom: 8,
