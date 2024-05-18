@@ -9,9 +9,9 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { searchPageStyle } from "../../styles/Pages/searchPageStyle/searchPageStyle";
+import { searchPageStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
 
-export default function SearchPage({isBlurVisible, setIsBlurVisible}) {
+export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
 
   const [inputText, setInputText] = useState('');
 
