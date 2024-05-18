@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { navigationStyle } from "../../styles/Components/navigation/navigationStyle";
 import { styles } from "../../styles/style";
@@ -16,7 +16,6 @@ export default function Navigation() {
 
   const handlerSearchPress = () => {
     setIsBlurVisible(true);
-    setIndex(5)
   };
 
   return (

@@ -18,7 +18,6 @@ export default function App() {
     setRefreshing(true);
 
     setVisible(true)
-    setIndex(0)
 
     setTimeout(() => {
       setRefreshing(false);

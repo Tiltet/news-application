@@ -9,19 +9,22 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { searchPageStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
+import { searchWidgetStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
+import CreatContext from "../../context/context";
 
 export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
 
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState('')
+  const { index, setIndex } = React.useContext(CreatContext)
 
   const handleSearchPress = () => {
-    console.log(inputText);
-    setIsBlurVisible(false);
+    console.log("Поиск: ", inputText)
+    setIsBlurVisible(false)
   };
 
   const handleScreenPress = () => {
-    setIsBlurVisible(false);
+    setIsBlurVisible(false)
+    setIndex(5)
   };
 
   const handleTextChange = (newText) => {
@@ -36,18 +39,18 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
             transparent={true}
             visible={isBlurVisible}
           >
-            <TouchableWithoutFeedback style={searchPageStyle.container} onPress={handleScreenPress}>
-              <View style={searchPageStyle.window}>
-                <View style={searchPageStyle.search}>
+            <TouchableWithoutFeedback style={searchWidgetStyle.container} onPress={handleScreenPress}>
+              <View style={searchWidgetStyle.window}>
+                <View style={searchWidgetStyle.search}>
                   <TextInput
                     value={inputText}
-                    style={searchPageStyle.input}
+                    style={searchWidgetStyle.input}
                     placeholder="Search..."
                     placeholderTextColor="#999"
                     onChangeText={handleTextChange}
                   />
                   <TouchableOpacity onPress={handleSearchPress}>
-                    <Image style={searchPageStyle.input_image} source={require('../../assets/icons/search/dark_search.png')}/>
+                    <Image style={searchWidgetStyle.input_image} source={require('../../assets/icons/search/dark_search.png')}/>
                   </TouchableOpacity>
                 </View>
               </View>

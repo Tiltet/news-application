@@ -17,22 +17,22 @@ export default  function Menu() {
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={menuStyle.menu_container}>
       <View style={menuStyle.menu_block_first}>
         <TouchableOpacity onPress={() => handlerClick(1)}>
-          <Text>ЭКОНОМИКА</Text>
+          <Text style={menuStyle.menu_block_text}>ЭКОНОМИКА</Text>
         </TouchableOpacity>
       </View>
       <View style={menuStyle.menu_block}>
         <TouchableOpacity onPress={() => handlerClick(2)}>
-          <Text>ПОЛИТИКА</Text>
+          <Text style={menuStyle.menu_block_text}>ПОЛИТИКА</Text>
         </TouchableOpacity>
       </View>
       <View style={menuStyle.menu_block}>
         <TouchableOpacity onPress={() => handlerClick(3)}>
-          <Text>БИЗНЕС</Text>
+          <Text style={menuStyle.menu_block_text}>БИЗНЕС</Text>
         </TouchableOpacity>
       </View>
       <View style={menuStyle.menu_block}>
         <TouchableOpacity onPress={() => handlerClick(4)}>
-          <Text>МИРОВЫЕ НОВОСТИ</Text>
+          <Text style={menuStyle.menu_block_text}>МИРОВЫЕ НОВОСТИ</Text>
         </TouchableOpacity>
       </View>
       <View style={menuStyle.menu_block_last}>
