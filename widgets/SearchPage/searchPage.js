@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Button,
   Image,
   Modal,
   SafeAreaView,
@@ -18,6 +17,7 @@ export default function SearchPage({isBlurVisible, setIsBlurVisible}) {
 
   const handleSearchPress = () => {
     console.log(inputText);
+    setIsBlurVisible(false);
   };
 
   const handleScreenPress = () => {

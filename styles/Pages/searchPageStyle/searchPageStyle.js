@@ -20,7 +20,7 @@ export const searchPageStyle = StyleSheet.create({
     borderBottomWidth: 1,
   },
   search: {
-    marginTop: 120,
+    marginTop: 100,
     display: "flex",
     flexDirection: "row",
     borderBottomWidth: 1,
