@@ -1,1 +1,1 @@
-<h1>Opozition mobile version</h1>
+<h1>Oposition mobile version</h1>
