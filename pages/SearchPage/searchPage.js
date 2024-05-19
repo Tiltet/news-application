@@ -1,33 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/style";
 import { searchPageStyle } from "../../styles/Pages/Search/searchPageStyle";
+import axios from "axios";
 
-export function SearchPage() {
+export function SearchPage( {searchItem, setSearchItem } ) {
   const [newsCount, setNewsCount] = useState(3);
+  const [amount, setAmount] = useState();
+  const [data, setData] = useState([]);
+  const [dataNews, setDataNews] = useState([]);
 
-  const renderThreeNews = () => {
-    let newsItems = [];
-    for (let i = 0; i < newsCount; i++) {
-      newsItems.push(renderSearchNew());
-    }
+  // Отправляем запрос и получаем данные
+  useEffect(() => {
+    axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + searchItem)
+      .then(response => {
 
-    return (
-      <View>{newsItems}</View>
-    );
+        setData(response.data);
+        setDataNews(response.data.news);
+        setAmount(response.data.amount);
+
+        console.log("Найдено новостей - ", response.data.amount);
+
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [searchItem]);
+
+  // ОБРАБОТЧИК ДЛЯ НАЖАТИЯ НА КОПКУ ПОИСКА
+  const handlerInput = () => {
+    console.log(searchItem);
   }
 
-  const renderSearchNew = () => {
-    return(
-      <View style={searchPageStyle.news_item}>
+  // ОБРАБОТЧИК ДЛЯ ОЧИСТКИ ПОЛЯ ВВОДА ИНФОРМАЦИИ
+  const handlerClearInput = () => {
+    setSearchItem(null);
+  }
+
+  // ОБРАБОТЧИК ДЛЯ ИЗМЕНЕНИЯ ПОЛЯ ВВОДА
+  const handleChangeText = (newText) => {
+    setSearchItem(newText);
+  };
+
+  // РЕНДЕРИТ НАЙДЕНЫЕ НОВОСТИ
+  const renderThreeNews = () => {
+    return dataNews.slice(0, newsCount).map((item, index) => (
+      <View id={item.id} key={item.id} style={searchPageStyle.news_item}>
         <View style={searchPageStyle.news_item_top}>
           <TouchableOpacity style={searchPageStyle.news_block_text}>
-            <Text style={searchPageStyle.news_block_text_title}>Политика</Text>
-            <Text style={searchPageStyle.news_block_text_text}>Премьер-министр Молдовы одобрил вступление в ЕС</Text>
-            <Text>20:19</Text>
+            <Text style={searchPageStyle.news_block_text_title}>{item.category}</Text>
+            <Text style={searchPageStyle.news_block_text_text}>{item.title}</Text>
+            <Text>{item.createdAtTime}</Text>
           </TouchableOpacity>
           <View style={searchPageStyle.news_block_img}>
-            <Image style={searchPageStyle.image} source={require('../../assets/img/flag.png')}/>
+            <Image
+              style={searchPageStyle.image}
+              source={item.imgUrl}/>
           </View>
         </View>
         <View style={searchPageStyle.news_item_bottom}>
@@ -42,18 +70,24 @@ export function SearchPage() {
           </TouchableOpacity>
         </View>
       </View>
-    )
-  }
+    ));
+  };
 
   return (
     <View style={styles.container}>
       <View style={searchPageStyle.input_container}>
         <TextInput
           style={searchPageStyle.input}
+          value={searchItem}
+          onChangeText={handleChangeText}
+          onSubmitEditing={handlerInput}
           placeholder="Поиск..."
           placeholderTextColor="#999"
         />
-        <TouchableOpacity style={searchPageStyle.cross_wrapper}>
+        <TouchableOpacity
+          style={searchPageStyle.cross_wrapper}
+          onPress={handlerClearInput}
+        >
           <Image
             style={searchPageStyle.cross}
             source={require('../../assets/icons/search/cross.png')}/>

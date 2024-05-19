@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Image,
   Modal,
@@ -11,15 +11,20 @@ import {
 } from "react-native";
 import { searchWidgetStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
 import CreatContext from "../../context/context";
+import axios from "axios";
+import SearchContext from "../../context/searchContext";
 
 export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
 
   const [inputText, setInputText] = useState('')
   const { index, setIndex } = React.useContext(CreatContext)
+  const { searchData, setSearchData } = React.useContext(SearchContext)
 
-  const handleSearchPress = () => {
+  const handleSearchPress = async () => {
     console.log("Поиск: ", inputText)
     setIsBlurVisible(false)
+    setSearchData(inputText)
+    setIndex(5)
   };
 
   const handleScreenPress = () => {
