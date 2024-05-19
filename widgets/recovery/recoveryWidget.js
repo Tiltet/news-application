@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import {
     Image,
     Modal,
@@ -47,6 +47,7 @@ export default function RecoveryWidget() {
                     </View>
                 </View>
             </View>
+            <StatusBar barStyle="dark-content" />
         </Modal>
     );
 
