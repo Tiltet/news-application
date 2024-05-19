@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import {
     Image,
     Modal,
@@ -32,9 +32,6 @@ export default function LoginWidget() {
         setIndex(8)
     };
 
-
-
-
     return (
         <Modal visible={true}>
             <View style={styles.view}>
@@ -43,7 +40,7 @@ export default function LoginWidget() {
                         <View style={styles.top}>
                             <Image
                                 source={require('../../assets/img/logo.png')}
-                                style={{ width: 120, height: 40 }}
+                                style={{ width: 65, height: 20 }}
                             />
                             <TouchableOpacity onPress={()=>handleScreenPress()}>
                                 <Image
@@ -66,14 +63,14 @@ export default function LoginWidget() {
                                             style={{
                                                 width: 10,
                                                 height: 10,
-                                                borderRadius: 4,
+                                                borderRadius: 10,
                                                 backgroundColor: 'blue',
                                             }}
                                         />
                                     )}
                                 </View>
                             </TouchableOpacity>
-                            <Text>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
+                            <Text style={styles.checkbox_text}>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
                         </View>
                         <TouchableOpacity style={styles.button} onPress={()=>continueButtonHandler()} >
                             <Text style={styles.button_text}> Продолжить</Text>
@@ -82,44 +79,45 @@ export default function LoginWidget() {
                             <TouchableOpacity>
                                 <Image
                                     source={require('../../assets/icons/login/google.png')}
-                                    style={{ width: 50, height: 50 }}
+                                    style={{ width: 40, height: 40 }}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <Image
                                     source={require('../../assets/icons/login/facebook.png')}
-                                    style={{ width: 50, height: 50 }}
+                                    style={{ width: 40, height: 40 }}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <Image
                                     source={require('../../assets/icons/login/apple.png')}
-                                    style={{ width: 50, height: 50 }}
+                                    style={{ width: 40, height: 40 }}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <Image
                                     source={require('../../assets/icons/login/twitter.png')}
-                                    style={{ width: 50, height: 50 }}
+                                    style={{ width: 40, height: 40 }}
                                 />
                             </TouchableOpacity>
                         </View>
                         <View style={styles.text_bottom}>
-                            <Text style={{ fontSize: 18 }}>Еще нет аккаунта? </Text>
+                            <Text style={styles.text_bottom_text}>Еще нет аккаунта?</Text>
                             <TouchableOpacity onPress={()=>regButtonHandler()}>
-                                <Text style={styles.reg_text}>Зарегистрируйтесь! </Text>
+                                <Text style={styles.reg_text}>Зарегистрируйтесь!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
             </View>
+            <StatusBar barStyle="dark-content" />
         </Modal>
     );
 
 }
 
-const  styles = StyleSheet.create({
-    view:{
+const  styles= StyleSheet.create({
+    view: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -130,94 +128,101 @@ const  styles = StyleSheet.create({
         width: "100%",
     },
     block: {
-        height: 530,
-        width: 370,
+        paddingVertical: 20,
+        width: '86%',
         backgroundColor: "#fff",
         display: "flex",
         borderWidth: 1,
         borderRadius: 40
     },
     block_container: {
-        marginHorizontal: 40,
+        marginHorizontal: 30,
     },
     text: {
+        marginTop: 15,
         alignSelf: "center",
-        fontSize: 26,
+        fontSize: 20,
         color: "#000",
         marginBottom: 10,
-        fontWeight:"600"
+        fontWeight: "600",
     },
-    top:{
+    top: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingTop: 20,
-        marginBottom: 10
     },
-    subtitle:{
-        fontSize: 15,
+    subtitle: {
+        fontSize: 13,
         alignSelf: "center",
-        marginBottom: 10
-
     },
     inputfiled:{
+        marginTop: 30,
         padding: 10,
         alignSelf: "center",
-        width: 300,
-        height: 50,
+        width: "100%",
         borderWidth: 1,
-        borderRadius: 15
+        borderRadius: 10
     },
-    checkbox:{
+    checkbox: {
         display:"flex",
         justifyContent: "center",
         alignItems: "center",
-        width:20,
+        width: 20,
         height: 20,
         borderWidth: 1,
         borderRadius: 4,
-        marginRight:5
+        marginRight: 5
+    },
+    checkbox_text: {
+      fontSize: 12,
     },
     checkbox_container: {
-        marginTop: 15,
+        width: "100%",
+        marginTop: 10,
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
     },
     button: {
-        marginTop:20,
+        marginTop: 20,
         alignSelf: "center",
         display: "flex",
         justifyContent:"center",
         alignItems:"center",
         backgroundColor: "#88A2FF",
-        width: 300,
+        width: '100%',
         height: 50,
         borderRadius: 15,
     },
-    button_text:{
-        fontSize: 18,
+    button_text: {
+        fontSize: 14,
         fontWeight:"700"
     },
-    social:{
-        paddingLeft:15,
-        paddingRight:15,
+    social: {
+        paddingLeft: 15,
+        paddingRight: 15,
         display:"flex",
         flexDirection: "row",
         justifyContent: "space-around",
         marginTop: 40
     },
     text_bottom:{
-        marginTop:20,
-        alignSelf: "center",
+        marginTop: 20,
         display:"flex",
+        alignSelf: "center",
+        justifyContent: "flex-start",
         flexDirection: "row"
     },
+    text_bottom_text:{
+      fontSize: 12,
+      fontWeight: "500",
+    },
     reg_text:{
+        paddingLeft: 5,
         color: "#88A2FF",
-        fontSize:17 ,
+        fontSize: 12,
         textDecorationLine: "underline",
-        fontWeight:"600"
+        fontWeight: "500",
     }
 })
