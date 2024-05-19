@@ -1,25 +1,33 @@
 import React, { useState } from "react";
-import { Modal, Image, Text, TouchableOpacity, View, TouchableWithoutFeedback } from "react-native";
-import { navigationStyle } from "../../styles/navigation/navigationStyle";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { navigationStyle } from "../../styles/Components/navigation/navigationStyle";
 import { styles } from "../../styles/style";
-import SearchPage from "../../pages/SearchPage/searchPage";
+import SearchWidget from "../../widgets/SearchWidget/searchWidget";
+import CreatContext from "../../context/context";
 
 export default function Navigation() {
 
   const [isBlurVisible, setIsBlurVisible] = useState(false);
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerLogoClick = () => {
+    setIndex(0)
+  }
 
   const handlerSearchPress = () => {
     setIsBlurVisible(true);
   };
 
-  const handleScreenPress = () => {
-    setIsBlurVisible(false);
-  };
+  const handlerLoginClick = () => {
+    setIndex(6)
+  }
 
   return (
     <View style={navigationStyle.nav_container}>
       <View>
-        <Image style={navigationStyle.nav_logo} source={require('../../assets/img/logo.png')}/>
+        <TouchableOpacity onPress={() => handlerLogoClick()}>
+          <Image style={navigationStyle.nav_logo} source={require('../../assets/img/logo.png')}/>
+        </TouchableOpacity>
       </View>
       <View style={navigationStyle.nav_icon_container}>
         <View>
@@ -28,12 +36,12 @@ export default function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={handlerSearchPress}>
+          <TouchableOpacity onPress={() => handlerSearchPress()}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/search.png')}/>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handlerLoginClick()}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>
@@ -44,9 +52,11 @@ export default function Navigation() {
           </TouchableOpacity>
         </View>
       </View>
+
+
       {/* Модальное окно блура */}
       {isBlurVisible && (
-        <SearchPage isBlurVisible={isBlurVisible} setIsBlurVisible={setIsBlurVisible} />
+        <SearchWidget isBlurVisible={isBlurVisible} setIsBlurVisible={setIsBlurVisible} />
       )}
     </View>
   );

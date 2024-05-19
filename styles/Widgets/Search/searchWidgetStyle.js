@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const searchPageStyle = StyleSheet.create({
+export const searchWidgetStyle = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -20,7 +20,7 @@ export const searchPageStyle = StyleSheet.create({
     borderBottomWidth: 1,
   },
   search: {
-    marginTop: 120,
+    marginTop: 100,
     display: "flex",
     flexDirection: "row",
     borderBottomWidth: 1,

@@ -47,14 +47,6 @@ export function HomePage() {
       })
   }, []);
 
-  if (!data) {
-    return (
-        <View>
-          Загрузка...
-        </View>
-      );
-  }
-
   return (
     <View>
         <View style={styles.container}>

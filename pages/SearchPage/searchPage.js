@@ -1,60 +1,110 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Image,
-  Modal,
-  SafeAreaView,
-  StatusBar,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
-import { searchPageStyle } from "../../styles/Pages/searchPageStyle/searchPageStyle";
+import React, { useEffect, useState } from "react";
+import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { styles } from "../../styles/style";
+import { searchPageStyle } from "../../styles/Pages/Search/searchPageStyle";
+import axios from "axios";
 
-export default function SearchPage({isBlurVisible, setIsBlurVisible}) {
+export function SearchPage( {searchItem, setSearchItem } ) {
+  const [newsCount, setNewsCount] = useState(3);
+  const [amount, setAmount] = useState();
+  const [data, setData] = useState([]);
+  const [dataNews, setDataNews] = useState([]);
 
-  const [inputText, setInputText] = useState('');
+  // Отправляем запрос и получаем данные
+  useEffect(() => {
+    axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + searchItem)
+      .then(response => {
 
-  const handleSearchPress = () => {
-    console.log(inputText);
-  };
+        setData(response.data);
+        setDataNews(response.data.news);
+        setAmount(response.data.amount);
 
-  const handleScreenPress = () => {
-    setIsBlurVisible(false);
-  };
+        console.log("Найдено новостей - ", response.data.amount);
 
-  const handleTextChange = (newText) => {
-    setInputText(newText);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [searchItem]);
+
+  // ОБРАБОТЧИК ДЛЯ НАЖАТИЯ НА КОПКУ ПОИСКА
+  const handlerInput = () => {
+    console.log(searchItem);
   }
 
+  // ОБРАБОТЧИК ДЛЯ ОЧИСТКИ ПОЛЯ ВВОДА ИНФОРМАЦИИ
+  const handlerClearInput = () => {
+    setSearchItem(null);
+  }
+
+  // ОБРАБОТЧИК ДЛЯ ИЗМЕНЕНИЯ ПОЛЯ ВВОДА
+  const handleChangeText = (newText) => {
+    setSearchItem(newText);
+  };
+
+  // РЕНДЕРИТ НАЙДЕНЫЕ НОВОСТИ
+  const renderThreeNews = () => {
+    return dataNews.slice(0, newsCount).map((item, index) => (
+      <View id={item.id} key={item.id} style={searchPageStyle.news_item}>
+        <View style={searchPageStyle.news_item_top}>
+          <TouchableOpacity style={searchPageStyle.news_block_text}>
+            <Text style={searchPageStyle.news_block_text_title}>{item.category}</Text>
+            <Text style={searchPageStyle.news_block_text_text}>{item.title}</Text>
+            <Text>{item.createdAtTime}</Text>
+          </TouchableOpacity>
+          <View style={searchPageStyle.news_block_img}>
+            <Image
+              style={searchPageStyle.image}
+              source={item.imgUrl}/>
+          </View>
+        </View>
+        <View style={searchPageStyle.news_item_bottom}>
+          <TouchableOpacity style={searchPageStyle.news_item_bottom_block_first}>
+            <Text style={searchPageStyle.news_item_bottom_block_text_first}>Экономика</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={searchPageStyle.news_item_bottom_block}>
+            <Text style={searchPageStyle.news_item_bottom_block_text}>Молдова</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={searchPageStyle.news_item_bottom_block}>
+            <Text style={searchPageStyle.news_item_bottom_block_text}>ЕС</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    ));
+  };
+
   return (
-      isBlurVisible ? (
-        <SafeAreaView>
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={isBlurVisible}
-          >
-            <TouchableWithoutFeedback style={searchPageStyle.container} onPress={handleScreenPress}>
-              <View style={searchPageStyle.window}>
-                <View style={searchPageStyle.search}>
-                  <TextInput
-                    value={inputText}
-                    style={searchPageStyle.input}
-                    placeholder="Search..."
-                    placeholderTextColor="#999"
-                    onChangeText={handleTextChange}
-                  />
-                  <TouchableOpacity onPress={handleSearchPress}>
-                    <Image style={searchPageStyle.input_image} source={require('../../assets/icons/search/dark_search.png')}/>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </TouchableWithoutFeedback>
-          </Modal>
-          <StatusBar barStyle={"dark-content"}/>
-        </SafeAreaView>
-    ) : null
-  );
+    <View style={styles.container}>
+      <View style={searchPageStyle.input_container}>
+        <TextInput
+          style={searchPageStyle.input}
+          value={searchItem}
+          onChangeText={handleChangeText}
+          onSubmitEditing={handlerInput}
+          placeholder="Поиск..."
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity
+          style={searchPageStyle.cross_wrapper}
+          onPress={handlerClearInput}
+        >
+          <Image
+            style={searchPageStyle.cross}
+            source={require('../../assets/icons/search/cross.png')}/>
+        </TouchableOpacity>
+      </View>
+      <View style={searchPageStyle.shown_container}>
+        {/*TODO CДЕЛАТЬ НОРМАЛЬНО*/}
+        <Text>Показано 1-10 из 123</Text>
+      </View>
+      <View style={searchPageStyle.news_container}>
+        {renderThreeNews()}
+      </View>
+      <TouchableOpacity
+        onPress={() => setNewsCount(newsCount + 3)}
+        style={searchPageStyle.button_container}>
+        <Text style={searchPageStyle.button}>Еще 3 новости</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
