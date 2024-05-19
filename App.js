@@ -7,12 +7,14 @@ import Menu from "./components/Menu/menu";
 import CreatContext from "./context/context";
 import { HomePage } from "./pages/HomePage/homePage";
 import { SearchPage } from "./pages/SearchPage/searchPage";
+import SearchContext from "./context/searchContext";
 
 export default function App() {
 
   const [refreshing, setRefreshing] = useState(false)
   const [visible, setVisible] = useState(true)
   const [index, setIndex] = useState(0)
+  const [searchData, setSearchData] = useState(0)
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -32,16 +34,18 @@ export default function App() {
         refreshControl ={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
 
         <CreatContext.Provider value={{ index: false, setIndex }}>
+          <SearchContext.Provider value={{ searchData: false, setSearchData }}>
           <View style={styles.container}>
             <Navigation/>
             <Menu/>
           </View>
           { index === 0 && <HomePage/> }
-          { index === 1 && <Text>Экономика</Text> }
-          { index === 2 && <Text>Политика</Text> }
-          { index === 3 && <Text>Бизнес</Text> }
-          { index === 4 && <Text>Мировые новости</Text> }
-          { index === 5 && <SearchPage/> }
+          { index === 1 && <Text>{index}</Text> }
+          { index === 2 && <Text>{index}</Text> }
+          { index === 3 && <Text>{index}</Text> }
+          { index === 4 && <Text>{index}</Text> }
+          { index === 5 && <SearchPage searchItem={searchData} setSearchItem={setSearchData} /> }
+          </SearchContext.Provider>
         </CreatContext.Provider>
 
         <View style={styles.footer}>
