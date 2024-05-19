@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { mainBlockStyle } from "../../styles/mainBlock/mainBlockStyle";
+import { mainBlockStyle } from "../../styles/Components/mainBlock/mainBlockStyle";
 
 export default function MainBlock({ bottomNewsThree }) {
 

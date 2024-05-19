@@ -1,8 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { navigationStyle } from "../../styles/navigation/navigationStyle";
+import { navigationStyle } from "../../styles/Components/navigation/navigationStyle";
 import { styles } from "../../styles/style";
-import SearchPage from "../../widgets/SearchPage/searchPage";
+import SearchWidget from "../../widgets/SearchWidget/searchWidget";
 import CreatContext from "../../context/context";
 
 export default function Navigation() {
@@ -16,7 +16,6 @@ export default function Navigation() {
 
   const handlerSearchPress = () => {
     setIsBlurVisible(true);
-    setIndex(5)
   };
 
   return (
@@ -53,7 +52,7 @@ export default function Navigation() {
 
       {/* Модальное окно блура */}
       {isBlurVisible && (
-        <SearchPage isBlurVisible={isBlurVisible} setIsBlurVisible={setIsBlurVisible} />
+        <SearchWidget isBlurVisible={isBlurVisible} setIsBlurVisible={setIsBlurVisible} />
       )}
     </View>
   );
