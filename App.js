@@ -7,6 +7,10 @@ import Menu from "./components/Menu/menu";
 import CreatContext from "./context/context";
 import { HomePage } from "./pages/HomePage/homePage";
 import { SearchPage } from "./pages/SearchPage/searchPage";
+import LoginWidget from "./widgets/login/loginWidget";
+import RegWidget from "./widgets/registration/regWidget";
+import PassWidget from "./widgets/password/passWidget";
+import RecoveryWidget from "./widgets/recovery/recoveryWidget";
 import SearchContext from "./context/searchContext";
 
 export default function App() {
@@ -45,6 +49,10 @@ export default function App() {
           { index === 3 && <Text>{index}</Text> }
           { index === 4 && <Text>{index}</Text> }
           { index === 5 && <SearchPage searchItem={searchData} setSearchItem={setSearchData} /> }
+          { index === 6 && <LoginWidget/>}
+          { index === 7 && <RegWidget/>}
+          { index === 8 && <PassWidget/>}
+          { index === 9 && <RecoveryWidget/>}
           </SearchContext.Provider>
         </CreatContext.Provider>
 

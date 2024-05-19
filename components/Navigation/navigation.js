@@ -18,6 +18,10 @@ export default function Navigation() {
     setIsBlurVisible(true);
   };
 
+  const handlerLoginClick = () => {
+    setIndex(6)
+  }
+
   return (
     <View style={navigationStyle.nav_container}>
       <View>
@@ -37,7 +41,7 @@ export default function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handlerLoginClick()}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>
