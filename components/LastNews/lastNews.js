@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { lastNewsStyle } from "../../styles/lastNews/lastNewsStyle";
-import axios from 'axios';
+import { lastNewsStyle } from "../../styles/Components/lastNews/lastNewsStyle";
 
-export function LastNews() {
-
-  const [lastNews, setLastNews] = useState([]);
+export function LastNews( {lastNews} ) {
 
   // Хардкодед данные с бека,
   // если не удалось отправить запрос
@@ -33,30 +30,21 @@ export function LastNews() {
     },
   ];
 
-  // Отправляем запрос на сервер и получаем json с новостями
-  useEffect(() => {
-    axios.get('http://localhost:4000/news/last-news')
-      .then(response => {
-        const data = response.data;
-        const firstThreeNews = data.news.slice(0, 3);
-        setLastNews(firstThreeNews);
-        console.log(firstThreeNews);
-      })
-      .catch(error => {
-        console.error(error);
-        setLastNews(newsData);
-      });
-  }, []);
-
   // Рендерим новости из состояния lastNews
   const renderNews = () => {
-    logUrls()
     return lastNews.map((news) => (
       <View key={news.id} style={lastNewsStyle.lastNews_block}>
-        <Image
-          style={lastNewsStyle.lastNews_block_img}
-          source={news.imgUrl}
-        />
+        {lastNews.length !== 0 ? (
+          <Image
+            style={lastNewsStyle.lastNews_block_img}
+            source={{uri: news.imgUrl}}
+          />
+        ) : (
+          <Image
+            style={lastNewsStyle.lastNews_block_img}
+            source={news.imgUrl}
+          />
+        )}
         <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
           <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
           <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
@@ -68,13 +56,6 @@ export function LastNews() {
         </TouchableOpacity>
       </View>
     ));
-  }
-
-  // Логи изображений
-  const logUrls = () => {
-    lastNews.map((news) => (
-      console.log(news.imgUrl)
-    ))
   }
 
   return (

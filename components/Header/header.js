@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity } from "react-native";
-import { headerStyle } from "../../styles/headerStyle/headerStyle";
+import { headerStyle } from "../../styles/Components/headerStyle/headerStyle";
 import Entypo from '@expo/vector-icons/Entypo';
 
 export default function Header({ visible, setVisible }) {

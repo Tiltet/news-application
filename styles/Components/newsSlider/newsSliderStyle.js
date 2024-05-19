@@ -1,18 +1,17 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const newsSliderStyle = StyleSheet.create({
   slider: {
-    marginTop: 15,
     backgroundColor: '#F0F0F0',
     height: 100,
   },
   slider_block: {
-    width: Dimensions.get("window").width,
     paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: "flex-start",
+    height: '100%',
   },
   slider_block_text: {
     display: 'flex',
@@ -32,5 +31,6 @@ export const newsSliderStyle = StyleSheet.create({
     borderRadius: 4,
     maxWidth: "40%",
     height: '100%',
+    overflow: 'hidden',
   },
 });

@@ -1,8 +1,7 @@
-import { Platform, StatusBar, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   main: {
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     backgroundColor: '#fff',
     height: '100%'
   },
@@ -20,8 +19,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footer: {
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: 35,
+    marginBottom: 15,
     borderTopColor: '#000',
     borderTopWidth: 2,
   },
