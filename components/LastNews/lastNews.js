@@ -4,8 +4,7 @@ import { lastNewsStyle } from "../../styles/Components/lastNews/lastNewsStyle";
 
 export function LastNews( {lastNews} ) {
 
-  // Хардкодед данные с бека,
-  // если не удалось отправить запрос
+  // Хардкодед данные с бека, если не удалось отправить запрос
   const newsData = [
     {
       id: 1,
