@@ -9,7 +9,7 @@ import axios from "axios";
 
 export function HomePage() {
 
-  // Если не удалось загрузить пока так
+  // ЕСЛИ НЕ ПРИШЛИ ДАННЫЕ С СЕРВЕРА
   const staticNews = [
     {
       id: "ee0039f6-2cdf-436e-8085-8d15bff46430",

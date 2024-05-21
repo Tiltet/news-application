@@ -34,6 +34,9 @@ export function SearchPage( {searchItem, setSearchItem } ) {
       })
       .catch(error => {
         console.log(error)
+        setAmount(0)
+        setNewsCount(0)
+        setInputText(searchItem)
       })
   }, [searchItem]);
 
@@ -45,8 +48,8 @@ export function SearchPage( {searchItem, setSearchItem } ) {
         setDataNews(response.data.news)
         setAmount(response.data.amount)
 
-        if (amount < 3) {
-          setNewsCount(amount)
+        if (response.data.amount < 3) {
+          setNewsCount(response.data.amount)
         }
         else {
           setNewsCount(3)

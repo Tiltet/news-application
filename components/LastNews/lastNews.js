@@ -31,23 +31,44 @@ export function LastNews( {lastNews} ) {
 
   // Рендерим новости из состояния lastNews
   const renderNews = () => {
-    return lastNews.map((news) => (
-      <View key={news.id} style={lastNewsStyle.lastNews_block}>
-        <Image
-          style={lastNewsStyle.lastNews_block_img}
-          source={{uri: news.imgUrl}}
-        />
-        <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
-          <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
-          <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
-          <Text numberOfLines={2} ellipsizeMode="tail">
-            {news.description.length > 100
-              ? news.description.substring(0, 100) + "..."
-              : news.description}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    ));
+    if (lastNews.length === 0) {
+      return newsData.map((news, index) => (
+        <View key={news.id} style={lastNewsStyle.lastNews_block}>
+          <Image
+            style={lastNewsStyle.lastNews_block_img}
+            source={news.imgUrl}
+          />
+          <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
+            <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
+            <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
+            <Text numberOfLines={2} ellipsizeMode="tail">
+              {news.description.length > 100
+                ? news.description.substring(0, 100) + "..."
+                : news.description}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ))
+    }
+    else {
+      return lastNews.map((news) => (
+        <View key={news.id} style={lastNewsStyle.lastNews_block}>
+          <Image
+            style={lastNewsStyle.lastNews_block_img}
+            source={{uri: news.imgUrl}}
+          />
+          <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
+            <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
+            <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
+            <Text numberOfLines={2} ellipsizeMode="tail">
+              {news.description.length > 100
+                ? news.description.substring(0, 100) + "..."
+                : news.description}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ));
+    }
   }
 
   return (
