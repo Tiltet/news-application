@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { searchWidgetStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
+import { searchWidgetStyle } from "./searchWidgetStyle";
 import CreatContext from "../../context/context";
 import SearchContext from "../../context/searchContext";
 

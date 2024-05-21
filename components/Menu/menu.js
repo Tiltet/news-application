@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { menuStyle } from "../../styles/Components/menu/menuStyle";
+import { menuStyle } from "./menuStyle";
 import { AntDesign } from "@expo/vector-icons";
 import CreatContext from "../../context/context";
 

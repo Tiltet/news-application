@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import { styles } from "../../styles/style";
+import { styles } from "../../style";
 import MainBlock from "../../components/MainBlock/mainBlock";
 import { NewsSlider } from "../../components/NewsSlyder/newsSlider";
 import { Graphs } from "../../components/Graphs/graphs";

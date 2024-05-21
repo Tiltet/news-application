@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { styles } from "../../styles/style";
-import { searchPageStyle } from "../../styles/Pages/Search/searchPageStyle";
+import { styles } from "../../style";
+import { searchPageStyle } from "./searchPageStyle";
 import axios from "axios";
 
-export function SearchPage( {searchItem, setSearchItem } ) {
+export function SearchPage( {searchItem } ) {
 
   const [inputText, setInputText] = useState("");
   const [newsCount, setNewsCount] = useState(3);

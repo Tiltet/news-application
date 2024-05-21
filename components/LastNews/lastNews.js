@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { lastNewsStyle } from "../../styles/Components/lastNews/lastNewsStyle";
+import { lastNewsStyle } from "./lastNewsStyle";
 
 export function LastNews( {lastNews} ) {
 

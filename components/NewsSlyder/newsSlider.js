@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from 'react-native-swiper';
-import { newsSliderStyle } from "../../styles/Components/newsSlider/newsSliderStyle";
+import { newsSliderStyle } from "./newsSliderStyle";
 
 export function NewsSlider( { swiperNews } ) {
 
