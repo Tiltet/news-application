@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { mainBlockStyle } from "../../styles/Components/mainBlock/mainBlockStyle";
+import { mainBlockStyle } from "./mainBlockStyle";
 
-export default function MainBlock({ bottomNewsThree }) {
+export default function MainBlock( { bottomNewsThree, mainNews } ) {
 
   // ВЫВОДИМ НА СТРАНИЦУ ЗАГОЛОВКИ НОВОСТЕЙ
   const renderTopThreeNews = () => {
@@ -41,8 +41,8 @@ export default function MainBlock({ bottomNewsThree }) {
   return (
     <View style={mainBlockStyle.mainBlock_container}>
       <TouchableOpacity style={mainBlockStyle.mainBlock_mainNews}>
-        <Image style={mainBlockStyle.mainBlock_img} source={require('../../assets/img/mainBlockImg.png')}/>
-        <Text style={mainBlockStyle.main_block_title}>Лидер левой партии призвал Турцию не умирать за грязные интересы США</Text>
+        <Image style={mainBlockStyle.mainBlock_img} source={{uri: mainNews.imgUrl}}/>
+        <Text style={mainBlockStyle.main_block_title}>{mainNews.title}</Text>
       </TouchableOpacity>
       <View style={mainBlockStyle.main_block_wrapper}>
         {renderTopThreeNews()}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styles } from "./styles/style";
+import { styles } from "./style";
 import { View, RefreshControl, ScrollView, Text, StatusBar } from "react-native";
 import Header from "./components/Header/header";
 import Navigation from "./components/Navigation/navigation";

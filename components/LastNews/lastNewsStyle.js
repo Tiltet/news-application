@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const lastNewsStyle = StyleSheet.create({
   lastNews_wrapper: {
@@ -10,10 +10,10 @@ export const lastNewsStyle = StyleSheet.create({
   },
   lastNews_container: {
     display: "flex",
-
   },
   lastNews_block: {
     marginTop: 10,
+    marginRight: 5,
     display: "flex",
     flexDirection: "row",
   },
