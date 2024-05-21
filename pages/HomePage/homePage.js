@@ -8,6 +8,7 @@ import { LastNews } from "../../components/LastNews/lastNews";
 import axios from "axios";
 import staticNewsList from "../../static/staticNewsList";
 import staticMainNews from "../../static/staticMainNews";
+import staticLastNews from "../../static/staticLastNews";
 
 export function HomePage() {
 
@@ -33,6 +34,7 @@ export function HomePage() {
         console.log(error)
         setMainNews(staticMainNews)
         setBottomNewsThree(staticNewsList)
+        setLastNews(staticLastNews)
       })
   }, []);
 
