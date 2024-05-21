@@ -34,17 +34,10 @@ export function LastNews( {lastNews} ) {
   const renderNews = () => {
     return lastNews.map((news) => (
       <View key={news.id} style={lastNewsStyle.lastNews_block}>
-        {lastNews.length !== 0 ? (
-          <Image
-            style={lastNewsStyle.lastNews_block_img}
-            source={{uri: news.imgUrl}}
-          />
-        ) : (
-          <Image
-            style={lastNewsStyle.lastNews_block_img}
-            source={news.imgUrl}
-          />
-        )}
+        <Image
+          style={lastNewsStyle.lastNews_block_img}
+          source={{uri: news.imgUrl}}
+        />
         <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
           <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
           <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>

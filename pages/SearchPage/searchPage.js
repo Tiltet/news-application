@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/style";
 import { searchPageStyle } from "../../styles/Pages/Search/searchPageStyle";
@@ -11,6 +11,7 @@ export function SearchPage( {searchItem, setSearchItem } ) {
   const [dataNews, setDataNews] = useState([]);
 
   // Отправляем запрос и получаем данные
+  /*
   useEffect(() => {
     axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + searchItem)
       .then(response => {
@@ -27,9 +28,21 @@ export function SearchPage( {searchItem, setSearchItem } ) {
       })
   }, [searchItem]);
 
+   */
+
   // ОБРАБОТЧИК ДЛЯ НАЖАТИЯ НА КОПКУ ПОИСКА
-  const handlerInput = () => {
+  const handlerInputButtonPress = () => {
     console.log(searchItem);
+    axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + searchItem)
+      .then(response => {
+        setData(response.data);
+        setDataNews(response.data.news);
+        setAmount(response.data.amount);
+        console.log("Найдено новостей - ", response.data.amount);
+      })
+      .catch(error => {
+        console.log("Ошибка нажатия на кнопку ввода на странице поиска - ", error)
+      })
   }
 
   // ОБРАБОТЧИК ДЛЯ ОЧИСТКИ ПОЛЯ ВВОДА ИНФОРМАЦИИ
@@ -55,7 +68,8 @@ export function SearchPage( {searchItem, setSearchItem } ) {
           <View style={searchPageStyle.news_block_img}>
             <Image
               style={searchPageStyle.image}
-              source={item.imgUrl}/>
+              source={{uri: item.imgUrl}}
+            />
           </View>
         </View>
         <View style={searchPageStyle.news_item_bottom}>
@@ -80,7 +94,7 @@ export function SearchPage( {searchItem, setSearchItem } ) {
           style={searchPageStyle.input}
           value={searchItem}
           onChangeText={handleChangeText}
-          onSubmitEditing={handlerInput}
+          onSubmitEditing={handlerInputButtonPress}
           placeholder="Поиск..."
           placeholderTextColor="#999"
         />
