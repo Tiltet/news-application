@@ -14,8 +14,17 @@ export function SearchPage( {searchItem, setSearchItem } ) {
 
   // Отправляем запрос и получаем данные
   useEffect(() => {
+
+    if (searchItem === null) {
+      searchItem = ' '
+    }
+
     axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + searchItem)
       .then(response => {
+
+        if (searchItem === ' ') {
+          searchItem = null
+        }
 
         setData(response.data)
         setDataNews(response.data.news)
@@ -34,6 +43,11 @@ export function SearchPage( {searchItem, setSearchItem } ) {
       })
       .catch(error => {
         console.log(error)
+
+        if (searchItem === ' ') {
+          searchItem = null
+        }
+
         setAmount(0)
         setNewsCount(0)
         setInputText(searchItem)
@@ -92,7 +106,11 @@ export function SearchPage( {searchItem, setSearchItem } ) {
         <View style={searchPageStyle.news_item_top}>
           <TouchableOpacity style={searchPageStyle.news_block_text}>
             <Text style={searchPageStyle.news_block_text_title}>{item.category}</Text>
-            <Text style={searchPageStyle.news_block_text_text}>{item.title}</Text>
+            <Text numberOfLines={3} style={searchPageStyle.news_block_text_text}>
+              {item.title.length > 100
+                ? item.title.substring(0, 100) + "..."
+                : item.title}
+            </Text>
             <Text>{item.createdAtTime}</Text>
           </TouchableOpacity>
           <View style={searchPageStyle.news_block_img}>
@@ -139,7 +157,7 @@ export function SearchPage( {searchItem, setSearchItem } ) {
       </View>
       <View style={searchPageStyle.shown_container}>
         {amount === 0 ? (
-          <Text>Ничего не найдено</Text>
+          <Text style={searchPageStyle.not_found_text}>Ничего не найдено :(</Text>
         ) : (
           <Text>Показано 1-{newsCount} из {amount}</Text>
         )}
@@ -147,11 +165,15 @@ export function SearchPage( {searchItem, setSearchItem } ) {
       <View style={searchPageStyle.news_container}>
         {renderThreeNews()}
       </View>
-      <TouchableOpacity
-        onPress={handlerButtonMoreNews}
-        style={searchPageStyle.button_container}>
-        <Text style={searchPageStyle.button}>Еще 3 новости</Text>
-      </TouchableOpacity>
+      { amount !== 0 ? (
+          <TouchableOpacity
+            onPress={handlerButtonMoreNews}
+            style={searchPageStyle.button_container}>
+            <Text style={searchPageStyle.button}>Еще 3 новости</Text>
+          </TouchableOpacity>
+      ) : (
+        <Text></Text>
+      ) }
     </View>
   )
 }

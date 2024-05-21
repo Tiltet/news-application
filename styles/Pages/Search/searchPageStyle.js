@@ -57,6 +57,7 @@ export const searchPageStyle = StyleSheet.create({
     color: '#50544F',
   },
   news_block_text_text: {
+    paddingRight: 10,
     fontWeight: '700',
   },
   news_block_img: {
@@ -103,5 +104,9 @@ export const searchPageStyle = StyleSheet.create({
     paddingVertical: 8,
     textAlign: "center",
     fontWeight: "600"
+  },
+  not_found_text: {
+    fontWeight: "700",
+    fontSize: 24,
   }
 })

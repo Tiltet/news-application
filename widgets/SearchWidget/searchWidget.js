@@ -30,6 +30,7 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
   // ФУНКЦИЯ НАЖАТИЯ НА ЭКРАН
   const handleScreenPress = () => {
     setIsBlurVisible(false)
+    setSearchData(null)
     setIndex(5)
   };
 
