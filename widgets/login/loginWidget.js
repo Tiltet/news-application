@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StatusBar, StyleSheet } from "react-native";
+import { StatusBar } from "react-native";
 import {
     Image,
     Modal,
@@ -9,6 +9,7 @@ import {
     View,
 } from "react-native";
 import CreatContext from "../../context/context";
+import { loginWidgetStyle } from "./loginWidgetStyle";
 
 export default function LoginWidget() {
 
@@ -34,10 +35,10 @@ export default function LoginWidget() {
 
     return (
         <Modal visible={true}>
-            <View style={styles.view}>
-                <View style={styles.block}>
-                    <View style={styles.block_container}>
-                        <View style={styles.top}>
+            <View style={loginWidgetStyle.view}>
+                <View style={loginWidgetStyle.block}>
+                    <View style={loginWidgetStyle.block_container}>
+                        <View style={loginWidgetStyle.top}>
                             <Image
                                 source={require('../../assets/img/logo.png')}
                                 style={{ width: 65, height: 20 }}
@@ -50,13 +51,13 @@ export default function LoginWidget() {
                             </TouchableOpacity>
 
                         </View>
-                        <Text style={styles.text}>Войти</Text>
-                        <Text style={styles.subtitle}>Введите свой email, чтобы войти</Text>
+                        <Text style={loginWidgetStyle.text}>Войти</Text>
+                        <Text style={loginWidgetStyle.subtitle}>Введите свой email, чтобы войти</Text>
                         <TextInput
-                            style={styles.inputfiled}
+                            style={loginWidgetStyle.inputfiled}
                             placeholder="E-mail@mail.ru"/>
-                        <View style={styles.checkbox_container}>
-                            <TouchableOpacity style={styles.checkbox} onPress={handleCheckboxPress}>
+                        <View style={loginWidgetStyle.checkbox_container}>
+                            <TouchableOpacity style={loginWidgetStyle.checkbox} onPress={handleCheckboxPress}>
                                 <View>
                                     {isChecked && (
                                         <View
@@ -70,12 +71,12 @@ export default function LoginWidget() {
                                     )}
                                 </View>
                             </TouchableOpacity>
-                            <Text style={styles.checkbox_text}>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
+                            <Text style={loginWidgetStyle.checkbox_text}>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
                         </View>
-                        <TouchableOpacity style={styles.button} onPress={()=>continueButtonHandler()} >
-                            <Text style={styles.button_text}> Продолжить</Text>
+                        <TouchableOpacity style={loginWidgetStyle.button} onPress={()=>continueButtonHandler()} >
+                            <Text style={loginWidgetStyle.button_text}> Продолжить</Text>
                         </TouchableOpacity>
-                        <View style={styles.social}>
+                        <View style={loginWidgetStyle.social}>
                             <TouchableOpacity>
                                 <Image
                                     source={require('../../assets/icons/login/google.png')}
@@ -101,10 +102,10 @@ export default function LoginWidget() {
                                 />
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.text_bottom}>
-                            <Text style={styles.text_bottom_text}>Еще нет аккаунта?</Text>
+                        <View style={loginWidgetStyle.text_bottom}>
+                            <Text style={loginWidgetStyle.text_bottom_text}>Еще нет аккаунта?</Text>
                             <TouchableOpacity onPress={()=>regButtonHandler()}>
-                                <Text style={styles.reg_text}>Зарегистрируйтесь!</Text>
+                                <Text style={loginWidgetStyle.reg_text}>Зарегистрируйтесь!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -115,114 +116,3 @@ export default function LoginWidget() {
     );
 
 }
-
-const  styles= StyleSheet.create({
-    view: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 1,
-        borderColor: "#000",
-        backgroundColor: "transparent",
-        height: "100%",
-        width: "100%",
-    },
-    block: {
-        paddingVertical: 20,
-        width: '86%',
-        backgroundColor: "#fff",
-        display: "flex",
-        borderWidth: 1,
-        borderRadius: 40
-    },
-    block_container: {
-        marginHorizontal: 30,
-    },
-    text: {
-        marginTop: 15,
-        alignSelf: "center",
-        fontSize: 20,
-        color: "#000",
-        marginBottom: 10,
-        fontWeight: "600",
-    },
-    top: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    subtitle: {
-        fontSize: 13,
-        alignSelf: "center",
-    },
-    inputfiled:{
-        marginTop: 30,
-        padding: 10,
-        alignSelf: "center",
-        width: "100%",
-        borderWidth: 1,
-        borderRadius: 10
-    },
-    checkbox: {
-        display:"flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: 20,
-        height: 20,
-        borderWidth: 1,
-        borderRadius: 4,
-        marginRight: 5
-    },
-    checkbox_text: {
-      fontSize: 12,
-    },
-    checkbox_container: {
-        width: "100%",
-        marginTop: 10,
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    button: {
-        marginTop: 20,
-        alignSelf: "center",
-        display: "flex",
-        justifyContent:"center",
-        alignItems:"center",
-        backgroundColor: "#88A2FF",
-        width: '100%',
-        height: 50,
-        borderRadius: 15,
-    },
-    button_text: {
-        fontSize: 14,
-        fontWeight:"700"
-    },
-    social: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        display:"flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginTop: 40
-    },
-    text_bottom:{
-        marginTop: 20,
-        display:"flex",
-        alignSelf: "center",
-        justifyContent: "flex-start",
-        flexDirection: "row"
-    },
-    text_bottom_text:{
-      fontSize: 12,
-      fontWeight: "500",
-    },
-    reg_text:{
-        paddingLeft: 5,
-        color: "#88A2FF",
-        fontSize: 12,
-        textDecorationLine: "underline",
-        fontWeight: "500",
-    }
-})

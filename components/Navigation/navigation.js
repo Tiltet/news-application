@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { navigationStyle } from "../../styles/Components/navigation/navigationStyle";
-import { styles } from "../../styles/style";
+import { navigationStyle } from "./navigationStyle";
+import { styles } from "../../style";
 import SearchWidget from "../../widgets/SearchWidget/searchWidget";
 import CreatContext from "../../context/context";
 
