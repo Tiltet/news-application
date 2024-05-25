@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../style";
 import { searchPageStyle } from "./searchPageStyle";
 import axios from "axios";
+import CreatContext from "../../context/context";
 
 export function SearchPage( {searchItem } ) {
 
@@ -11,6 +12,11 @@ export function SearchPage( {searchItem } ) {
   const [amount, setAmount] = useState(0);
   const [data, setData] = useState([]);
   const [dataNews, setDataNews] = useState([]);
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
 
   // Отправляем запрос и получаем данные
   useEffect(() => {
@@ -104,7 +110,7 @@ export function SearchPage( {searchItem } ) {
     return dataNews.slice(0, newsCount).map((item) => (
       <View id={item.id} key={item.id} style={searchPageStyle.news_item}>
         <View style={searchPageStyle.news_item_top}>
-          <TouchableOpacity style={searchPageStyle.news_block_text}>
+          <TouchableOpacity onPress={() => handlerNewsClick(item)} style={searchPageStyle.news_block_text}>
             <Text style={searchPageStyle.news_block_text_title}>{item.category}</Text>
             <Text numberOfLines={3} style={searchPageStyle.news_block_text_text}>
               {item.title.length > 100

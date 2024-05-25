@@ -2,6 +2,7 @@ import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from 'react-native-swiper';
 import { newsSliderStyle } from "./newsSliderStyle";
+import CreatContext from "../../context/context";
 
 export function NewsSlider( { swiperNews } ) {
 
@@ -21,6 +22,12 @@ export function NewsSlider( { swiperNews } ) {
     }
   ];
 
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
+
   const renderSlides = () => {
     if (swiperNews.length === 0) {
       return staticNews.map((item) =>
@@ -29,7 +36,7 @@ export function NewsSlider( { swiperNews } ) {
             style={newsSliderStyle.image}
             source={require('../../assets/img/flag.png')}
           />
-          <TouchableOpacity style={newsSliderStyle.slider_block_text}>
+          <TouchableOpacity onPress={() => handlerNewsClick()} style={newsSliderStyle.slider_block_text}>
             <Text
               numberOfLines={3}
               ellipsizeMode="tail"

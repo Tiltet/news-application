@@ -1,8 +1,15 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { lastNewsStyle } from "./lastNewsStyle";
+import CreatContext from "../../context/context";
 
 export function LastNews( {lastNews} ) {
+
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
 
   // Рендерим новости из состояния lastNews
   const renderNews = () => {
@@ -12,7 +19,7 @@ export function LastNews( {lastNews} ) {
           style={lastNewsStyle.lastNews_block_img}
           source={{uri: news.imgUrl}}
         />
-        <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
+        <TouchableOpacity onPress={() => handlerNewsClick(news)} style={lastNewsStyle.lastNews_block_text}>
           <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
           <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
           <Text numberOfLines={2} ellipsizeMode="tail">

@@ -11,7 +11,7 @@ import {
 import CreatContext from "../../context/context";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
 
-export default function RecoveryWidget() {
+export function RecoveryWidget() {
 
     const { index, setIndex } = React.useContext(CreatContext)
 
