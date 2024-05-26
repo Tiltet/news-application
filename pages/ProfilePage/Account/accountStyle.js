@@ -11,8 +11,8 @@ export const accountStyle = StyleSheet.create({
     },
     uppercontainer:{
         borderBottomWidth:1,
-
-        borderColor:"#ACADAC",
+        width:"auto",
+        borderColor:"#ACADAC"
     },
     lowercontainer: {
 
@@ -28,7 +28,7 @@ export const accountStyle = StyleSheet.create({
         marginBottom: 15,
         borderColor:"#ACADAC",
         borderWidth: 2,
-        paddingHorizontal:25,
+        paddingHorizontal:15,
     },
     button:{
         alignItems:"center",
@@ -54,7 +54,6 @@ export const accountStyle = StyleSheet.create({
         borderColor:"#ACADAC",
     },
     dropdownContainer: {
-        maxHeight:250,
         display:"flex",
         marginTop:10,
         padding: 10,
