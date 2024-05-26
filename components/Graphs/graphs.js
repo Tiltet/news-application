@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import { graphsStyle } from "../../styles/Components/graphs/graphsStyle";
+import { graphsStyle } from "./graphsStyle";
 import Entypo from "@expo/vector-icons/Entypo";
 
 export function Graphs() {

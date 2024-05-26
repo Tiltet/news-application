@@ -29,7 +29,7 @@ export const newsSliderStyle = StyleSheet.create({
   },
   image: {
     borderRadius: 4,
-    maxWidth: "40%",
+    width: "40%",
     height: '100%',
     overflow: 'hidden',
   },

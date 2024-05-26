@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Image,
   Modal,
@@ -9,9 +9,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { searchWidgetStyle } from "../../styles/Widgets/Search/searchWidgetStyle";
+import { searchWidgetStyle } from "./searchWidgetStyle";
 import CreatContext from "../../context/context";
-import axios from "axios";
 import SearchContext from "../../context/searchContext";
 
 export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
@@ -20,6 +19,7 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
   const { index, setIndex } = React.useContext(CreatContext)
   const { searchData, setSearchData } = React.useContext(SearchContext)
 
+  // ФУНКЦИЯ НАЖАТИЯ НА ИКОНКУ ПОИСКА
   const handleSearchPress = async () => {
     console.log("Поиск: ", inputText)
     setIsBlurVisible(false)
@@ -27,11 +27,14 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
     setIndex(5)
   };
 
+  // ФУНКЦИЯ НАЖАТИЯ НА ЭКРАН
   const handleScreenPress = () => {
     setIsBlurVisible(false)
+    setSearchData(null)
     setIndex(5)
   };
 
+  // ФУНКЦИЯ ИЗМЕНЕНИЯ ТЕКСТА
   const handleTextChange = (newText) => {
     setInputText(newText);
   }
@@ -53,6 +56,7 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
                     placeholder="Search..."
                     placeholderTextColor="#999"
                     onChangeText={handleTextChange}
+                    onSubmitEditing={handleSearchPress}
                   />
                   <TouchableOpacity onPress={handleSearchPress}>
                     <Image style={searchWidgetStyle.input_image} source={require('../../assets/icons/search/dark_search.png')}/>

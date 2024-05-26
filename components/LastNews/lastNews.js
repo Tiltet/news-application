@@ -1,51 +1,25 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { lastNewsStyle } from "../../styles/Components/lastNews/lastNewsStyle";
+import { lastNewsStyle } from "./lastNewsStyle";
+import CreatContext from "../../context/context";
 
 export function LastNews( {lastNews} ) {
 
-  // Хардкодед данные с бека,
-  // если не удалось отправить запрос
-  const newsData = [
-    {
-      id: 1,
-      createdAtTime: "11:00",
-      imgUrl: require('../../assets/img/newsImg.png'),
-      title: "This is a news Title",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun...",
-    },
-    {
-      id: 2,
-      createdAtTime: "12:30",
-      imgUrl: require('../../assets/img/flag.png'),
-      title: "Another News Title",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...",
-    },
-    {
-      id: 3,
-      createdAtTime: "23:30",
-      imgUrl: require('../../assets/img/mainBlockImg.png'),
-      title: "One more Title",
-      description: "Красткое описание новости, Красткое описание новости, Красткое описание новости",
-    },
-  ];
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
 
   // Рендерим новости из состояния lastNews
   const renderNews = () => {
     return lastNews.map((news) => (
       <View key={news.id} style={lastNewsStyle.lastNews_block}>
-        {lastNews.length !== 0 ? (
-          <Image
-            style={lastNewsStyle.lastNews_block_img}
-            source={{uri: news.imgUrl}}
-          />
-        ) : (
-          <Image
-            style={lastNewsStyle.lastNews_block_img}
-            source={news.imgUrl}
-          />
-        )}
-        <TouchableOpacity style={lastNewsStyle.lastNews_block_text}>
+        <Image
+          style={lastNewsStyle.lastNews_block_img}
+          source={{uri: news.imgUrl}}
+        />
+        <TouchableOpacity onPress={() => handlerNewsClick(news)} style={lastNewsStyle.lastNews_block_text}>
           <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
           <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
           <Text numberOfLines={2} ellipsizeMode="tail">
