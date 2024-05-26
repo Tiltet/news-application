@@ -15,6 +15,7 @@ import SearchContext from "./context/searchContext";
 import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
 import {ProfilePage} from "./pages/ProfilePage/profilePage";
+import { CategoryPage } from "./pages/CategoryPage/categoryPage";
 
 export default function App() {
 
@@ -47,10 +48,10 @@ export default function App() {
             <Menu/>
           </View>
             { index === 0 && <HomePage/> }
-            { index === 1 && <Text>{index}</Text> }
-            { index === 2 && <Text>{index}</Text> }
-            { index === 3 && <Text>{index}</Text> }
-            { index === 4 && <Text>{index}</Text> }
+            { index === 1 && <CategoryPage category={index}/> }
+            { index === 2 && <CategoryPage category={index}/> }
+            { index === 3 && <CategoryPage category={index}/> }
+            { index === 4 && <CategoryPage category={index}/> }
             { index === 5 && <SearchPage searchItem={searchData} setSearchItem={setSearchData} /> }
             { index === 6 && <ProfilePage/> }
             { index === 7 && <RegWidget/> }
