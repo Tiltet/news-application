@@ -14,6 +14,7 @@ import { RecoveryWidget } from "./widgets/recovery/recoveryWidget";
 import SearchContext from "./context/searchContext";
 import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
+import {ProfilePage} from "./pages/ProfilePage/profilePage";
 
 export default function App() {
 
@@ -51,7 +52,7 @@ export default function App() {
             { index === 3 && <Text>{index}</Text> }
             { index === 4 && <Text>{index}</Text> }
             { index === 5 && <SearchPage searchItem={searchData} setSearchItem={setSearchData} /> }
-            { index === 6 && <LoginWidget/> }
+            { index === 6 && <ProfilePage/> }
             { index === 7 && <RegWidget/> }
             { index === 8 && <PassWidget/> }
             { index === 9 && <RecoveryWidget/> }
