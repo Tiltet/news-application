@@ -52,6 +52,7 @@ export const supportStyle = StyleSheet.create({
         marginTop:5,
         marginBottom:10,
         borderColor:"#ACADAC",
+
     },
     dropdownContainer: {
         display:"flex",
@@ -71,16 +72,70 @@ export const supportStyle = StyleSheet.create({
         fontSize:15,
     },
     forgetpass:{
-        fontSize:15,
+        fontSize:16,
         marginBottom:15,
         textDecorationLine: "underline",
     },
     input:{
-        width:"90%",
+        width:"100%",
         marginTop:15,
         borderColor:"#EFEFEF",
         borderWidth: 1,
         borderRadius: 5,
+        height:35,
+        paddingHorizontal:15,
+        justifyContent:"center"
+    },
+    inputlarge:{
+        width:"100%",
+        marginTop:15,
+        borderColor:"#EFEFEF",
+        borderWidth: 1,
+        borderRadius: 5,
+        height:100,
+        paddingHorizontal:15,
+    },
+    sendbutton:{
+        marginTop:15,
+        backgroundColor:"#88A2FF",
+        alignItems:"center",
+        justifyContent:"center",
+        textColor:"white",
+        borderRadius:8,
+        height:35,
+        marginBottom:15,
+        color:"white"
+    },
+    hypertext:{
+        color:"#374883",
+        textDecorationLine:"underline",
+    },
+    images:{
+        marginTop:15,
+        flexDirection:"row",
+        marginLeft:5,
+        marginBottom:15,
+    },
+    image:{
+        marginHorizontal:20,
+    },
+    checkbox_container: {
+        width: "88%",
+        marginTop: 15,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "flex-start",
+    },
+    checkbox: {
+        display:"flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: 20,
+        height: 20,
+        borderWidth: 1,
+        borderRadius: 4,
+        marginRight: 5,
+        marginTop: 4
     },
 
 
