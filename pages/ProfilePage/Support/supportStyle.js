@@ -79,21 +79,23 @@ export const supportStyle = StyleSheet.create({
     input:{
         width:"100%",
         marginTop:15,
-        borderColor:"#EFEFEF",
+        borderColor:"#ACADAC",
         borderWidth: 1,
         borderRadius: 5,
         height:35,
         paddingHorizontal:15,
-        justifyContent:"center"
+        justifyContent:"center",
+        backgroundColor:"#EFEFEF"
     },
     inputlarge:{
         width:"100%",
         marginTop:15,
-        borderColor:"#EFEFEF",
+        borderColor:"#ACADAC",
         borderWidth: 1,
         borderRadius: 5,
         height:100,
         paddingHorizontal:15,
+        backgroundColor:"#EFEFEF"
     },
     sendbutton:{
         marginTop:15,

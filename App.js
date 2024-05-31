@@ -16,6 +16,8 @@ import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
 import {ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
+import {InstructionWidget} from "./widgets/instruction/instructionWidget";
+import {CodeWidget, СodeWidget} from "./widgets/code/codeWidget";
 
 export default function App() {
 
@@ -58,6 +60,8 @@ export default function App() {
             { index === 8 && <PassWidget/> }
             { index === 9 && <RecoveryWidget/> }
             { index === 10 && <OpinionPage/> }
+            { index === 11 && <InstructionWidget/> }
+            { index === 12 && <CodeWidget/> }
             { index.toString().length === 36 && <NewsPage id={index}/> }
           </SearchContext.Provider>
         </CreatContext.Provider>
