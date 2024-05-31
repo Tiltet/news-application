@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, Image, ScrollView, VirtualizedList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { opinionPageStyle } from "./opinionPageStyle";
-import staticOpinions from "../../static/staticOpinions";
 import { styles } from "../../style";
 import staticOpinionNews from "../../static/staticOpinionNews";
+import ModalDropdown from "react-native-modal-dropdown";
+import { accountStyle } from "../ProfilePage/Account/accountStyle";
 
 export function OpinionPage() {
 
@@ -77,22 +78,13 @@ export function OpinionPage() {
             source={require('../../assets/icons/opinion/arrowUp.png')}
           />
         </TouchableOpacity>
-        {showList && (
-          <View style={opinionPageStyle.listContainer}>
-            <FlatList
-              data={staticOpinions}
-              keyExtractor={(item) => item.label}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={opinionPageStyle.option}
-                  onPress={() => selectOption(item.label)}
-                >
-                  <Text style={opinionPageStyle.text_counter}>{item.label}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        )}
+        <ModalDropdown
+          dropdownStyle={{ color: "red" }}
+          defaultValue="31321"
+          style={{ color: "red" }}
+          options={['option 1', 'option 2', "option 3"]}
+        >
+        </ModalDropdown>
         <Text style={opinionPageStyle.count}>24534 опроса</Text>
       </View>
       {renderPolls(selectedValue)}

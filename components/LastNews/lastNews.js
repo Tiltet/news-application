@@ -13,11 +13,11 @@ export function LastNews( {lastNews} ) {
 
   // Рендерим новости из состояния lastNews
   const renderNews = () => {
-    return lastNews.map((news) => (
+    return lastNews.slice(0,3).map((news) => (
       <View key={news.id} style={lastNewsStyle.lastNews_block}>
         <Image
           style={lastNewsStyle.lastNews_block_img}
-          source={{uri: news.imgUrl}}
+          source={{ uri: news.imgUrl }}
         />
         <TouchableOpacity onPress={() => handlerNewsClick(news)} style={lastNewsStyle.lastNews_block_text}>
           <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>

@@ -7,7 +7,6 @@ import { Menu } from "./components/Menu/menu";
 import CreatContext from "./context/context";
 import { HomePage } from "./pages/HomePage/homePage";
 import { SearchPage } from "./pages/SearchPage/searchPage";
-import { LoginWidget } from "./widgets/login/loginWidget";
 import { RegWidget } from "./widgets/registration/regWidget";
 import { PassWidget } from "./widgets/password/passWidget";
 import { RecoveryWidget } from "./widgets/recovery/recoveryWidget";
@@ -16,6 +15,7 @@ import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
 import {ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
+import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 
 export default function App() {
 
@@ -58,6 +58,7 @@ export default function App() {
             { index === 8 && <PassWidget/> }
             { index === 9 && <RecoveryWidget/> }
             { index === 10 && <OpinionPage/> }
+            { index === 11 && <WeatherPage/> }
             { index.toString().length === 36 && <NewsPage id={index}/> }
           </SearchContext.Provider>
         </CreatContext.Provider>

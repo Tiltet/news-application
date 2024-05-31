@@ -51,7 +51,12 @@ export function Account() {
                     <Text style={accountStyle.headtext}> Мой профиль</Text>
                     <View style={accountStyle.textcontainer} >
                             <Text style={accountStyle.smalltext}> Местоположение </Text>
-                        <ModalDropdown dropdownStyle={accountStyle.dropdownContainer} defaultValue="" style={accountStyle.droplist} options={['option 1', 'option 2', "option 12"]}>
+                        <ModalDropdown
+                          dropdownStyle={accountStyle.dropdownContainer}
+                          defaultValue=""
+                          style={accountStyle.droplist}
+                          options={['option 1', 'option 2', "option 12"]}
+                        >
                         </ModalDropdown>
                     </View>
 

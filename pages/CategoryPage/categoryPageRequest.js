@@ -1,5 +1,5 @@
 import axios from "axios";
-import staticCategory from "./statickCategory";
+import staticCategory from "./staticCategory";
 
 export function handleEconomy() {
   return axios.get('http://localhost:4000/news/economika')
