@@ -47,10 +47,24 @@ export const calendarStyle = StyleSheet.create({
   month_days_day: {
     width: '14%',
   },
+  month_days_not_today: {
+    paddingTop: 2,
+    margin: "auto",
+    width: 25,
+    height: 25,
+    borderRadius: 100,
+  },
+  month_days_today: {
+    paddingTop: 2,
+    margin: "auto",
+    width: 25,
+    height: 25,
+    backgroundColor: "#88A2FF",
+    borderRadius: 100,
+  },
   month_days_day_text: {
     fontSize: 16,
     fontWeight: "500",
-    marginTop: 5,
     textAlign: "center",
   }
 })
