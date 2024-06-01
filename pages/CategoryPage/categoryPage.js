@@ -6,8 +6,12 @@ import { categoryPageStyle } from "./categoryPageStyle";
 
 export function CategoryPage( {category } ) {
 
+  const options = ['За период', 'За неделю', 'За месяц', 'За год', 'За все время'];
   const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(options[0]);
+  const [size, setSize] = useState(5);
 
   useEffect(() => {
     switch (category) {
@@ -61,7 +65,7 @@ export function CategoryPage( {category } ) {
 
   // ФУНКЦИЯ РЕНДЕРИНГА НОВОСТЕЙ
   const renderNews = () => {
-    return data.slice(0,5).map((item) => (
+    return data.slice(0,size).map((item) => (
       <View style={categoryPageStyle.news_item} key={item.id}>
         <View style={categoryPageStyle.news_item_top}>
           <TouchableOpacity style={categoryPageStyle.news_block_text}>
@@ -100,6 +104,7 @@ export function CategoryPage( {category } ) {
     setSelectedValue(item)
   }
 
+  // РЕНДЕРИТ ВЫПАДАЮЩИЙ СПИСОК
   const renderList = () => {
     return options.map((item) => (
       <TouchableOpacity onPress={() => handlerListClicked(item)} style={categoryPageStyle.header_list_text_container}>
@@ -108,18 +113,18 @@ export function CategoryPage( {category } ) {
     ))
   }
 
-  const options = ['За период', 'За неделю', 'За месяц', 'За год', 'За все время'];
-
-  const [visible, setVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(options[0]);
+  // ОБРАБОТЧИК НАЖАНИЯ КНОПКИ ЕЩЕ 5 СТАТЕЙ
+  const handlerMoreNews = () => {
+    setSize(size + 5)
+  }
 
   return (
     <View style={styles.container}>
       <Text style={categoryPageStyle.title}>{title}</Text>
       <View style={categoryPageStyle.header_container}>
         <View style={categoryPageStyle.header_count}>
-          <Text style={categoryPageStyle.header_count_text}>24534 </Text>
-          <Text style={categoryPageStyle.header_count_text}>статьи</Text>
+          <Text style={categoryPageStyle.header_count_text}>{data.length} </Text>
+          <Text style={categoryPageStyle.header_count_text}>статьей</Text>
         </View>
         <SafeAreaView>
           <TouchableOpacity style={categoryPageStyle.header_list} onPress={() => setVisible(!visible)}>
@@ -132,6 +137,13 @@ export function CategoryPage( {category } ) {
         </SafeAreaView>
       </View>
       {renderNews()}
+
+      <TouchableOpacity
+        style={categoryPageStyle.button}
+        onPress={() => handlerMoreNews()}
+      >
+        <Text style={categoryPageStyle.button_text}>Еще 5 статей</Text>
+      </TouchableOpacity>
 
       {/* Выпадающий список */}
       { visible ? (

@@ -115,4 +115,14 @@ export const categoryPageStyle = StyleSheet.create({
   news_item_bottom_block_text: {
     color: '#000',
   },
+  // КНОПКА "ЕЩЕ 5 СТАТЬЕЙ"
+  button: {
+    borderRadius: 5,
+    paddingVertical: 10,
+    backgroundColor: '#88A2FF',
+  },
+  button_text: {
+    fontWeight: "700",
+    textAlign: "center",
+  }
 })

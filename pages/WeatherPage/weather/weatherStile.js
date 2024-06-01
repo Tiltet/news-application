@@ -91,12 +91,14 @@ export const weatherStile = StyleSheet.create({
     display: "flex",
   },
   weather_list_items_item: {
+    marginHorizontal: 20,
     marginTop: 12,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   weather_list_items_item_border: {
+    width: "40%",
     paddingVertical: 2,
     paddingHorizontal: 5,
     borderWidth: 1,
@@ -104,19 +106,22 @@ export const weatherStile = StyleSheet.create({
     borderRadius: 25,
   },
   weather_list_items_item_data: {
+    textAlign: "center",
     fontSize: 18,
     fontWeight: "600",
   },
   weather_list_items_item_max: {
+    width: "30%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "flex-end",
   },
   weather_list_items_item_max_text: {
-    fontSize: 22,
+    fontSize: 18,
   },
   weather_list_items_item_max_image: {
-    marginLeft: 10,
+    marginLeft: 8,
     width: 20,
     height: 20,
   }

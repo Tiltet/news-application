@@ -1,10 +1,39 @@
 import { Image, Text, View } from "react-native";
 import { weatherStile } from "./weatherStile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { handlerWeather } from "../weatherPageRequest";
+import * as Location from 'expo-location';
 
 export function Weather() {
 
   const [ currentDate, setCurrentDate ] = useState(new Date());
+  const [ data, setData ] = useState({});
+  const [ city, setCity ] = useState('');
+  const [ errorMsg, setErrorMsg ] = useState('');
+
+  useEffect(() => {
+
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+      const reverseGeocodedLocation = await Location.reverseGeocodeAsync({ latitude, longitude });
+      setCity(reverseGeocodedLocation[0].city);
+    })();
+
+    handlerWeather()
+      .then(data => {
+        setData(data)
+      })
+      .catch(error => {
+        console.log('Ошибка при получении данных Погоды:', error);
+      });
+  }, [])
 
   // Функция для форматирования даты с ведущими нулями
   const formatDate = (date) => {
@@ -21,28 +50,49 @@ export function Weather() {
 
   // РЕНДЕРИТ ДНИ НЕДЕЛИ
   const renderDays = () => {
-    const days = Array.from({ length: 7 }, (_, index) => index + 1);
-    return days.map((item, index) => (
-      <View style={weatherStile.weather_list_items_item}>
-        <View style={weatherStile.weather_list_items_item_border}>
-          {formatDate(currentDate)}
+    return (
+      <View style={weatherStile.weather_list_items}>
+        <View style={weatherStile.weather_list_items_item}>
+          <View style={weatherStile.weather_list_items_item_border}>
+            <Text style={weatherStile.weather_list_items_item_data}>{data.dateOne}</Text>
+          </View>
+          <View style={weatherStile.weather_list_items_item_max}>
+            <Text style={weatherStile.weather_list_items_item_max_text}>{data.dayTemperatureOne}°</Text>
+            <Image
+              style={weatherStile.weather_list_items_item_max_image}
+              source={require('../../../assets/icons/header/sun.png')}
+            />
+          </View>
+          <View style={weatherStile.weather_list_items_item_max}>
+            <Text style={weatherStile.weather_list_items_item_max_text}>{data.nightTemperatureOne}°</Text>
+            <Image
+              style={weatherStile.weather_list_items_item_max_image}
+              source={require('../../../assets/icons/header/sun.png')}
+            />
+          </View>
         </View>
-        <View style={weatherStile.weather_list_items_item_max}>
-          <Text style={weatherStile.weather_list_items_item_max_text}>16°</Text>
-          <Image
-            style={weatherStile.weather_list_items_item_max_image}
-            source={require('../../../assets/icons/header/sun.png')}
-          />
-        </View>
-        <View style={weatherStile.weather_list_items_item_max}>
-          <Text style={weatherStile.weather_list_items_item_max_text}>6°</Text>
-          <Image
-            style={weatherStile.weather_list_items_item_max_image}
-            source={require('../../../assets/icons/header/sun.png')}
-          />
+
+        <View style={weatherStile.weather_list_items_item}>
+          <View style={weatherStile.weather_list_items_item_border}>
+            <Text style={weatherStile.weather_list_items_item_data}>{data.dateTwo}</Text>
+          </View>
+          <View style={weatherStile.weather_list_items_item_max}>
+            <Text style={weatherStile.weather_list_items_item_max_text}>{data.dayTemperatureTwo}°</Text>
+            <Image
+              style={weatherStile.weather_list_items_item_max_image}
+              source={require('../../../assets/icons/header/sun.png')}
+            />
+          </View>
+          <View style={weatherStile.weather_list_items_item_max}>
+            <Text style={weatherStile.weather_list_items_item_max_text}>{data.nightTemperatureTwo}°</Text>
+            <Image
+              style={weatherStile.weather_list_items_item_max_image}
+              source={require('../../../assets/icons/header/sun.png')}
+            />
+          </View>
         </View>
       </View>
-    ))
+    )
   }
 
   return (
@@ -50,7 +100,7 @@ export function Weather() {
 
       {/* ЗАГОЛОВОК С ГОРОДОМ */}
       <View style={weatherStile.title_block}>
-        <Text style={weatherStile.title_text}>Москва</Text>
+        <Text style={weatherStile.title_text}>{city}</Text>
         <Image
           style={weatherStile.title_image}
           source={require("../../../assets/icons/weather/map.png")}
@@ -70,9 +120,9 @@ export function Weather() {
 
         {/* ЦЕНТРАЛЬНЫЙ БЛОК */}
         <View style={weatherStile.weather_center_block}>
-          <Text style={weatherStile.weather_center_block_title}>11°</Text>
+          <Text style={weatherStile.weather_center_block_title}>{data.currentTemperature}°</Text>
           <View>
-            <Text style={weatherStile.weather_center_block_text}>16° / 6°</Text>
+            <Text style={weatherStile.weather_center_block_text}>{data.dayTemperature} / {data.nightTemperature}°</Text>
           </View>
         </View>
 
@@ -83,21 +133,21 @@ export function Weather() {
               style={[weatherStile.weather_right_block_icon, { width: 27, height: 25 }]}
               source={require("../../../assets/icons/weather/wind.png")}
             />
-            <Text style={weatherStile.weather_right_block_text}>35 м/с</Text>
+            <Text style={weatherStile.weather_right_block_text}>{data.windMPH} м/с</Text>
           </View>
           <View style={weatherStile.weather_right_block_line}>
             <Image
               style={[weatherStile.weather_right_block_icon, { width: 25, height: 25 }]}
               source={require("../../../assets/icons/weather/wet.png")}
             />
-            <Text style={weatherStile.weather_right_block_text}>44%</Text>
+            <Text style={weatherStile.weather_right_block_text}>{data.humidity}%</Text>
           </View>
           <View style={weatherStile.weather_right_block_line}>
             <Image
               style={[weatherStile.weather_right_block_icon, { width: 26, height: 25 }]}
               source={require("../../../assets/icons/weather/rain.png")}
             />
-            <Text style={weatherStile.weather_right_block_text}>31%</Text>
+            <Text style={weatherStile.weather_right_block_text}>{data.chanceOfRain}%</Text>
           </View>
         </View>
 
@@ -106,9 +156,7 @@ export function Weather() {
       {/* БЛОК С ПОГОДОЙ */}
       <View style={weatherStile.weather_list}>
         <Text style={weatherStile.weather_list_title}>Погода на неделю:</Text>
-        <View style={weatherStile.weather_list_items}>
-          {renderDays()}
-        </View>
+        {renderDays()}
       </View>
 
     </View>
