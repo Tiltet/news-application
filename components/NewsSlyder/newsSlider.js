@@ -2,6 +2,8 @@ import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from 'react-native-swiper';
 import { newsSliderStyle } from "./newsSliderStyle";
+import CreatContext from "../../context/context";
+import news from "../../static/staticNews";
 
 export function NewsSlider( { swiperNews } ) {
 
@@ -21,15 +23,21 @@ export function NewsSlider( { swiperNews } ) {
     }
   ];
 
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
+
   const renderSlides = () => {
     if (swiperNews.length === 0) {
       return staticNews.map((item) =>
         <View key={item.id} style={newsSliderStyle.slider_block}>
           <Image
             style={newsSliderStyle.image}
-            source={require('../../assets/img/flag.png')}
+            source={{uri: news.imgUrl}}
           />
-          <TouchableOpacity style={newsSliderStyle.slider_block_text}>
+          <TouchableOpacity onPress={() => handlerNewsClick(item)} style={newsSliderStyle.slider_block_text}>
             <Text
               numberOfLines={3}
               ellipsizeMode="tail"
@@ -55,7 +63,7 @@ export function NewsSlider( { swiperNews } ) {
             style={newsSliderStyle.image}
             source={{uri: item.imgUrl}}
           />
-          <TouchableOpacity style={newsSliderStyle.slider_block_text}>
+          <TouchableOpacity onPress={() => handlerNewsClick(item)} style={newsSliderStyle.slider_block_text}>
             <Text
               numberOfLines={3}
               ellipsizeMode="tail"

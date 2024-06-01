@@ -11,7 +11,7 @@ import {
 import CreatContext from "../../context/context";
 import { regWidgetStyle } from "./regWidgetStyle";
 
-export default function RegWidget() {
+export function RegWidget() {
 
 
     const [isChecked, setIsChecked] = useState(false);

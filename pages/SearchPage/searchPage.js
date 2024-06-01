@@ -3,6 +3,7 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../style";
 import { searchPageStyle } from "./searchPageStyle";
 import axios from "axios";
+import CreatContext from "../../context/context";
 
 export function SearchPage( {searchItem } ) {
 
@@ -10,7 +11,11 @@ export function SearchPage( {searchItem } ) {
   const [newsCount, setNewsCount] = useState(3);
   const [amount, setAmount] = useState(0);
   const [data, setData] = useState([]);
-  const [dataNews, setDataNews] = useState([]);
+  const { index, setIndex } = React.useContext(CreatContext)
+
+  const handlerNewsClick = (item) => {
+    setIndex(item.id)
+  }
 
   // Отправляем запрос и получаем данные
   useEffect(() => {
@@ -27,7 +32,6 @@ export function SearchPage( {searchItem } ) {
         }
 
         setData(response.data)
-        setDataNews(response.data.news)
         setAmount(response.data.amount)
         setInputText(searchItem)
 
@@ -59,7 +63,6 @@ export function SearchPage( {searchItem } ) {
     axios.get('http://localhost:4000/news/search' + '?searchNameTerm=' + inputText)
       .then(response => {
         setData(response.data);
-        setDataNews(response.data.news)
         setAmount(response.data.amount)
 
         if (response.data.amount < 3) {
@@ -101,10 +104,10 @@ export function SearchPage( {searchItem } ) {
 
   // РЕНДЕРИТ НАЙДЕНЫЕ НОВОСТИ
   const renderThreeNews = () => {
-    return dataNews.slice(0, newsCount).map((item) => (
+    return data.slice(0, newsCount).map((item) => (
       <View id={item.id} key={item.id} style={searchPageStyle.news_item}>
         <View style={searchPageStyle.news_item_top}>
-          <TouchableOpacity style={searchPageStyle.news_block_text}>
+          <TouchableOpacity onPress={() => handlerNewsClick(item)} style={searchPageStyle.news_block_text}>
             <Text style={searchPageStyle.news_block_text_title}>{item.category}</Text>
             <Text numberOfLines={3} style={searchPageStyle.news_block_text_text}>
               {item.title.length > 100
@@ -152,7 +155,8 @@ export function SearchPage( {searchItem } ) {
         >
           <Image
             style={searchPageStyle.cross}
-            source={require('../../assets/icons/search/cross.png')}/>
+            source={require('../../assets/icons/search/cross.png')}
+          />
         </TouchableOpacity>
       </View>
       <View style={searchPageStyle.shown_container}>
