@@ -4,7 +4,9 @@ import { styles } from "../../style";
 import { weatherPageStyle } from "./weatherPageStyle";
 import { staticHolidays } from "./staticHolidays";
 import { Calendar } from "./calendar/calendar";
-import { Weather } from "../../components/Weather/weather";
+import { Weather } from "./weather/weather";
+import { Horoscope } from "./horoscope/horoscope";
+import { Championship } from "./championship/championship";
 
 export function WeatherPage() {
 
@@ -45,6 +47,17 @@ export function WeatherPage() {
       <View>
         <Weather/>
       </View>
+
+      {/* ГОРОСКОП */}
+      <View>
+        <Horoscope/>
+      </View>
+
+      {/* ЧЕМПИОНАТ */}
+      <View>
+        <Championship/>
+      </View>
+
 
     </View>
   )

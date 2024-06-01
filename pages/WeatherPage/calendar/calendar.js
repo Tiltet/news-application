@@ -23,7 +23,7 @@ export function Calendar() {
   const renderMonthDays = () => {
     const day = Array.from({ length: days }, (_, index) => index + 1);
     return day.map((item, index) => (
-      <View id={index} style={calendarStyle.month_days_day}>
+      <View style={calendarStyle.month_days_day}>
         { index === currentDate.getDate() - 1 && monthNumber === currentDate.getMonth() + 1 ? (
             <View style={calendarStyle.month_days_today}>
               <Text style={calendarStyle.month_days_day_text}>{item}</Text>
@@ -41,7 +41,7 @@ export function Calendar() {
   // РЕНДЕРИТ ДНИ ОТ 1 ДО 30/31
   const renderDays = () => {
     return daysStatic.map((item, index) => (
-      <View id={index} style={calendarStyle.days_day}>
+      <View style={calendarStyle.days_day}>
         <Text style={calendarStyle.days_day_text}>{item}</Text>
       </View>
     ))

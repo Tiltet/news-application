@@ -23,7 +23,7 @@ export function Weather() {
   const renderDays = () => {
     const days = Array.from({ length: 7 }, (_, index) => index + 1);
     return days.map((item, index) => (
-      <View id={index} style={weatherStile.weather_list_items_item}>
+      <View style={weatherStile.weather_list_items_item}>
         <View style={weatherStile.weather_list_items_item_border}>
           {formatDate(currentDate)}
         </View>
@@ -31,14 +31,14 @@ export function Weather() {
           <Text style={weatherStile.weather_list_items_item_max_text}>16°</Text>
           <Image
             style={weatherStile.weather_list_items_item_max_image}
-            source={require('../../assets/icons/header/sun.png')}
+            source={require('../../../assets/icons/header/sun.png')}
           />
         </View>
         <View style={weatherStile.weather_list_items_item_max}>
           <Text style={weatherStile.weather_list_items_item_max_text}>6°</Text>
           <Image
             style={weatherStile.weather_list_items_item_max_image}
-            source={require('../../assets/icons/header/sun.png')}
+            source={require('../../../assets/icons/header/sun.png')}
           />
         </View>
       </View>
@@ -53,7 +53,7 @@ export function Weather() {
         <Text style={weatherStile.title_text}>Москва</Text>
         <Image
           style={weatherStile.title_image}
-          source={require("../../assets/icons/weather/map.png")}
+          source={require("../../../assets/icons/weather/map.png")}
         />
       </View>
 
@@ -64,7 +64,7 @@ export function Weather() {
         <View style={weatherStile.weather_left_block}>
           <Image
             style={weatherStile.weather_left_block_image}
-            source={require("../../assets/icons/header/sun.png")}
+            source={require("../../../assets/icons/header/sun.png")}
           />
         </View>
 
@@ -81,21 +81,21 @@ export function Weather() {
           <View style={weatherStile.weather_right_block_line}>
             <Image
               style={[weatherStile.weather_right_block_icon, { width: 27, height: 25 }]}
-              source={require("../../assets/icons/weather/wind.png")}
+              source={require("../../../assets/icons/weather/wind.png")}
             />
             <Text style={weatherStile.weather_right_block_text}>35 м/с</Text>
           </View>
           <View style={weatherStile.weather_right_block_line}>
             <Image
               style={[weatherStile.weather_right_block_icon, { width: 25, height: 25 }]}
-              source={require("../../assets/icons/weather/wet.png")}
+              source={require("../../../assets/icons/weather/wet.png")}
             />
             <Text style={weatherStile.weather_right_block_text}>44%</Text>
           </View>
           <View style={weatherStile.weather_right_block_line}>
             <Image
               style={[weatherStile.weather_right_block_icon, { width: 26, height: 25 }]}
-              source={require("../../assets/icons/weather/rain.png")}
+              source={require("../../../assets/icons/weather/rain.png")}
             />
             <Text style={weatherStile.weather_right_block_text}>31%</Text>
           </View>
