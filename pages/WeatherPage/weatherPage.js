@@ -4,6 +4,7 @@ import { styles } from "../../style";
 import { weatherPageStyle } from "./weatherPageStyle";
 import { staticHolidays } from "./staticHolidays";
 import { Calendar } from "./calendar/calendar";
+import { Weather } from "../../components/Weather/weather";
 
 export function WeatherPage() {
 
@@ -34,7 +35,17 @@ export function WeatherPage() {
           {renderHolidays()}
         </ScrollView>
       </View>
-      <Calendar/>
+
+      {/* КАЛЕНДАРЬ */}
+      <View>
+        <Calendar/>
+      </View>
+
+      {/* ПОГОДА */}
+      <View>
+        <Weather/>
+      </View>
+
     </View>
   )
 }
