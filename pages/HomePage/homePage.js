@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { styles } from "../../style";
-import MainBlock from "../../components/MainBlock/mainBlock";
+import { MainBlock } from "../../components/MainBlock/mainBlock";
 import { NewsSlider } from "../../components/NewsSlyder/newsSlider";
 import { Graphs } from "../../components/Graphs/graphs";
 import { LastNews } from "../../components/LastNews/lastNews";
@@ -27,7 +27,7 @@ export function HomePage() {
         setBottomNewsThree(response.data.bottomNewsThree);
         setLastNews(response.data.mainNews);
         setSwiperNews(response.data.swipeNews);
-        setMainNews(response.data.news[9])
+        setMainNews(response.data.news[0])
 
       })
       .catch(error => {

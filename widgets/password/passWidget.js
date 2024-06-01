@@ -11,7 +11,7 @@ import {
 import CreatContext from "../../context/context";
 import { passWidgetStyle } from "./passWidgetStyle";
 
-export default function PassWidget() {
+export function PassWidget() {
 
     const { index, setIndex } = React.useContext(CreatContext)
 

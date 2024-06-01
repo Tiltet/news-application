@@ -11,7 +11,7 @@ import {
 import CreatContext from "../../context/context";
 import { loginWidgetStyle } from "./loginWidgetStyle";
 
-export default function LoginWidget() {
+export function LoginWidget() {
 
 
     const [isChecked, setIsChecked] = useState(false);

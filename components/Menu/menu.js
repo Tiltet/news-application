@@ -4,7 +4,7 @@ import { menuStyle } from "./menuStyle";
 import { AntDesign } from "@expo/vector-icons";
 import CreatContext from "../../context/context";
 
-export default  function Menu() {
+export  function Menu() {
 
   // ЭКСПОРТИРУЕМ КОНТЕКСТ, КОТОРЫЙ ОТВЕЧАЕТ ЗА НАВИГАЦИЮ НА СТРАНИЦЕ
   const { index, setIndex } = React.useContext(CreatContext)

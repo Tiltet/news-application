@@ -5,33 +5,30 @@ import { styles } from "../../style";
 import SearchWidget from "../../widgets/SearchWidget/searchWidget";
 import CreatContext from "../../context/context";
 
-export default function Navigation() {
+export function Navigation() {
 
   const [isBlurVisible, setIsBlurVisible] = useState(false);
   const { index, setIndex } = React.useContext(CreatContext)
-
-  const handlerLogoClick = () => {
-    setIndex(0)
-  }
 
   const handlerSearchPress = () => {
     setIsBlurVisible(true);
   };
 
-  const handlerLoginClick = () => {
-    setIndex(6)
+  // ФУНКЦИЯ ПЕРЕХОДА НА ДРУГУЮ СТРАНИЦУ
+  const handlerLinkClick = (number) => {
+    setIndex(number)
   }
 
   return (
     <View style={navigationStyle.nav_container}>
       <View>
-        <TouchableOpacity onPress={() => handlerLogoClick()}>
+        <TouchableOpacity onPress={() => handlerLinkClick(0)}>
           <Image style={navigationStyle.nav_logo} source={require('../../assets/img/logo.png')}/>
         </TouchableOpacity>
       </View>
       <View style={navigationStyle.nav_icon_container}>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handlerLinkClick(10)}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/message.png')}/>
           </TouchableOpacity>
         </View>
@@ -41,12 +38,12 @@ export default function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => handlerLoginClick()}>
+          <TouchableOpacity onPress={() => handlerLinkClick(6)}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.flexbox}>
+          <TouchableOpacity style={styles.flexbox} onPress={() => handlerLinkClick(11)}>
             <Text style={navigationStyle.nav_weather_text}>11°</Text>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/sun.png')}/>
           </TouchableOpacity>
