@@ -75,6 +75,47 @@ export const accountStyle = StyleSheet.create({
         marginBottom:15,
         textDecorationLine: "underline",
     },
+    edit_input:{
+        borderWidth:1,
+        borderRadius:7,
+        borderColor:"#ACADAC",
+        backgroundColor:"#EFEFEF",
+        height:35,
+        marginTop:10,
+    },
+    edit_button_contatiner:{
+        flexDirection:"row",
+        marginTop:20,
+        marginBottom:50,
+        justifyContent:"space-around",
+        width:"80%",
+    },
+    edit_button:{
+        borderWidth:1,
+        borderRadius:7,
+        height:35,
+        width:100,
+        alignSelf:"center",
+        justifyContent:"center",
+        backgroundColor:"#88A2FF",
+        marginRight:60
+    },
+    cancel_button:{
+        borderWidth:1,
+        borderRadius:7,
+        height:35,
+        width:100,
+        alignSelf:"center",
+        justifyContent:"center",
+        backgroundColor:"#000",
+    },
+    button_text:{
+        alignSelf:"center",
+        color:"white",
+    },
+    text:{
+        marginTop:10,
+    }
 
 
 })
