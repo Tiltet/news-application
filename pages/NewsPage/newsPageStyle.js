@@ -76,7 +76,7 @@ export const pageStyle =  StyleSheet.create({
     justifyContent: "space-between",
   },
   button: {
-    width: "45%",
+    width: "49%",
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",

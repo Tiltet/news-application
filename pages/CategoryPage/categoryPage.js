@@ -50,7 +50,6 @@ export function CategoryPage( {category } ) {
         setTitle("Мировые новости")
         handleWorldNews()
           .then(data => {
-            console.log(data);
             setData(data)
           })
           .catch(error => {

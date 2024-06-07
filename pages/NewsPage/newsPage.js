@@ -51,7 +51,7 @@ export default function NewsPage( {id, handleScrollToTop} ) {
       </ImageBackground>
 
       <View style={styles.container}>
-        <Text style={pageStyle.main_text}>{data.description}</Text>
+        <Text style={[pageStyle.main_text, { flex: 1, flexWrap: 'wrap' }]}>{data.description.replace(/\s{4}/g, '\n\n')}</Text>
       </View>
 
       <View style={styles.container}>
@@ -72,7 +72,7 @@ export default function NewsPage( {id, handleScrollToTop} ) {
           </TouchableOpacity>
           <TouchableOpacity style={pageStyle.button}>
             <Image style={{ width: 25, height: 25 }} source={require("../../assets/icons/poll/unlike.png")}/>
-            <Text style={pageStyle.button_text}>Понравилось</Text>
+            <Text style={pageStyle.button_text}>Не понравилось</Text>
           </TouchableOpacity>
         </View>
       </View>
