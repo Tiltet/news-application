@@ -12,7 +12,6 @@ export function Dropdown({ categories, selectOption, selectedValue }) {
             dropdownTextStyle={dropdownStyle.dropdown_text}
             saveScrollPosition={false}
             isFullWidth={true}
-            defaultIndex={0}
             dropdownTextHighlightStyle={dropdownStyle.dropdown_text_selected}
             options={categories}
             onSelect={selectOption}

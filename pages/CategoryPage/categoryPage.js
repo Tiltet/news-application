@@ -4,6 +4,7 @@ import { handleBusiness, handleEconomy, handlePolitics, handleWorldNews } from "
 import { styles } from "../../style";
 import { categoryPageStyle } from "./categoryPageStyle";
 import {Dropdown} from "../../components/Dropdown/dropdown";
+import {newsPageLink} from "../NewsPage/newsPageLink";
 
 export function CategoryPage( {category } ) {
 
@@ -11,6 +12,7 @@ export function CategoryPage( {category } ) {
   const [title, setTitle] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("За все время");
   const [size, setSize] = useState(5);
+  const handlerNewsClick = newsPageLink();
 
   useEffect(() => {
     switch (category) {
@@ -61,6 +63,10 @@ export function CategoryPage( {category } ) {
     }
   }, []);
 
+  const handlerMoreNews = () => {
+    setSize(size + 5)
+  }
+
   const selectCategory = (index, category) => {
     setSelectedCategory(category);
   };
@@ -70,7 +76,7 @@ export function CategoryPage( {category } ) {
     return data.slice(0,size).map((item) => (
       <View style={categoryPageStyle.news_item} key={item.id}>
         <View style={categoryPageStyle.news_item_top}>
-          <TouchableOpacity style={categoryPageStyle.news_block_text}>
+          <TouchableOpacity style={categoryPageStyle.news_block_text} onPress={() => handlerNewsClick(item.id)}>
             <Text numberOfLines={4} style={categoryPageStyle.news_block_text_text}>
               {item.title.length > 100
                 ? item.title.substring(0, 100) + "..."
@@ -98,11 +104,6 @@ export function CategoryPage( {category } ) {
         </View>
       </View>
     ))
-  }
-
-  // ОБРАБОТЧИК НАЖАНИЯ КНОПКИ ЕЩЕ 5 СТАТЕЙ
-  const handlerMoreNews = () => {
-    setSize(size + 5)
   }
 
   return (

@@ -5,11 +5,12 @@ import { pageStyle } from "./newsPageStyle";
 import axios from "axios";
 import staticNews from "../../static/staticNews";
 
-export default function NewsPage( {id} ) {
+export default function NewsPage( {id, handleScrollToTop} ) {
 
   const [data, setData] = useState(staticNews);
 
   useEffect(() => {
+    handleScrollToTop()
     axios.get(`http://localhost:4000/news/${id}`)
       .then(response => {
         setData(response.data);
