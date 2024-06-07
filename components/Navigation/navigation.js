@@ -38,12 +38,13 @@ export function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => handlerLinkClick(6)}>
+          {/*ВЕРНУТЬ ШЕСТЕРИК ЦИФРА 6*/}
+          <TouchableOpacity onPress={() => handlerLinkClick(13)}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.flexbox} onPress={() => handlerLinkClick(11)}>
+          <TouchableOpacity style={styles.flexbox} onPress={() => handlerLinkClick(14)}>
             <Text style={navigationStyle.nav_weather_text}>11°</Text>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/sun.png')}/>
           </TouchableOpacity>

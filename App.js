@@ -15,7 +15,11 @@ import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
 import {ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
+import {InstructionWidget} from "./widgets/instruction/instructionWidget";
+import {CodeWidget} from "./widgets/code/codeWidget";
+import {CreatePassWidget} from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
+
 
 export default function App() {
 
@@ -58,7 +62,10 @@ export default function App() {
             { index === 8 && <PassWidget/> }
             { index === 9 && <RecoveryWidget/> }
             { index === 10 && <OpinionPage/> }
-            { index === 11 && <WeatherPage/> }
+            { index === 11 && <InstructionWidget/> }
+            { index === 12 && <CodeWidget/> }
+            { index === 13 && <CreatePassWidget/> }
+            { index === 14 && <WeatherPage/> }
             { index.toString().length === 36 && <NewsPage id={index}/> }
           </SearchContext.Provider>
         </CreatContext.Provider>
