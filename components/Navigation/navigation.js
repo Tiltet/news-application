@@ -44,7 +44,7 @@ export function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.flexbox}>
+          <TouchableOpacity style={styles.flexbox} onPress={() => handlerLinkClick(11)}>
             <Text style={navigationStyle.nav_weather_text}>11°</Text>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/sun.png')}/>
           </TouchableOpacity>
