@@ -38,7 +38,8 @@ export function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => handlerLinkClick(6)}>
+          {/*ВЕРНУТЬ ШЕСТЕРИК ЦИФРА 6*/}
+          <TouchableOpacity onPress={() => handlerLinkClick(13)}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>

@@ -11,8 +11,8 @@ export const accountStyle = StyleSheet.create({
     },
     uppercontainer:{
         borderBottomWidth:1,
-
-        borderColor:"#ACADAC",
+        width:"auto",
+        borderColor:"#ACADAC"
     },
     lowercontainer: {
 
@@ -28,7 +28,7 @@ export const accountStyle = StyleSheet.create({
         marginBottom: 15,
         borderColor:"#ACADAC",
         borderWidth: 2,
-        paddingHorizontal:25,
+        paddingHorizontal:15,
     },
     button:{
         alignItems:"center",
@@ -54,7 +54,6 @@ export const accountStyle = StyleSheet.create({
         borderColor:"#ACADAC",
     },
     dropdownContainer: {
-        maxHeight:250,
         display:"flex",
         marginTop:10,
         padding: 10,
@@ -76,6 +75,47 @@ export const accountStyle = StyleSheet.create({
         marginBottom:15,
         textDecorationLine: "underline",
     },
+    edit_input:{
+        borderWidth:1,
+        borderRadius:7,
+        borderColor:"#ACADAC",
+        backgroundColor:"#EFEFEF",
+        height:35,
+        marginTop:10,
+    },
+    edit_button_contatiner:{
+        flexDirection:"row",
+        marginTop:20,
+        marginBottom:50,
+        justifyContent:"space-around",
+        width:"80%",
+    },
+    edit_button:{
+        borderWidth:1,
+        borderRadius:7,
+        height:35,
+        width:100,
+        alignSelf:"center",
+        justifyContent:"center",
+        backgroundColor:"#88A2FF",
+        marginRight:60
+    },
+    cancel_button:{
+        borderWidth:1,
+        borderRadius:7,
+        height:35,
+        width:100,
+        alignSelf:"center",
+        justifyContent:"center",
+        backgroundColor:"#000",
+    },
+    button_text:{
+        alignSelf:"center",
+        color:"white",
+    },
+    text:{
+        marginTop:10,
+    }
 
 
 })
