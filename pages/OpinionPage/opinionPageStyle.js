@@ -119,5 +119,24 @@ export const opinionPageStyle = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     color: "#000",
+  },
+  dropdown: {
+    padding: 10,
+    width: '100%',
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  dropdown_container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  dropdown_text: {
+    fontSize: 16,
+  },
+  dropdown_image: {
+    width: 20,
+    height: 10,
   }
 })
