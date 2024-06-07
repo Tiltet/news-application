@@ -16,7 +16,7 @@ import NewsPage from "./pages/NewsPage/newsPage";
 import {ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
 import {InstructionWidget} from "./widgets/instruction/instructionWidget";
-import {CodeWidget, СodeWidget} from "./widgets/code/codeWidget";
+import {CodeWidget} from "./widgets/code/codeWidget";
 import {CreatePassWidget} from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 
