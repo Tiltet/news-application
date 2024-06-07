@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Image, SafeAreaView } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { handleBusiness, handleEconomy, handlePolitics, handleWorldNews } from "./categoryPageRequest";
 import { styles } from "../../style";
 import { categoryPageStyle } from "./categoryPageStyle";
+import {Dropdown} from "../../components/Dropdown/dropdown";
 
 export function CategoryPage( {category } ) {
 
-  const options = ['За период', 'За неделю', 'За месяц', 'За год', 'За все время'];
   const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(options[0]);
+  const [selectedCategory, setSelectedCategory] = useState("За все время");
   const [size, setSize] = useState(5);
 
   useEffect(() => {
@@ -62,6 +61,9 @@ export function CategoryPage( {category } ) {
     }
   }, []);
 
+  const selectCategory = (index, category) => {
+    setSelectedCategory(category);
+  };
 
   // ФУНКЦИЯ РЕНДЕРИНГА НОВОСТЕЙ
   const renderNews = () => {
@@ -98,21 +100,6 @@ export function CategoryPage( {category } ) {
     ))
   }
 
-  // ОБРАБОТЧИК НАЖАНИЯ НА ВЫПАДАЮЩИЙ СПИСОК
-  const handlerListClicked = (item) => {
-    setVisible(!visible)
-    setSelectedValue(item)
-  }
-
-  // РЕНДЕРИТ ВЫПАДАЮЩИЙ СПИСОК
-  const renderList = () => {
-    return options.map((item) => (
-      <TouchableOpacity onPress={() => handlerListClicked(item)} style={categoryPageStyle.header_list_text_container}>
-        <Text style={categoryPageStyle.header_list_text}>{item}</Text>
-      </TouchableOpacity>
-    ))
-  }
-
   // ОБРАБОТЧИК НАЖАНИЯ КНОПКИ ЕЩЕ 5 СТАТЕЙ
   const handlerMoreNews = () => {
     setSize(size + 5)
@@ -126,16 +113,15 @@ export function CategoryPage( {category } ) {
           <Text style={categoryPageStyle.header_count_text}>{data.length} </Text>
           <Text style={categoryPageStyle.header_count_text}>статьей</Text>
         </View>
-        <SafeAreaView>
-          <TouchableOpacity style={categoryPageStyle.header_list} onPress={() => setVisible(!visible)}>
-            <Text>{selectedValue}</Text>
-            <Image
-              style={categoryPageStyle.header_list_image}
-              source={require("../../assets/icons/opinion/arrowUp.png")}
+          <View style={{ width: "60%" }}>
+            <Dropdown
+                categories={["За период", "За неделю", "За месяц", "За год", "За все время"]}
+                selectOption={selectCategory}
+                selectedValue={selectedCategory}
             />
-          </TouchableOpacity>
-        </SafeAreaView>
+          </View>
       </View>
+
       {renderNews()}
 
       <TouchableOpacity
@@ -144,15 +130,6 @@ export function CategoryPage( {category } ) {
       >
         <Text style={categoryPageStyle.button_text}>Еще 5 статей</Text>
       </TouchableOpacity>
-
-      {/* Выпадающий список */}
-      { visible ? (
-        <View style={categoryPageStyle.header_list_drop}>
-          {renderList()}
-        </View>
-      ) : (
-        <Text style={{ position: "absolute" }}></Text>
-      )}
     </View>
   )
 }
