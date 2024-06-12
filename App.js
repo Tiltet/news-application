@@ -19,6 +19,7 @@ import { InstructionWidget } from "./widgets/instruction/instructionWidget";
 import { CodeWidget } from "./widgets/code/codeWidget";
 import { CreatePassWidget } from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
+import {LoginWidget} from "./widgets/login/loginWidget";
 
 
 export default function App() {
@@ -61,12 +62,12 @@ export default function App() {
                 <Menu/>
               </View>
               { index === 0 && <HomePage/> }
-              { index === 1 && <CategoryPage category={index}/> }
-              { index === 2 && <CategoryPage category={index}/> }
-              { index === 3 && <CategoryPage category={index}/> }
-              { index === 4 && <CategoryPage category={index}/> }
+              { index === 1 && <CategoryPage category={"economy"} title={"Экономика"} /> }
+              { index === 2 && <CategoryPage category={"policy"} title={"Политика"} /> }
+              { index === 3 && <CategoryPage category={"business"} title={"Бизнес"} /> }
+              { index === 4 && <CategoryPage category={"world"} title={"Мировые новости"} /> }
               { index === 5 && <SearchPage searchItem={searchData} setSearchItem={setSearchData} /> }
-              { index === 6 && <ProfilePage/> }
+              { index === 6 && <LoginWidget/> }
               { index === 7 && <RegWidget/> }
               { index === 8 && <PassWidget/> }
               { index === 9 && <RecoveryWidget/> }
@@ -75,6 +76,7 @@ export default function App() {
               { index === 12 && <CodeWidget/> }
               { index === 13 && <CreatePassWidget/> }
               { index === 14 && <WeatherPage/> }
+              { index === 15 && <ProfilePage/> }
               { index.toString().length === 36 && <NewsPage id={index} handleScrollToTop={handleScrollToTop} /> }
             </SearchContext.Provider>
           </CreatContext.Provider>

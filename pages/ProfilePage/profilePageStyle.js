@@ -7,21 +7,24 @@ export const profileStyle = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
-        alignSelf:"center",
-        width:"100%",
+        alignSelf: "center",
+        width: "100%",
         borderWidth:0
-},
-    switcherButtons:{
+    },
+    switcherButtons: {
         height: 30,
         width:"50%",
-        borderBottomWidth:2,
-        alignItems:"center"
+        borderBottomWidth: 2,
     },
-    activated:{
-        borderColor:"#88A2FF",
-        textColor:"#88A2FF",
+    switcherButtons_text: {
+        fontSize: 16,
+        textAlign: "center"
     },
-    activatedText:{
+    activated: {
+        borderColor: "#88A2FF",
+        textColor: "#88A2FF",
+    },
+    activatedText: {
         color: "#88A2FF",
     }
 })

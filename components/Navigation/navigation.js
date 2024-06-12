@@ -4,6 +4,7 @@ import { navigationStyle } from "./navigationStyle";
 import { styles } from "../../style";
 import SearchWidget from "../../widgets/SearchWidget/searchWidget";
 import CreatContext from "../../context/context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Navigation() {
 
@@ -14,10 +15,19 @@ export function Navigation() {
     setIsBlurVisible(true);
   };
 
-  // ФУНКЦИЯ ПЕРЕХОДА НА ДРУГУЮ СТРАНИЦУ
-  const handlerLinkClick = (number) => {
-    setIndex(number)
-  }
+// ФУНКЦИЯ ПЕРЕХОДА НА ДРУГУЮ СТРАНИЦУ
+  const handlerLinkClick = async (number) => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      if (number === 6 && token !== null) {
+        setIndex(15);
+      } else {
+        setIndex(number);
+      }
+    } catch (error) {
+      console.error("Error handling link click:", error);
+    }
+  };
 
   return (
     <View style={navigationStyle.nav_container}>
@@ -38,8 +48,8 @@ export function Navigation() {
           </TouchableOpacity>
         </View>
         <View>
-          {/*ВЕРНУТЬ ШЕСТЕРИК ЦИФРА 6*/}
-          <TouchableOpacity onPress={() => handlerLinkClick(13)}>
+
+          <TouchableOpacity onPress={() => handlerLinkClick(6)}>
             <Image style={navigationStyle.nav_icon} source={require('../../assets/icons/header/profile.png')}/>
           </TouchableOpacity>
         </View>

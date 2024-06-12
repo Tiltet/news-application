@@ -13,7 +13,6 @@ import { regWidgetStyle } from "./regWidgetStyle";
 
 export function RegWidget() {
 
-
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxPress = () => {
         setIsChecked(!isChecked);
@@ -28,7 +27,6 @@ export function RegWidget() {
     const loginButtonHandler = () => {
         setIndex(6)
     };
-
 
     return (
         <Modal visible={true}>

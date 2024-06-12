@@ -2,20 +2,19 @@ import {View, Text, TouchableOpacity, TextInput} from "react-native";
 import React, {useState} from "react";
 import {accountStyle} from "./accountStyle";
 import ModalDropdown from 'react-native-modal-dropdown';
-
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ButtonProfile from "../button/button";
 
 export function Account() {
 
     const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxPress = () => {
-        setIsChecked(!isChecked);
-    };
-
+    const [selectedOption, setSelectedOption] = useState('');
     const [isEditing, setIsEditing] = useState(false);
 
-    const handleEditPress = () => {
+    const handleEditPress = async () => {
         setIsEditing(true);
+        const token = await AsyncStorage.getItem("token")
+        console.log(token)
     }
 
     const handleSavePress = () => {
@@ -28,17 +27,14 @@ export function Account() {
         'Option 3',
     ];
 
-    const [selectedOption, setSelectedOption] = useState('');
         return (
             <View style={accountStyle.container}>
-                <Text style={{fontSize: 30, marginTop: 20, marginBottom: 20}}> Привет, Jopa!</Text>
+                <Text style={accountStyle.title}> Привет, Jopa!</Text>
                 <View style={accountStyle.middlecontainer}>
-
                     {isEditing ? (
-                        // Контейнер для редактирования информации
                         <View>
                             <View>
-                                <Text style={accountStyle.headtext}>
+                                <Text style={accountStyle.info_infoText}>
                                     Информация об аккаунте
                                 </Text>
                             </View>
@@ -66,21 +62,26 @@ export function Account() {
                         <View>
                             <View style={accountStyle.uppercontainer}>
                                 <View>
-                                    <Text style={accountStyle.headtext}>
+                                    <Text style={accountStyle.info_title}>
                                         Информация об аккаунте
                                     </Text>
                                 </View>
-                                <View style={accountStyle.textcontainer}>
-                                    <Text style={accountStyle.smalltext}> Имя </Text>
-                                    <Text style={{fontWeight: "700"}}> Саша </Text>
+                                <View>
+                                    <View style={accountStyle.info_text}>
+                                        <Text style={accountStyle.info_text_title}>Имя</Text>
+                                        <Text style={accountStyle.info_text_text}>Саша</Text>
+                                    </View>
+                                    <View style={accountStyle.info_text}>
+                                        <Text style={accountStyle.info_text_title}>email</Text>
+                                        <Text style={accountStyle.info_text_text}>ааааа0303@gmail.com</Text>
+                                    </View>
                                 </View>
-                                <View style={accountStyle.textcontainer}>
-                                    <Text style={accountStyle.smalltext}> email </Text>
-                                    <Text style={{fontWeight: "700"}}> ааааа0303@gmail.com </Text>
+                                <View style={{ marginTop: 20, paddingBottom: 15, borderBottomWidth: 1, borderBottomColor: "#ACADAC" }}>
+                                    <ButtonProfile text={"Изменить"} props={handleEditPress}/>
                                 </View>
-                                <TouchableOpacity style={accountStyle.button} onPress={handleEditPress}>
-                                    <Text style={{color: "white"}}>Изменить</Text>
-                                </TouchableOpacity>
+                                <View style={{ marginTop: 15 }}>
+                                    <ButtonProfile text={"Изменить пароль"}/>
+                                </View>
                             </View>
                             <View style={accountStyle.lowercontainer}>
                                 <TouchableOpacity style={accountStyle.button}>
@@ -94,10 +95,6 @@ export function Account() {
                         </View>
                     )}
 
-
-
-
-
                 </View>
 
                 <View style={accountStyle.middlecontainer}>
@@ -107,7 +104,8 @@ export function Account() {
                         <ModalDropdown dropdownStyle={accountStyle.dropdownContainer} defaultValue=""
                                        style={accountStyle.droplist}
                                        options={list}
-                                       initialScrollIndex={0}>
+                                       initialScrollIndex={0}
+                        >
                         </ModalDropdown>
                     </View>
 

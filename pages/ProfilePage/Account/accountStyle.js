@@ -9,16 +9,41 @@ export const accountStyle = StyleSheet.create({
         width:"90%",
         marginTop: 30,
     },
-    uppercontainer:{
-        borderBottomWidth:1,
-        width:"auto",
-        borderColor:"#ACADAC"
+    title: {
+        fontSize: 24,
+        fontWeight: "500",
+        marginTop: 10,
     },
-    lowercontainer: {
+    info_title: {
+        fontWeight: "300",
+        marginTop: 10,
+        fontSize: 18,
+    },
+    info_text: {
+        marginTop: 10,
+    },
+    info_text_title: {
+        color: "#000",
+        fontWeight: "300",
+        fontSize: 14,
+    },
+    info_text_text: {
+        color: "#000",
+        fontWeight: "500",
+        fontSize: 18,
+    },
 
-    },
-    textcontainer:{
-      marginTop:10,
+
+
+
+
+
+
+
+
+
+    textcontainer: {
+        marginTop:10,
         marginBottom:10,
     },
     middlecontainer: {
@@ -29,18 +54,6 @@ export const accountStyle = StyleSheet.create({
         borderColor:"#ACADAC",
         borderWidth: 2,
         paddingHorizontal:15,
-    },
-    button:{
-        alignItems:"center",
-        justifyContent: "center",
-        maxWidth:150,
-        height:35,
-        borderRadius: 5,
-        backgroundColor: "#88A2FF",
-        marginTop:10,
-        marginBottom: 15,
-
-
     },
     droplist:{
         alignSelf:"center",
@@ -116,6 +129,4 @@ export const accountStyle = StyleSheet.create({
     text:{
         marginTop:10,
     }
-
-
 })
