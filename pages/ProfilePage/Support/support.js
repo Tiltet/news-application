@@ -2,8 +2,6 @@ import {View, Text, TouchableOpacity, Image, TextInput} from "react-native";
 import React, {useState} from "react";
 import {accountStyle} from "../Account/accountStyle";
 import  {supportStyle} from "./supportStyle";
-import ModalDropdown from 'react-native-modal-dropdown';
-import {profileStyle} from "../profilePageStyle";
 import {loginWidgetStyle} from "../../../widgets/login/loginWidgetStyle";
 
 
@@ -13,12 +11,6 @@ export function Support() {
     const handleCheckboxPress = () => {
         setIsChecked(!isChecked);
     };
-
-    const list = [
-        'Option 1',
-        'Option 2',
-        'Option 3',
-    ];
 
     const [selectedOption, setSelectedOption] = useState('');
     return (

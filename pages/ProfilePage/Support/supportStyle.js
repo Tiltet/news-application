@@ -139,6 +139,4 @@ export const supportStyle = StyleSheet.create({
         marginRight: 5,
         marginTop: 4
     },
-
-
 })

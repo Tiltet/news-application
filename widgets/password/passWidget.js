@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import { Keyboard, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
+import {Alert, Keyboard, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View,} from "react-native";
 import CreatContext from "../../context/context";
 import { passWidgetStyle } from "./passWidgetStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import {requestLogin} from "./passWidgetRequest";
 
 export function PassWidget() {
 
@@ -38,20 +38,14 @@ export function PassWidget() {
         setIndex(9)
     };
 
-    // НАЖАТИЕ НА КНОПКУ ПРОДОЛЖИТЬ
+// НАЖАТИЕ НА КНОПКУ ПРОДОЛЖИТЬ
     const continueButtonHandler = async () => {
-        const email = await AsyncStorage.getItem("email");
-        console.log("Email - ", email, ", Password - ", password)
         try {
-            const response = await axios.post('http://localhost:4000/auth/login', {
-                email: email,
-                password: password
-            });
-            console.log("Токен - ", response.data.accessToken);
-            await AsyncStorage.setItem("token", response.data.accessToken)
+            await requestLogin(await AsyncStorage.getItem("email"), password);
+            console.log("Login Success");
             setIndex(0)
         } catch (error) {
-            alert("Неверный логин или пароль!");
+            console.error("Error during login:", error);
         }
     }
 
@@ -83,10 +77,12 @@ export function PassWidget() {
                         </View>
                         <Text style={passWidgetStyle.text}>Введите пароль</Text>
                         <TextInput
+
                             style={passWidgetStyle.inputfiled}
                             placeholder="Введите ваш пароль"
                             onChangeText={handlerPasswordChange}
                             value={password}
+                            secureTextEntry={true}
                         />
                         <TouchableOpacity
                             style={passWidgetStyle.button}

@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export function LoginWidget() {
 
     const [ isChecked, setIsChecked ] = useState(false)           // ПРОВЕРКА CHECKBOX
-    const [ email, setEmail ] = useState('')                          // ТЕКСТ В TextInput
+    const [ email, setEmail ] = useState('')                        // ТЕКСТ В TextInput
     const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
     const [ keyboardHeight, setKeyboardHeight ] = useState(0);    // ОТСТУП ОТ КЛАВИАТУРЫ
 
@@ -44,7 +44,6 @@ export function LoginWidget() {
 
     // ИЗМЕНЕНИЕ ТЕКСТА В InputText
     const handleTextChange = (newEmail) => {
-        console.log(newEmail)
         setEmail(newEmail);
     };
 

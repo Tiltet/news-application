@@ -4,19 +4,19 @@ export const dropdownStyle = StyleSheet.create({
     dropdown: {
         padding: 10,
         width: 'auto',
+        height: 'auto',
         borderRadius: 8,
         borderWidth: 1,
     },
     dropdown_container: {
         width: "auto",
+        height: 'auto',
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
     },
     dropdown_list: {
-        width: "auto",
-        height: "auto",
         overflow: "hidden",
         borderWidth: 1,
         borderRadius: 8
@@ -30,9 +30,5 @@ export const dropdownStyle = StyleSheet.create({
     },
     dropdown_title: {
         fontSize: 16,
-    },
-    dropdown_image: {
-        width: 20,
-        height: 10,
     }
 })

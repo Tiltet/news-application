@@ -80,6 +80,7 @@ export function CategoryPage( {category, title} ) {
                         categories={["За период", "За неделю", "За месяц", "За год", "За все время"]}
                         selectOption={selectCategory}
                         selectedValue={selectedCategory}
+                        iconSize={18}
                     />
                 </View>
             </View>

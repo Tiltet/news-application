@@ -4,7 +4,7 @@ import ModalDropdown from "react-native-modal-dropdown";
 import {AntDesign} from "@expo/vector-icons";
 import { dropdownStyle } from "./dropdownStyle";
 
-export function Dropdown({ categories, selectOption, selectedValue }) {
+export function Dropdown({ categories, selectOption, selectedValue, iconSize }) {
     return(
         <ModalDropdown
             style={dropdownStyle.dropdown}
@@ -18,7 +18,7 @@ export function Dropdown({ categories, selectOption, selectedValue }) {
         >
             <View style={dropdownStyle.dropdown_container}>
                 <Text style={dropdownStyle.dropdown_title}>{selectedValue}</Text>
-                <AntDesign name="down" size={24} color="black" />
+                <AntDesign name="down" size={iconSize} color="black" />
             </View>
         </ModalDropdown>
     )

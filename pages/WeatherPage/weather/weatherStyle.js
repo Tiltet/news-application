@@ -107,7 +107,7 @@ export const weatherStyle = StyleSheet.create({
   },
   weather_list_items_item_data: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
   },
   weather_list_items_item_max: {

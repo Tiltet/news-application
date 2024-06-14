@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const accountStyle = StyleSheet.create({
-    container: {
+    main_container: {
         alignSelf:"center",
         alignItems: "center",
         justifyContent: "center",
@@ -10,13 +10,21 @@ export const accountStyle = StyleSheet.create({
         marginTop: 30,
     },
     title: {
+        marginHorizontal: 5,
+        marginVertical: 14,
         fontSize: 24,
-        fontWeight: "500",
-        marginTop: 10,
+        fontWeight: "700",
     },
-    info_title: {
-        fontWeight: "300",
-        marginTop: 10,
+    container: {
+        padding: 15,
+        marginBottom: 20,
+        width: "80%",
+        backgroundColor: "white",
+        borderColor: "#ACADAC",
+        borderWidth: 2,
+    },
+    container_title: {
+        fontWeight: "500",
         fontSize: 18,
     },
     info_text: {
@@ -27,106 +35,50 @@ export const accountStyle = StyleSheet.create({
         fontWeight: "300",
         fontSize: 14,
     },
+    info_text_input: {
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderRadius: 7,
+        borderColor: "#ACADAC",
+        backgroundColor: "#EFEFEF",
+        height: 35,
+        marginTop: 10,
+    },
     info_text_text: {
         color: "#000",
         fontWeight: "500",
         fontSize: 18,
     },
-
-
-
-
-
-
-
-
-
-
-    textcontainer: {
-        marginTop:10,
-        marginBottom:10,
+    info_buttons: {
+        marginTop: 5,
     },
-    middlecontainer: {
-        width:"80%",
-        marginTop : 15,
-        backgroundColor: "white",
-        marginBottom: 15,
-        borderColor:"#ACADAC",
-        borderWidth: 2,
-        paddingHorizontal:15,
+    info_buttons_line: {
+        marginTop: 10,
+        display: "flex",
+        flexDirection: "row",
     },
-    droplist:{
-        alignSelf:"center",
+    info_button_text: {
+        textAlign: "center",
+        color: "#fff",
+    },
+    info_forgotPassword: {
+        marginTop: 10,
+    },
+    info_forgotPassword_text: {
+        fontSize: 14,
+        fontWeight: "300",
+        textDecorationLine: "underline"
+    },
+    profile_item: {
+        marginTop: 10,
+    },
+    profile_item_text: {
+
+    },
+    profile_item_country_container: {
+        marginTop: 10,
+        overflow: "hidden",
         borderWidth: 1,
-        backgroundColor: "#EFEFEF",
-        width:"96%",
-        borderRadius: 6,
-        height:35,
-        marginTop:5,
-        marginBottom:10,
-        borderColor:"#ACADAC",
-    },
-    dropdownContainer: {
-        display:"flex",
-        marginTop:10,
-        padding: 10,
-        backgroundColor: 'white',
-        width: '48%',
-        borderWidth: 1,
-
-    },
-    headtext:{
-        fontSize:20,
-        fontWeight: "500",
-        marginTop:10,
-    },
-    smalltext:{
-        fontSize:15,
-    },
-    forgetpass:{
-        fontSize:15,
-        marginBottom:15,
-        textDecorationLine: "underline",
-    },
-    edit_input:{
-        borderWidth:1,
-        borderRadius:7,
-        borderColor:"#ACADAC",
-        backgroundColor:"#EFEFEF",
-        height:35,
-        marginTop:10,
-    },
-    edit_button_contatiner:{
-        flexDirection:"row",
-        marginTop:20,
-        marginBottom:50,
-        justifyContent:"space-around",
-        width:"80%",
-    },
-    edit_button:{
-        borderWidth:1,
-        borderRadius:7,
-        height:35,
-        width:100,
-        alignSelf:"center",
-        justifyContent:"center",
-        backgroundColor:"#88A2FF",
-        marginRight:60
-    },
-    cancel_button:{
-        borderWidth:1,
-        borderRadius:7,
-        height:35,
-        width:100,
-        alignSelf:"center",
-        justifyContent:"center",
-        backgroundColor:"#000",
-    },
-    button_text:{
-        alignSelf:"center",
-        color:"white",
-    },
-    text:{
-        marginTop:10,
+        borderRadius: 8
     }
 })
