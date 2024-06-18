@@ -3,7 +3,7 @@ import { Image, ScrollView, Text, View } from "react-native";
 import { styles } from "../../style";
 import { weatherPageStyle } from "./weatherPageStyle";
 import { staticHolidays } from "./staticHolidays";
-import { Calendar } from "./calendar/calendar";
+import {Calendar, CalendarWeather} from "./calendar/calendar";
 import { Weather } from "./weather/weather";
 import { Horoscope } from "./horoscope/horoscope";
 import { Championship } from "./championship/championship";
@@ -40,7 +40,7 @@ export function WeatherPage() {
 
       {/* КАЛЕНДАРЬ */}
       <View>
-        <Calendar/>
+        <CalendarWeather/>
       </View>
 
       {/* ПОГОДА */}

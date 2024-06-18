@@ -21,7 +21,7 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
 
   // ФУНКЦИЯ НАЖАТИЯ НА ИКОНКУ ПОИСКА
   const handleSearchPress = async () => {
-    console.log("Поиск: ", inputText)
+    console.log("SearchWidget: Поиск: ", inputText)
     setIsBlurVisible(false)
     setSearchData(inputText)
     setIndex(5)

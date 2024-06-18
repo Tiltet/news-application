@@ -42,6 +42,7 @@ export const pageStyle =  StyleSheet.create({
     justifyContent: 'space-between',
   },
   main_text: {
+    flex: 1,
     paddingVertical: 10,
     lineHeight: 25,
     fontSize: 18,
@@ -76,7 +77,7 @@ export const pageStyle =  StyleSheet.create({
     justifyContent: "space-between",
   },
   button: {
-    width: "45%",
+    width: "49%",
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",

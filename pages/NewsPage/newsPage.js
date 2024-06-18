@@ -5,11 +5,12 @@ import { pageStyle } from "./newsPageStyle";
 import axios from "axios";
 import staticNews from "../../static/staticNews";
 
-export default function NewsPage( {id} ) {
+export default function NewsPage( {id, handleScrollToTop} ) {
 
   const [data, setData] = useState(staticNews);
 
   useEffect(() => {
+    handleScrollToTop()
     axios.get(`http://localhost:4000/news/${id}`)
       .then(response => {
         setData(response.data);
@@ -50,7 +51,7 @@ export default function NewsPage( {id} ) {
       </ImageBackground>
 
       <View style={styles.container}>
-        <Text style={pageStyle.main_text}>{data.description}</Text>
+        <Text style={[pageStyle.main_text, { flex: 1, flexWrap: 'wrap' }]}>{data.description.replace(/\s{4}/g, '\n\n')}</Text>
       </View>
 
       <View style={styles.container}>
@@ -71,7 +72,7 @@ export default function NewsPage( {id} ) {
           </TouchableOpacity>
           <TouchableOpacity style={pageStyle.button}>
             <Image style={{ width: 25, height: 25 }} source={require("../../assets/icons/poll/unlike.png")}/>
-            <Text style={pageStyle.button_text}>Понравилось</Text>
+            <Text style={pageStyle.button_text}>Не понравилось</Text>
           </TouchableOpacity>
         </View>
       </View>

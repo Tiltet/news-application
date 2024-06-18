@@ -1,81 +1,84 @@
 import { StyleSheet } from "react-native";
 
 export const accountStyle = StyleSheet.create({
-    container: {
+    main_container: {
         alignSelf:"center",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#EFEFEF",
-        width:"90%",
+        width: "90%",
         marginTop: 30,
     },
-    uppercontainer:{
-        borderBottomWidth:1,
-
-        borderColor:"#ACADAC",
+    title: {
+        marginHorizontal: 5,
+        marginVertical: 14,
+        fontSize: 24,
+        fontWeight: "700",
     },
-    lowercontainer: {
-
-    },
-    textcontainer:{
-      marginTop:10,
-        marginBottom:10,
-    },
-    middlecontainer: {
-        width:"80%",
-        marginTop : 15,
+    container: {
+        padding: 15,
+        marginBottom: 20,
+        width: "80%",
         backgroundColor: "white",
-        marginBottom: 15,
-        borderColor:"#ACADAC",
+        borderColor: "#ACADAC",
         borderWidth: 2,
-        paddingHorizontal:25,
     },
-    button:{
-        alignItems:"center",
-        justifyContent: "center",
-        maxWidth:150,
-        height:35,
-        borderRadius: 5,
-        backgroundColor: "#88A2FF",
-        marginTop:10,
-        marginBottom: 15,
-
-
-    },
-    droplist:{
-        alignSelf:"center",
-        borderWidth: 1,
-        backgroundColor: "#EFEFEF",
-        width:"96%",
-        borderRadius: 6,
-        height:35,
-        marginTop:5,
-        marginBottom:10,
-        borderColor:"#ACADAC",
-    },
-    dropdownContainer: {
-        maxHeight:250,
-        display:"flex",
-        marginTop:10,
-        padding: 10,
-        backgroundColor: 'white',
-        width: '48%',
-        borderWidth: 1,
-
-    },
-    headtext:{
-        fontSize:20,
+    container_title: {
         fontWeight: "500",
-        marginTop:10,
+        fontSize: 18,
     },
-    smalltext:{
-        fontSize:15,
+    info_text: {
+        marginTop: 10,
     },
-    forgetpass:{
-        fontSize:15,
-        marginBottom:15,
-        textDecorationLine: "underline",
+    info_text_title: {
+        color: "#000",
+        fontWeight: "300",
+        fontSize: 14,
     },
+    info_text_input: {
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderRadius: 7,
+        borderColor: "#ACADAC",
+        backgroundColor: "#EFEFEF",
+        height: 35,
+        marginTop: 10,
+    },
+    info_text_text: {
+        color: "#000",
+        fontWeight: "500",
+        fontSize: 18,
+    },
+    info_buttons: {
+        marginTop: 5,
+    },
+    info_buttons_line: {
+        marginTop: 10,
+        display: "flex",
+        flexDirection: "row",
+    },
+    info_button_text: {
+        textAlign: "center",
+        color: "#fff",
+    },
+    info_forgotPassword: {
+        marginTop: 10,
+    },
+    info_forgotPassword_text: {
+        fontSize: 14,
+        fontWeight: "300",
+        textDecorationLine: "underline"
+    },
+    profile_item: {
+        marginTop: 10,
+    },
+    profile_item_text: {
 
-
+    },
+    profile_item_country_container: {
+        marginTop: 10,
+        overflow: "hidden",
+        borderWidth: 1,
+        borderRadius: 8
+    }
 })

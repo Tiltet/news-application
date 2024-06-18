@@ -19,7 +19,7 @@ export const categoryPageStyle = StyleSheet.create({
     marginBottom: 15,
   },
   header_count_text: {
-    fontSize: 16,
+    fontSize: 18,
   },
   header_list: {
     width: 200,

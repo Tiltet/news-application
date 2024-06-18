@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const weatherStile = StyleSheet.create({
+export const weatherStyle = StyleSheet.create({
   container: {
     paddingVertical: 20,
     marginVertical: 20,
@@ -50,7 +50,7 @@ export const weatherStile = StyleSheet.create({
   },
   weather_center_block_title: {
     textAlign: "center",
-    fontSize: 48,
+    fontSize: 38,
     fontWeight: "700",
   },
   weather_center_block_text: {
@@ -107,7 +107,7 @@ export const weatherStile = StyleSheet.create({
   },
   weather_list_items_item_data: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
   },
   weather_list_items_item_max: {
