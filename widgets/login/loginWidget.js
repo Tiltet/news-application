@@ -71,7 +71,9 @@ export function LoginWidget() {
 
                         </View>
                         <Text style={loginWidgetStyle.text}>Войти</Text>
-                        <Text style={loginWidgetStyle.subtitle}>Введите свой email, чтобы войти</Text>
+                        <Text style={loginWidgetStyle.subtitle}>
+                            Введите свой email, чтобы войти
+                        </Text>
                         <TextInput
                             style={loginWidgetStyle.inputfiled}
                             placeholder="E-mail@mail.ru"
@@ -93,10 +95,12 @@ export function LoginWidget() {
                                     )}
                                 </View>
                             </TouchableOpacity>
-                            <Text style={loginWidgetStyle.checkbox_text}>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
+                            <Text style={loginWidgetStyle.checkbox_text}>
+                                Отправляя свои данные, я принимаю политику конфиденциальности
+                            </Text>
                         </View>
                         <TouchableOpacity style={loginWidgetStyle.button} onPress={()=> continueButtonHandler()} >
-                            <Text style={loginWidgetStyle.button_text}> Продолжить</Text>
+                            <Text style={loginWidgetStyle.button_text}>Продолжить</Text>
                         </TouchableOpacity>
                         <View style={loginWidgetStyle.social}>
                             <TouchableOpacity>

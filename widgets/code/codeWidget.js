@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import CreatContext from "../../context/context";
-import {KeyboardAvoidingView, Platform, StatusBar} from "react-native";
+import {Alert, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
 import { innstructionidgetStyle } from "../instruction/instructionWidgetStyle";
 import { useRef } from "react";
 import { codeWidgetStyle } from "./codeWidgetStyle";
+import axios from "axios";
+import {requestCode} from "./codeWidgetRequest";
 
 export function CodeWidget() {
 
@@ -31,10 +33,13 @@ export function CodeWidget() {
     };
 
     // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ ПРОДОЛЖИТЬ
-    const handlerContinue = () => {
+    const handlerContinue = async () => {
         const code = codeValues.join('');
         console.log(code);
-        setIndex(13)
+
+        if (await requestCode(code)) {
+            setIndex(6)
+        }
     }
 
     return (

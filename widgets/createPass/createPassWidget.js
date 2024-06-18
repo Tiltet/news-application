@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import {Alert, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import CreatContext from "../../context/context";
-import {createPassWidgetStyle} from "./createPassWidgetStyle";
-import {loginWidgetStyle} from "../login/loginWidgetStyle";
+import { createPassWidgetStyle } from "./createPassWidgetStyle";
+import { loginWidgetStyle } from "../login/loginWidgetStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
@@ -41,6 +41,9 @@ export function CreatePassWidget() {
                 });
                 console.log('Registration successful');
                 console.log(response.data)
+
+                setIndex(12)
+
             } catch (error) {
                 if (error.response && error.response.data.errorsMessages) {
                     error.response.data.errorsMessages.forEach((errorMessage) => {
@@ -79,7 +82,9 @@ export function CreatePassWidget() {
                             <View style={createPassWidgetStyle.text_container}>
                                 <Text style={createPassWidgetStyle.text}>Придумайте имя{'\n'}и пароль</Text>
                             </View>
-                            <Text style={createPassWidgetStyle.subtitle}>Пароль должен содержать хотя бы 10 символов</Text>
+                            <Text style={createPassWidgetStyle.subtitle}>
+                                Пароль должен содержать хотя бы 10 символов
+                            </Text>
                             <TextInput
                                 style={createPassWidgetStyle.inputfiled}
                                 placeholder="Введите ваше имя"

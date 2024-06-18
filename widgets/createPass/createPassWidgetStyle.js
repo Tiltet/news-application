@@ -41,7 +41,7 @@ export const  createPassWidgetStyle = StyleSheet.create({
     },
     subtitle: {
         fontSize: 14,
-        alignSelf: "center",
+        textAlign: "center"
     },
     inputfiled:{
         marginTop: 15,
