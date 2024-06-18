@@ -19,39 +19,44 @@ export const  codeWidgetStyle = StyleSheet.create({
     upper_text:{
         fontSize: 30,
         fontWeight: "500",
-        alignSelf:"center",
+        alignSelf: "center",
     },
-    middle_text_container:{
-        alignItems: "center",
-        justifyContent:"center",
-        width:"80%",
+    middle_text_container: {
+        marginTop: 5,
         marginBottom: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        width: "80%",
+    },
+    middle_text: {
+      fontSize: 15,
+      textAlign: "center"
     },
     lower_text_container:{
-        marginTop:150,
-        display:"flex",
-        alignItems: "center",
-        alignSelf:"flex-end",
-        flexDirection:"row",
-        alignContent:"stretch",
+        marginTop: 100,
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "flex-start",
     },
-    nothingtext_container:{
-        alignContent:"flex-start",
-        height:"100%",
+    nothing_text: {
+        fontSize: 13,
+        alignItems: "center"
     },
     text_underline:{
-        textDecorationLine:"underline",
-        color:"#88A2FF",
-        fontWeight:"600"
+        fontSize: 13,
+        marginLeft: 5,
+        textDecorationLine: "underline",
+        color: "#88A2FF",
+        fontWeight: "600",
     },
-    button:{
-        backgroundColor:"#88A2FF",
-        marginTop:40,
-        width:"90%",
-        justifyContent:"center",
-        alignItems:"center",
-        height:45,
-        borderRadius:10
+    button: {
+        backgroundColor: "#88A2FF",
+        marginTop: 40,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 45,
+        borderRadius: 10
 
     }
 })

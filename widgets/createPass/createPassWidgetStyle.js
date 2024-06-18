@@ -23,6 +23,7 @@ export const  createPassWidgetStyle = StyleSheet.create({
         marginHorizontal: 30,
     },
     text: {
+        textAlign: "center",
         alignSelf: "center",
         fontSize: 25,
         color: "#000",

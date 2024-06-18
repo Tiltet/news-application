@@ -1,21 +1,20 @@
 import {View, Text, TouchableOpacity, Image, TextInput} from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {accountStyle} from "../Account/accountStyle";
 import  {supportStyle} from "./supportStyle";
 import {loginWidgetStyle} from "../../../widgets/login/loginWidgetStyle";
 
-
 export function Support() {
 
-    const [isChecked, setIsChecked] = useState(false);
+    const [ isChecked, setIsChecked ] = useState(false);
+
     const handleCheckboxPress = () => {
         setIsChecked(!isChecked);
     };
 
-    const [selectedOption, setSelectedOption] = useState('');
     return (
         <View style={supportStyle.container}>
-            <Text style={{fontSize: 30, marginTop: 20, marginBottom: 20}}> Привет, Jopa!</Text>
+            <Text style={accountStyle.title}>Свяжитесь с нами</Text>
             <View style={supportStyle.middlecontainer}>
                 <View>
                     <View style={supportStyle.uppercontainer}>
@@ -65,8 +64,12 @@ export function Support() {
                     <TextInput placeholder={"Местоположение"}/>
                 </View>
 
-                <View style={supportStyle.inputlarge}>
-                    <TextInput placeholder={"Введите вопрос"}/>
+                <View
+                    style={supportStyle.inputlarge}>
+                    <TextInput
+                        placeholder={"Введите вопрос"}
+                        multiline={true}
+                    />
                 </View>
                 <View style={supportStyle.checkbox_container}>
                     <TouchableOpacity style={supportStyle.checkbox} onPress={handleCheckboxPress}>
@@ -84,7 +87,7 @@ export function Support() {
                         </View>
                     </TouchableOpacity>
                     <View >
-                            <Text style={loginWidgetStyle.checkbox_text}>Подтверждаю, что я согласен на обработку моих персональных данных в соответствии с </Text>
+                        <Text style={loginWidgetStyle.checkbox_text}>Подтверждаю, что я согласен на обработку моих персональных данных в соответствии с </Text>
                         <TouchableOpacity>
                             <Text style={supportStyle.hypertext}>Условиями</Text>
                         </TouchableOpacity>

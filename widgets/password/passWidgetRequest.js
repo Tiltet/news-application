@@ -1,8 +1,6 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Alert} from "react-native";
-import React from "react";
-import CreatContext from "../../context/context";
 
 export function requestLogin(email, password) {
     return  axios.post("http://localhost:4000/auth/login", {
@@ -22,6 +20,11 @@ export function requestLogin(email, password) {
                 .then((profile) => {
 
                     console.log("http://localhost:4000/user/profile - good");
+
+                    AsyncStorage.setItem("login", response.data.login);
+                    AsyncStorage.setItem("age", response.data.age);
+                    AsyncStorage.setItem("location", response.data.location);
+                    AsyncStorage.setItem("favoriteNewsCategory", response.data.favoriteNewsCategory);
 
                 })
                 .catch((error) => {

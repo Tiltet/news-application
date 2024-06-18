@@ -14,6 +14,7 @@ export function CategoryPage( {category, title} ) {
 
     const handlerNewsClick = newsPageLink();
 
+    // ОТПРАВЛЯЕТСЯ ЗАПРОС ВО ВРЕМЯ РЕНДЕРИНГА СТРАНИЦЫ
     useEffect(() => {
         handleCategory({ category: category, page: page })
             .then(newData => {
@@ -24,10 +25,12 @@ export function CategoryPage( {category, title} ) {
             });
     }, [page]);
 
+    // НАЖИМАЕМ НА КНОПКУ РЕНДЕРИТЬ НОВУЮ СТРАНИЦУ НОВОСТЕЙ
     const handlerMoreNews = () => {
         setPage(page + 1)
     }
 
+    // НАЖИМАЕМ НА КНОПКУ РЕНДЕРИТЬ НОВУЮ СТРАНИЦУ НОВОСТЕЙ
     const selectCategory = (index, category) => {
         setSelectedCategory(category);
     };

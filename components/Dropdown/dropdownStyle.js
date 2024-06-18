@@ -4,13 +4,11 @@ export const dropdownStyle = StyleSheet.create({
     dropdown: {
         padding: 10,
         width: 'auto',
-        height: 'auto',
         borderRadius: 8,
         borderWidth: 1,
     },
     dropdown_container: {
         width: "auto",
-        height: 'auto',
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",

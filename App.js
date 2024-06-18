@@ -13,13 +13,13 @@ import { RecoveryWidget } from "./widgets/recovery/recoveryWidget";
 import SearchContext from "./context/searchContext";
 import { OpinionPage } from "./pages/OpinionPage/opinionPage";
 import NewsPage from "./pages/NewsPage/newsPage";
-import {ProfilePage} from "./pages/ProfilePage/profilePage";
+import { ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
 import { InstructionWidget } from "./widgets/instruction/instructionWidget";
 import { CodeWidget } from "./widgets/code/codeWidget";
 import { CreatePassWidget } from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
-import {LoginWidget} from "./widgets/login/loginWidget";
+import { LoginWidget } from "./widgets/login/loginWidget";
 
 
 export default function App() {
@@ -39,9 +39,7 @@ export default function App() {
 
   const onRefresh = () => {
     setRefreshing(true);
-
     setVisible(true)
-
     setTimeout(() => {
       setRefreshing(false);
     }, 500);

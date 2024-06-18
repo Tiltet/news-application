@@ -6,7 +6,7 @@ export const accountStyle = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#EFEFEF",
-        width:"90%",
+        width: "90%",
         marginTop: 30,
     },
     title: {

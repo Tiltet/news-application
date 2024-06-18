@@ -107,7 +107,6 @@ export const opinionPageStyle = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    marginBottom: 30,
     width: '100%',
     paddingHorizontal: 10,
     backgroundColor: '#88A2FF',

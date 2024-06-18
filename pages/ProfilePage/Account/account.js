@@ -12,15 +12,47 @@ export function Account() {
 
     const { index, setIndex } = React.useContext(CreatContext)
     const [ isEditing, setIsEditing ] = useState(false);
-    const [ selectedCountry, setSelectedCountry] = useState("");
+    const [ selectedCountry, setSelectedCountry] = useState('');
     const [ selectedCode, setSelectedCode] = useState("BY");
     const [ isDatePickerVisible, setDatePickerVisibility ] = useState(false);
-    const [ date, setDate ] = useState(18);
-    const [ selectedCategory, setSelectedCategory ] = useState('');
-    const [ name, setName ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [ nameChange, setNameChange ] = useState('');
+    const [ loginChange, setLoginChange ] = useState('');
     const [ emailChange, setEmailChange ] = useState('');
+    const [ userInfo, setUserInfo] = useState({
+        login: '',
+        email: '',
+        age: 18,
+        selectedCountry: '',
+        selectedCategory: ''
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const login = await AsyncStorage.getItem('login');
+                const email = await AsyncStorage.getItem('email');
+                const age = await AsyncStorage.getItem('age');
+                const location = await AsyncStorage.getItem('location');
+                const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory');
+                setUserInfo({
+                    ...userInfo,
+                    login: login || '',
+                    email: email || '',
+                    age: age || '18',
+                    selectedCountry: location || '',
+                    selectedCategory: favoriteNewsCategory || ''
+                });
+            } catch (error) {
+                console.error('Error fetching data from AsyncStorage:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    // Функция для проверки email
+    const isValidEmail = (email) => {
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return emailRegex.test(email);
+    };
 
     // ПРЕОБРАЗУЕТ ПОЛУЧЕННУЮ ДАТУ РОЖДЕНИЯ В ВОЗРАСТ ПОЛЬЗОВАТЕЛЯ
     const calculateAge = (birthDate) => {
@@ -33,34 +65,33 @@ export function Account() {
             age--;
         }
 
-        return age;
+        return age.toString();
     };
-
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
 
-    // ВЫБОР ДАТЫ РОЖДЕНИЯ
     const hideDatePicker = () => {
         setDatePickerVisibility(false);
     };
 
     // ВЫБОР ДАТЫ РОЖДЕНИЯ
-    const handleConfirm = (when) => {
-        const age = calculateAge(when);
-        if (age < 10) {
-            Alert.alert("Введите правильную дату рождения!")
-            setDate(18)
-        } else {
-            setDate(age);
-        }
+    const handleConfirm = async (when) => {
+        setUserInfo({
+            ...userInfo,
+            age: calculateAge(when)
+        })
+        await AsyncStorage.setItem("age", userInfo.age.toString())
         hideDatePicker();
     };
 
     // КНОПКА ВЫБОРА СТРАНЫ
     const handlerCountry = ( code, country ) => {
-        setSelectedCountry(country)
+        setUserInfo({
+            ...userInfo,
+            selectedCountry: country,
+        })
         setSelectedCode(code);
     }
 
@@ -70,22 +101,29 @@ export function Account() {
     }
 
     // СОХРАНЕНИЕ ИЗМЕНЕНИЙ
-    const handleSavePress = () => {
-        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!emailRegex.test(emailChange)) {
-            console.log(emailChange)
-            Alert.alert("Неправильный email")
-        }
-        else {
-            setName(nameChange)
-            setEmail(emailChange)
+    const handleSavePress = async () => {
+        if (!isValidEmail(emailChange)) {
+            Alert.alert("Неправильный email!")
+        } else if (loginChange === '') {
+            Alert.alert("Имя не заполнено!")
+        } else {
+            setUserInfo({
+                ...userInfo,
+                login: loginChange,
+                email: emailChange,
+            })
+            await AsyncStorage.setItem("login", loginChange)
+            await AsyncStorage.setItem("email", emailChange)
         }
         setIsEditing(false);
     }
 
     // ВЫБРАТЬ КАТЕГОРИЮ
     const selectCategory = (index, category) => {
-        setSelectedCategory(category);
+        setUserInfo({
+            ...userInfo,
+            selectedCategory: category
+        })
     };
 
     // КНОПКА ВЫХОДА
@@ -96,7 +134,7 @@ export function Account() {
 
     return (
         <View style={accountStyle.main_container}>
-            <Text style={accountStyle.title}>Привет, {name}!</Text>
+            <Text style={accountStyle.title}>Привет, {userInfo.login}!</Text>
             {isEditing ? (
                 // КОНТЕЙНЕР С ИЗМЕНЕНИЕМ ИНФОРМАЦИИ
                 <View style={accountStyle.container}>
@@ -108,8 +146,8 @@ export function Account() {
                             <Text style={accountStyle.info_text_title}>Имя</Text>
                             <TextInput
                                 style={accountStyle.info_text_input}
-                                value={nameChange}
-                                onChangeText={setNameChange}
+                                value={loginChange}
+                                onChangeText={setLoginChange}
                             >
                             </TextInput>
                         </View>
@@ -130,7 +168,7 @@ export function Account() {
                                 <ButtonProfile text={"Сохранить"} props={handleSavePress} backgroundColor={"#88A2FF"} />
                             </View>
                             <View>
-                                <ButtonProfile text={"Отмена"} backgroundColor={"#000"} />
+                                <ButtonProfile text={"Отмена"} props={handleSavePress} backgroundColor={"#000"} />
                             </View>
                         </View>
                     </View>
@@ -147,11 +185,11 @@ export function Account() {
                         <View>
                             <View style={accountStyle.info_text}>
                                 <Text style={accountStyle.info_text_title}>Имя</Text>
-                                <Text style={accountStyle.info_text_text}>{name}</Text>
+                                <Text style={accountStyle.info_text_text}>{userInfo.login}</Text>
                             </View>
                             <View style={accountStyle.info_text}>
                                 <Text style={accountStyle.info_text_title}>email</Text>
-                                <Text style={accountStyle.info_text_text}>{email}</Text>
+                                <Text style={accountStyle.info_text_text}>{userInfo.email}</Text>
                             </View>
                         </View>
                         <View style={accountStyle.info_buttons}>
@@ -204,7 +242,7 @@ export function Account() {
                         <View style={accountStyle.profile_item_country_container}>
                             <View style={{ marginHorizontal: 10, paddingVertical: 10 }}>
                                 <TouchableOpacity onPress={showDatePicker}>
-                                    <Text style={{ fontSize: 16 }}>{date}</Text>
+                                    <Text style={{ fontSize: 16 }}>{userInfo.age}</Text>
                                 </TouchableOpacity>
                                 <DateTimePickerModal
                                     isVisible={isDatePickerVisible}
@@ -222,7 +260,7 @@ export function Account() {
                         <Dropdown
                             categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
                             selectOption={selectCategory}
-                            selectedValue={selectedCategory}
+                            selectedValue={userInfo.selectedCategory}
                             iconSize={24}
                         />
                     </View>

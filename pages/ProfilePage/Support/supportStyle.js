@@ -10,27 +10,23 @@ export const supportStyle = StyleSheet.create({
         marginTop: 30,
     },
     uppercontainer:{
-        borderBottomWidth:1,
-        width:"auto",
-        borderColor:"#ACADAC"
+        width: "auto",
     },
     lowercontainer: {
 
     },
     textcontainer:{
-        marginTop:10,
-        marginBottom:10,
+        marginVertical: 10,
     },
     middlecontainer: {
         width:"80%",
-        marginTop : 15,
         backgroundColor: "white",
         marginBottom: 15,
         borderColor:"#ACADAC",
         borderWidth: 2,
         paddingHorizontal:15,
     },
-    button:{
+    button: {
         flexDirection:"row",
         alignItems:"center",
         justifyContent: "space-around",
@@ -39,10 +35,8 @@ export const supportStyle = StyleSheet.create({
         borderRadius: 5,
         marginTop:10,
         marginBottom: 15,
-
-
     },
-    droplist:{
+    droplist: {
         alignSelf:"center",
         borderWidth: 1,
         backgroundColor: "#EFEFEF",
@@ -52,7 +46,6 @@ export const supportStyle = StyleSheet.create({
         marginTop:5,
         marginBottom:10,
         borderColor:"#ACADAC",
-
     },
     dropdownContainer: {
         display:"flex",
@@ -61,65 +54,64 @@ export const supportStyle = StyleSheet.create({
         backgroundColor: 'white',
         width: '48%',
         borderWidth: 1,
-
     },
-    headtext:{
-        fontSize:20,
+    headtext: {
+        fontSize: 20,
         fontWeight: "500",
-        marginTop:10,
+        marginTop: 10,
     },
-    smalltext:{
-        fontSize:15,
+    smalltext: {
+        fontSize: 15,
     },
-    forgetpass:{
-        fontSize:16,
-        marginBottom:15,
+    forgetpass: {
+        fontSize: 16,
+        marginBottom: 15,
         textDecorationLine: "underline",
     },
-    input:{
-        width:"100%",
-        marginTop:15,
-        borderColor:"#ACADAC",
+    input: {
+        width: "100%",
+        marginTop: 15,
+        borderColor: "#ACADAC",
         borderWidth: 1,
         borderRadius: 5,
-        height:35,
-        paddingHorizontal:15,
-        justifyContent:"center",
-        backgroundColor:"#EFEFEF"
+        height: 35,
+        paddingHorizontal: 15,
+        justifyContent: "center",
+        backgroundColor: "#EFEFEF"
     },
-    inputlarge:{
-        width:"100%",
-        marginTop:15,
-        borderColor:"#ACADAC",
+    inputlarge: {
+        paddingHorizontal: 15,
+        width: "100%",
+        marginTop: 15,
+        borderColor: "#ACADAC",
         borderWidth: 1,
         borderRadius: 5,
-        height:100,
-        paddingHorizontal:15,
-        backgroundColor:"#EFEFEF"
+        height: 100,
+        backgroundColor: "#EFEFEF"
     },
-    sendbutton:{
-        marginTop:15,
-        backgroundColor:"#88A2FF",
-        alignItems:"center",
-        justifyContent:"center",
-        textColor:"white",
-        borderRadius:8,
-        height:35,
-        marginBottom:15,
-        color:"white"
+    sendbutton: {
+        marginTop: 15,
+        backgroundColor: "#88A2FF",
+        alignItems: "center",
+        justifyContent: "center",
+        textColor: "white",
+        borderRadius: 8,
+        height: 35,
+        marginBottom: 15,
+        color: "white"
     },
     hypertext:{
-        color:"#374883",
-        textDecorationLine:"underline",
+        color: "#374883",
+        textDecorationLine: "underline",
     },
-    images:{
-        marginTop:15,
-        flexDirection:"row",
-        marginLeft:5,
-        marginBottom:15,
+    images: {
+        marginTop: 15,
+        flexDirection: "row",
+        marginLeft: 5,
+        marginBottom: 15,
     },
-    image:{
-        marginHorizontal:20,
+    image: {
+        marginHorizontal: 20,
     },
     checkbox_container: {
         width: "88%",

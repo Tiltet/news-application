@@ -1,106 +1,115 @@
-import React from 'react';
-import { StatusBar } from "react-native";
-import {
-    Image,
-    Modal,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    StyleSheet,
-} from "react-native";
+import React, {useState} from 'react';
 import CreatContext from "../../context/context";
+import {KeyboardAvoidingView, Platform, StatusBar} from "react-native";
+import { Image, Modal, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
-import {innstructionidgetStyle} from "../instruction/instructionWidgetStyle";
-import {useRef} from "react";
-import {codeWidgetStyle} from "./codeWidgetStyle";
+import { innstructionidgetStyle } from "../instruction/instructionWidgetStyle";
+import { useRef } from "react";
+import { codeWidgetStyle } from "./codeWidgetStyle";
 
 export function CodeWidget() {
 
     const { index, setIndex } = React.useContext(CreatContext)
+    const [ codeValues, setCodeValues ] = useState(['', '', '', '', '', '']);
+    const inputRefs = useRef([]);
 
-    const handleScreenPress = () => {
+    // ОБРАБОТЧИК НАЖАТИЯ НА КРЕСТИК
+    const handleCrossPress = () => {
         setIndex(0)
     };
 
-
-    const inputRefs = useRef([]);
-
     const handleCodeChange = (text, index) => {
+        const updatedValues = [...codeValues];
+        updatedValues[index] = text;
+        setCodeValues(updatedValues);
+
         if (text.length === 1 && index < inputRefs.current.length - 1) {
             inputRefs.current[index + 1].focus();
         } else if (text.length === 0 && index > 0) {
             inputRefs.current[index - 1].focus();
         }
-
-        const code = inputRefs.current
-            .map((ref) => ref.value)
-
     };
 
+    // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ ПРОДОЛЖИТЬ
+    const handlerContinue = () => {
+        const code = codeValues.join('');
+        console.log(code);
+        setIndex(13)
+    }
 
     return (
         <Modal visible={true}>
-            <View style={innstructionidgetStyle.container}>
-                <View style={loginWidgetStyle.block}>
-                    <View style={loginWidgetStyle.block_container}>
-                        <View style={loginWidgetStyle.top}>
-                            <Image
-                                source={require('../../assets/img/logo.png')}
-                                style={{ width: 80, height: 26 }}
-                            />
-                            <TouchableOpacity onPress={()=>handleScreenPress()}>
+            <KeyboardAvoidingView
+                style={loginWidgetStyle.view}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
+                <View style={innstructionidgetStyle.container}>
+                    <View style={loginWidgetStyle.block}>
+                        <View style={loginWidgetStyle.block_container}>
+                            <View style={loginWidgetStyle.top}>
                                 <Image
-                                    source={require('../../assets/icons/search/cross.png')}
-                                    style={{ width: 15, height: 15 }}
+                                    source={require('../../assets/img/logo.png')}
+                                    style={{ width: 80, height: 26 }}
                                 />
-                            </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleCrossPress()}>
+                                    <Image
+                                        source={require('../../assets/icons/search/cross.png')}
+                                        style={{ width: 15, height: 15 }}
+                                    />
+                                </TouchableOpacity>
 
-                        </View>
-                        <View style={codeWidgetStyle.text_container}>
-                            <Text style={codeWidgetStyle.upper_text}>Введите код</Text>
-                            <View style={codeWidgetStyle.middle_text_container}>
-                                <Text style={{fontSize:15}} >На E-mail@mail.ru отправлен</Text>
-                                <Text style={{fontSize:15}}> одноразовый код</Text>
                             </View>
-                            <View style={styles.container}>
-                                <View style={styles.codeContainer}>
-                                    {Array.from({ length: 6 }, (_, index) => (
-                                        <TextInput
-                                            key={index}
-                                            style={styles.codeBox}
-                                            maxLength={1}
-                                            keyboardType="numeric"
-                                            onChangeText={(text) => handleCodeChange(text, index)}
-                                            ref={(ref) => (inputRefs.current[index] = ref)}
-                                        />
-                                    ))}
+                            <View style={codeWidgetStyle.text_container}>
+                                <Text style={codeWidgetStyle.upper_text}>Введите код</Text>
+                                <View style={codeWidgetStyle.middle_text_container}>
+                                    <Text style={codeWidgetStyle.middle_text}>На ваш E-mail отправлен{'\n'}одноразовый код</Text>
                                 </View>
-                            </View>
-                            <TouchableOpacity style={codeWidgetStyle.button}>
-                                <Text style={{fontSize:15,fontWeight:"600"}}>Продолжить</Text>
-                            </TouchableOpacity>
-                            <View style={codeWidgetStyle.lower_text_container}>
-                                <View style={codeWidgetStyle.nothingtext_container}>
-                                    <Text>Код не пришел?</Text>
+                                <View style={styles.container}>
+                                    <View style={styles.codeContainer}>
+                                        {Array.from({ length: 6 }, (_, index) => (
+                                            <TextInput
+                                                key={index}
+                                                style={styles.codeBox}
+                                                maxLength={1}
+                                                keyboardType="numeric"
+                                                onChangeText={(text) => handleCodeChange(text, index)}
+                                                ref={(ref) => (inputRefs.current[index] = ref)}
+                                            />
+                                        ))}
+                                    </View>
                                 </View>
-                                <View>
+                                <TouchableOpacity
+                                    style={codeWidgetStyle.button}
+                                    onPress={() => handlerContinue()}
+                                >
+                                    <Text style={
+                                        {
+                                            fontSize: 15,fontWeight: "600"
+                                        }
+                                    }>
+                                        Продолжить
+                                    </Text>
+                                </TouchableOpacity>
+                                <View style={codeWidgetStyle.lower_text_container}>
+                                    <View>
+                                        <Text style={codeWidgetStyle.nothing_text}>
+                                            Код не пришел?
+                                        </Text>
+                                    </View>
                                     <TouchableOpacity>
-                                        <Text style={codeWidgetStyle.text_underline}> Нажмите сюда, чтобы прислать </Text>
-                                        <Text style={codeWidgetStyle.text_underline}> заново</Text>
+                                        <Text style={codeWidgetStyle.text_underline}>
+                                            Нажмите сюда, чтобы{'\n'}прислать заново
+                                        </Text>
                                     </TouchableOpacity>
                                 </View>
-
                             </View>
-
                         </View>
                     </View>
                 </View>
-            </View>
-            <StatusBar barStyle="dark-content" />
+                <StatusBar barStyle="dark-content" />
+            </KeyboardAvoidingView>
         </Modal>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -108,19 +117,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     codeContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginLeft: 10,
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
     },
     codeBox: {
-        width: 45,
-        height: 45,
+        display: "flex",
+        width: 40,
+        height: 40,
         borderWidth: 1.5,
         borderColor: 'black',
         textAlign: 'center',
         fontSize: 20,
-        marginRight: 10,
+        marginHorizontal: 5,
         borderRadius:10,
     },
 });

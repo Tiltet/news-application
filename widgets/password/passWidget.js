@@ -77,7 +77,6 @@ export function PassWidget() {
                         </View>
                         <Text style={passWidgetStyle.text}>Введите пароль</Text>
                         <TextInput
-
                             style={passWidgetStyle.inputfiled}
                             placeholder="Введите ваш пароль"
                             onChangeText={handlerPasswordChange}

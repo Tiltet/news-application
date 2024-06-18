@@ -10,22 +10,6 @@ export function LoginWidget() {
     const [ isChecked, setIsChecked ] = useState(false)           // ПРОВЕРКА CHECKBOX
     const [ email, setEmail ] = useState('')                        // ТЕКСТ В TextInput
     const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
-    const [ keyboardHeight, setKeyboardHeight ] = useState(0);    // ОТСТУП ОТ КЛАВИАТУРЫ
-
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-            setKeyboardHeight(event.endCoordinates.height);
-        });
-
-        const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-            setKeyboardHeight(0);
-        });
-
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
 
     // НАЖАТИЕ НА CHECKBOX
     const handleCheckboxPress = () => {

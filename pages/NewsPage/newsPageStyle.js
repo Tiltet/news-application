@@ -42,6 +42,7 @@ export const pageStyle =  StyleSheet.create({
     justifyContent: 'space-between',
   },
   main_text: {
+    flex: 1,
     paddingVertical: 10,
     lineHeight: 25,
     fontSize: 18,
