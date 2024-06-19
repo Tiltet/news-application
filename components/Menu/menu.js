@@ -14,7 +14,11 @@ export  function Menu() {
   }
 
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={menuStyle.menu_container}>
+    <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={menuStyle.menu_container}
+    >
       <View style={menuStyle.menu_block_first}>
         <TouchableOpacity onPress={() => handlerClick(1)}>
           <Text style={menuStyle.menu_block_text}>ЭКОНОМИКА</Text>

@@ -37,7 +37,7 @@ export function Account() {
                     ...userInfo,
                     login: login || '',
                     email: email || '',
-                    age: age || '18',
+                    age: age || 18,
                     selectedCountry: location || '',
                     selectedCategory: favoriteNewsCategory || ''
                 });
@@ -64,8 +64,7 @@ export function Account() {
         if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
             age--;
         }
-
-        return age.toString();
+        return age;
     };
 
     const showDatePicker = () => {
@@ -78,11 +77,11 @@ export function Account() {
 
     // ВЫБОР ДАТЫ РОЖДЕНИЯ
     const handleConfirm = async (when) => {
-        setUserInfo({
-            ...userInfo,
+        setUserInfo((prevUserInfo) => ({
+            ...prevUserInfo,
             age: calculateAge(when)
-        })
-        await AsyncStorage.setItem("age", userInfo.age.toString())
+        }));
+        await AsyncStorage.setItem('age', userInfo.age);
         hideDatePicker();
     };
 
@@ -119,11 +118,12 @@ export function Account() {
     }
 
     // ВЫБРАТЬ КАТЕГОРИЮ
-    const selectCategory = (index, category) => {
-        setUserInfo({
-            ...userInfo,
+    const selectCategory = async (index, category) => {
+        setUserInfo((prevUserInfo) => ({
+            ...prevUserInfo,
             selectedCategory: category
-        })
+        }));
+        await AsyncStorage.setItem('favoriteNewsCategory', category);
     };
 
     // КНОПКА ВЫХОДА
@@ -165,10 +165,18 @@ export function Account() {
                     <View style={accountStyle.info_buttons}>
                         <View style={accountStyle.info_buttons_line}>
                             <View style={{ marginRight: 10 }}>
-                                <ButtonProfile text={"Сохранить"} props={handleSavePress} backgroundColor={"#88A2FF"} />
+                                <ButtonProfile
+                                    text={"Сохранить"}
+                                    props={handleSavePress}
+                                    backgroundColor={"#88A2FF"}
+                                />
                             </View>
                             <View>
-                                <ButtonProfile text={"Отмена"} props={handleSavePress} backgroundColor={"#000"} />
+                                <ButtonProfile
+                                    text={"Отмена"}
+                                    props={handleSavePress}
+                                    backgroundColor={"#000"}
+                                />
                             </View>
                         </View>
                     </View>
@@ -201,19 +209,32 @@ export function Account() {
                                         paddingBottom: 10,
                                     }]}>
                                 <View style={{ marginRight: 15 }}>
-                                    <ButtonProfile text={"Изменить"} props={handleEditPress} backgroundColor={"#88A2FF"}/>
+                                    <ButtonProfile
+                                        text={"Изменить"}
+                                        props={handleEditPress}
+                                        backgroundColor={"#88A2FF"}
+                                    />
                                 </View>
                                 <View>
-                                    <ButtonProfile text={"Выйти"} props={handlerExit} backgroundColor={"#000"} />
+                                    <ButtonProfile
+                                        text={"Выйти"}
+                                        props={handlerExit}
+                                        backgroundColor={"#000"}
+                                    />
                                 </View>
                             </View>
-                            <View style={[accountStyle.info_buttons_line, {  }]}>
-                                <ButtonProfile text={"Изменить пароль"} backgroundColor={'#88A2FF'}/>
+                            <View style={accountStyle.info_buttons_line}>
+                                <ButtonProfile
+                                    text={"Изменить пароль"}
+                                    backgroundColor={'#88A2FF'}
+                                />
                             </View>
                         </View>
                     </View>
                     <TouchableOpacity style={accountStyle.info_forgotPassword}>
-                        <Text style={accountStyle.info_forgotPassword_text}> Забыли пароль?</Text>
+                        <Text style={accountStyle.info_forgotPassword_text}>
+                            Забыли пароль?
+                        </Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -238,19 +259,17 @@ export function Account() {
                 </View>
                 <View style={accountStyle.profile_item}>
                     <Text style={accountStyle.profile_item_text}>Возраст</Text>
-                    <View>
-                        <View style={accountStyle.profile_item_country_container}>
-                            <View style={{ marginHorizontal: 10, paddingVertical: 10 }}>
-                                <TouchableOpacity onPress={showDatePicker}>
-                                    <Text style={{ fontSize: 16 }}>{userInfo.age}</Text>
-                                </TouchableOpacity>
-                                <DateTimePickerModal
-                                    isVisible={isDatePickerVisible}
-                                    mode="date"
-                                    onConfirm={handleConfirm}
-                                    onCancel={hideDatePicker}
-                                />
-                            </View>
+                    <View style={accountStyle.profile_item_country_container}>
+                        <View style={{ marginHorizontal: 10, paddingVertical: 10 }}>
+                            <TouchableOpacity onPress={showDatePicker}>
+                                <Text style={{ fontSize: 16 }}>{userInfo.age}</Text>
+                            </TouchableOpacity>
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="date"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                            />
                         </View>
                     </View>
                 </View>
@@ -261,7 +280,7 @@ export function Account() {
                             categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
                             selectOption={selectCategory}
                             selectedValue={userInfo.selectedCategory}
-                            iconSize={24}
+                            iconSize={18}
                         />
                     </View>
                 </View>

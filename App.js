@@ -20,6 +20,8 @@ import { CodeWidget } from "./widgets/code/codeWidget";
 import { CreatePassWidget } from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 import { LoginWidget } from "./widgets/login/loginWidget";
+import {CurrencyPage} from "./pages/СurrencyPage/currencyPage";
+import {OneCurrencyPage} from "./pages/OneCurrencyPage/oneCurrencyPage";
 
 
 export default function App() {
@@ -75,6 +77,8 @@ export default function App() {
               { index === 13 && <CreatePassWidget/> }
               { index === 14 && <WeatherPage/> }
               { index === 15 && <ProfilePage/> }
+              { index === 16 && <CurrencyPage/> }
+              { index === 17 && <OneCurrencyPage/> }
               { index.toString().length === 36 && <NewsPage id={index} handleScrollToTop={handleScrollToTop} /> }
             </SearchContext.Provider>
           </CreatContext.Provider>

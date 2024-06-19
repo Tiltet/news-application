@@ -76,7 +76,7 @@ export const accountStyle = StyleSheet.create({
 
     },
     profile_item_country_container: {
-        marginTop: 10,
+        marginTop: 5,
         overflow: "hidden",
         borderWidth: 1,
         borderRadius: 8

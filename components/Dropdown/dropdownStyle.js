@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 
 export const dropdownStyle = StyleSheet.create({
     dropdown: {
-        padding: 10,
         width: 'auto',
+        height: 'auto',
+        padding: 10,
         borderRadius: 8,
         borderWidth: 1,
     },
@@ -15,6 +16,7 @@ export const dropdownStyle = StyleSheet.create({
         alignItems: "center",
     },
     dropdown_list: {
+        height: "auto",
         overflow: "hidden",
         borderWidth: 1,
         borderRadius: 8

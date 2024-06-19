@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import CreatContext from "../../context/context";
-import {Alert, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
+import { KeyboardAvoidingView, Platform, StatusBar} from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
 import { innstructionidgetStyle } from "../instruction/instructionWidgetStyle";
 import { useRef } from "react";
 import { codeWidgetStyle } from "./codeWidgetStyle";
-import axios from "axios";
-import {requestCode} from "./codeWidgetRequest";
+import { requestCode } from "./codeWidgetRequest";
 
 export function CodeWidget() {
 

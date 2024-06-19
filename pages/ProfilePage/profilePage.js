@@ -9,10 +9,6 @@ export function ProfilePage() {
 
     const [isChecked, setIsChecked] = useState(false);
 
-    useEffect(() => {
-
-    }, []);
-
     return(
         <View style={styles.container}>
             <View style={profileStyle.switcherContainer}>
