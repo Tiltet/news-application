@@ -18,7 +18,7 @@ export function HomePage() {
   const [lastNews, setLastNews] = useState([]);
   const [swiperNews, setSwiperNews] = useState([]);
 
-  // Отправляем запрос и получаем данные
+  // ОТПРАВЛЯЕМ ЗАПРОС И ПОЛУЧАЕМ ДАННЫЕ
   useEffect(() => {
     axios.get('http://localhost:4000/news/home')
       .then(response => {

@@ -7,8 +7,9 @@ import staticNews from "../../static/staticNews";
 
 export default function NewsPage( {id, handleScrollToTop} ) {
 
-  const [data, setData] = useState(staticNews);
+  const [ data, setData ] = useState(staticNews);
 
+  // ПОЛУЧАЕМ ДАННЫЕ КОНКРЕТНОЙ СТРАНИЦЫ
   useEffect(() => {
     handleScrollToTop()
     axios.get(`http://localhost:4000/news/${id}`)
@@ -39,10 +40,16 @@ export default function NewsPage( {id, handleScrollToTop} ) {
               </View>
               <View style={pageStyle.header_footer_icons}>
                 <TouchableOpacity>
-                  <Image style={{ width: 15, height: 15 }} source={require("../../assets/icons/news/comments.png")}/>
+                  <Image
+                      style={{ width: 15, height: 15 }}
+                      source={require("../../assets/icons/news/comments.png")}
+                  />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Image style={{ width: 13, height: 13, marginRight: 5 }} source={require("../../assets/icons/news/share.png")}/>
+                  <Image
+                      style={{ width: 13, height: 13, marginRight: 5 }}
+                      source={require("../../assets/icons/news/share.png")}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
@@ -51,14 +58,19 @@ export default function NewsPage( {id, handleScrollToTop} ) {
       </ImageBackground>
 
       <View style={styles.container}>
-        <Text style={[pageStyle.main_text, { flex: 1, flexWrap: 'wrap' }]}>{data.description.replace(/\s{4}/g, '\n\n')}</Text>
+        <Text style={[pageStyle.main_text, { flex: 1, flexWrap: 'wrap' }]}>
+          {data.description.replace(/\s{4}/g, '\n\n')}
+        </Text>
       </View>
 
       <View style={styles.container}>
         <View style={pageStyle.footer}>
           <Text style={pageStyle.footer_time}>{data.createdAtTime}</Text>
           <TouchableOpacity style={pageStyle.footer_share}>
-            <Image style={{ width: 14, height: 14 }} source={require("../../assets/icons/news/share_grey.png")}/>
+            <Image
+                style={{ width: 14, height: 14 }}
+                source={require("../../assets/icons/news/share_grey.png")}
+            />
             <Text style={pageStyle.footer_share_text}>Поделиться</Text>
           </TouchableOpacity>
         </View>
@@ -67,11 +79,17 @@ export default function NewsPage( {id, handleScrollToTop} ) {
       <View style={styles.container}>
         <View style={pageStyle.buttons}>
           <TouchableOpacity style={pageStyle.button}>
-            <Image style={{ width: 25, height: 25 }} source={require("../../assets/icons/poll/like.png")}/>
+            <Image
+                style={{ width: 25, height: 25 }}
+                source={require("../../assets/icons/poll/like.png")}
+            />
             <Text style={pageStyle.button_text}>Понравилось</Text>
           </TouchableOpacity>
           <TouchableOpacity style={pageStyle.button}>
-            <Image style={{ width: 25, height: 25 }} source={require("../../assets/icons/poll/unlike.png")}/>
+            <Image
+                style={{ width: 25, height: 25 }}
+                source={require("../../assets/icons/poll/unlike.png")}
+            />
             <Text style={pageStyle.button_text}>Не понравилось</Text>
           </TouchableOpacity>
         </View>

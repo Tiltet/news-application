@@ -1,6 +1,6 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { styles } from "./style";
-import {View, RefreshControl, Text, StatusBar, Animated} from "react-native";
+import { View, RefreshControl, Text, StatusBar, Animated } from "react-native";
 import { Header } from "./components/Header/header";
 import { Navigation } from "./components/Navigation/navigation";
 import { Menu } from "./components/Menu/menu";
@@ -20,9 +20,8 @@ import { CodeWidget } from "./widgets/code/codeWidget";
 import { CreatePassWidget } from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 import { LoginWidget } from "./widgets/login/loginWidget";
-import {CurrencyPage} from "./pages/СurrencyPage/currencyPage";
-import {OneCurrencyPage} from "./pages/OneCurrencyPage/oneCurrencyPage";
-
+import { CurrencyPage } from "./pages/СurrencyPage/currencyPage";
+import { OneCurrencyPage } from "./pages/OneCurrencyPage/oneCurrencyPage";
 
 export default function App() {
 
@@ -33,12 +32,14 @@ export default function App() {
 
   const scrollViewRef = useRef(null);
 
+  // ВОЗВРАЩАЕТ СТРАНИЦУ НА ВЕРХ
   const handleScrollToTop = () => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
     }
   };
 
+  // ОБНОВЛЕНИЕ СТРАНИЦЫ
   const onRefresh = () => {
     setRefreshing(true);
     setVisible(true)

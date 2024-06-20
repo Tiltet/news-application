@@ -20,8 +20,15 @@ export function Header({ visible, setVisible }) {
   return (
     <SafeAreaView style={headerStyle.header}>
       <Text style={headerStyle.headerText}>Work with us and help Moldova</Text>
-      <TouchableOpacity onPress={handleToggleHeader} style={headerStyle.headerImageContainer}>
-        <Entypo name="cross" size={25} color="white" />
+      <TouchableOpacity
+          style={headerStyle.headerImageContainer}
+          onPress={handleToggleHeader}
+      >
+        <Entypo
+            name="cross"
+            size={25}
+            color="white"
+        />
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -12,8 +12,6 @@ export function Account() {
 
     const { index, setIndex } = React.useContext(CreatContext)
     const [ isEditing, setIsEditing ] = useState(false);
-    const [ selectedCountry, setSelectedCountry] = useState('');
-    const [ selectedCode, setSelectedCode] = useState("BY");
     const [ isDatePickerVisible, setDatePickerVisibility ] = useState(false);
     const [ loginChange, setLoginChange ] = useState('');
     const [ emailChange, setEmailChange ] = useState('');
@@ -22,6 +20,7 @@ export function Account() {
         email: '',
         age: 18,
         selectedCountry: '',
+        locationCode: '',
         selectedCategory: ''
     });
 
@@ -32,13 +31,16 @@ export function Account() {
                 const email = await AsyncStorage.getItem('email');
                 const age = await AsyncStorage.getItem('age');
                 const location = await AsyncStorage.getItem('location');
+                const locationCode = await AsyncStorage.getItem('locationCode')
                 const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory');
                 setUserInfo({
                     ...userInfo,
                     login: login || '',
                     email: email || '',
                     age: age || 18,
+                    locationCode: locationCode || "MD",
                     selectedCountry: location || '',
+
                     selectedCategory: favoriteNewsCategory || ''
                 });
             } catch (error) {
@@ -86,12 +88,16 @@ export function Account() {
     };
 
     // КНОПКА ВЫБОРА СТРАНЫ
-    const handlerCountry = ( code, country ) => {
+    const handlerCountry = async (code, country) => {
         setUserInfo({
             ...userInfo,
             selectedCountry: country,
         })
-        setSelectedCode(code);
+        setUserInfo({
+            ...userInfo,
+            locationCode: code,
+        })
+        await AsyncStorage.setItem('locationCode', code)
     }
 
     // КНОПКА РЕДАКТИРОВАТЬ
@@ -243,6 +249,17 @@ export function Account() {
             <View style={accountStyle.container}>
                 <Text style={accountStyle.container_title}>Мой профиль</Text>
                 <View style={accountStyle.profile_item}>
+                    <Text style={accountStyle.profile_item_text}>Интересующие категории новостей</Text>
+                    <View style={{ marginTop: 5 }}>
+                        <Dropdown
+                            categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
+                            selectOption={selectCategory}
+                            selectedValue={userInfo.selectedCategory}
+                            iconSize={18}
+                        />
+                    </View>
+                </View>
+                <View style={accountStyle.profile_item}>
                     <Text style={accountStyle.profile_item_text}>Местоположение</Text>
                     <View style={accountStyle.profile_item_country_container}>
                         <View style={{ marginHorizontal: 10 }}>
@@ -252,7 +269,7 @@ export function Account() {
                                 withAlphaFilter
                                 withEmoji
                                 onSelect={(country) => handlerCountry(country.cca2, country.name)}
-                                countryCode={selectedCode}
+                                countryCode={userInfo.locationCode}
                             />
                         </View>
                     </View>
@@ -271,17 +288,6 @@ export function Account() {
                                 onCancel={hideDatePicker}
                             />
                         </View>
-                    </View>
-                </View>
-                <View style={accountStyle.profile_item}>
-                    <Text style={accountStyle.profile_item_text}>Интересующие категории новостей</Text>
-                    <View style={{ marginTop: 5 }}>
-                        <Dropdown
-                            categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
-                            selectOption={selectCategory}
-                            selectedValue={userInfo.selectedCategory}
-                            iconSize={18}
-                        />
                     </View>
                 </View>
             </View>

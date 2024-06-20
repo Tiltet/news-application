@@ -1,12 +1,12 @@
 import React from "react";
-import {Image, Text, TouchableOpacity, View} from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { graphsStyle } from "./graphsStyle";
 import Entypo from "@expo/vector-icons/Entypo";
 import CreatContext from "../../context/context";
 
 export function Graphs() {
 
-  const { index, setIndex } = React.useContext(CreatContext)
+  const { index, setIndex } = React.useContext(CreatContext)  // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
 
   // ОБРАБОТЧИК НАЖАТИЯ НА ЗАГОЛОВОК ГРАФИКА
   const handlerCurrency = () => {
@@ -27,12 +27,19 @@ export function Graphs() {
           <View style={graphsStyle.graphs_block_line}>
             <Text style={graphsStyle.graphs_block_line_title}>DOW JONES</Text>
             <View style={graphsStyle.graphs_block_line}>
-              <Entypo name="triangle-up" size={16} color="green" />
+              <Entypo
+                  name="triangle-up"
+                  size={16}
+                  color="green"
+              />
               <Text style={graphsStyle.graphs_block_line_percent}>1.99%</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <Image style={graphsStyle.graphs_block_img} source={require('../../assets/img/graph.png')}/>
+        <Image
+            style={graphsStyle.graphs_block_img}
+            source={require('../../assets/img/graph.png')}
+        />
       </View>
       <View style={graphsStyle.graphs_block}>
         <TouchableOpacity
@@ -46,12 +53,19 @@ export function Graphs() {
           <View style={graphsStyle.graphs_block_line}>
             <Text style={graphsStyle.graphs_block_line_title}>DOW JONES</Text>
             <View style={graphsStyle.graphs_block_line}>
-              <Entypo name="triangle-up" size={16} color="green" />
+              <Entypo
+                  name="triangle-up"
+                  size={16}
+                  color="green"
+              />
               <Text style={graphsStyle.graphs_block_line_percent}>1.99%</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <Image style={graphsStyle.graphs_block_img} source={require('../../assets/img/graph.png')}/>
+        <Image
+            style={graphsStyle.graphs_block_img}
+            source={require('../../assets/img/graph.png')}
+        />
       </View>
     </View>
   )

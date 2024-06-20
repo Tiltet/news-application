@@ -7,18 +7,27 @@ export function LastNews( {lastNews} ) {
 
     const handlerNewsClick = newsPageLink();
 
-    // Рендерим новости из состояния lastNews
+    // РЕНДЕРИМ НОВОСТИ ИЗ СОСТОЯНИЯ LastNews
     const renderNews = () => {
         return lastNews.slice(0,3).map((news) => (
-            <View key={news.id} style={lastNewsStyle.lastNews_block}>
+            <View
+                style={lastNewsStyle.lastNews_block}
+                key={news.id}
+            >
                 <Image
                     style={lastNewsStyle.lastNews_block_img}
                     source={{ uri: news.imgUrl }}
                 />
-                <TouchableOpacity onPress={() => handlerNewsClick(news.id)} style={lastNewsStyle.lastNews_block_text}>
+                <TouchableOpacity
+                    style={lastNewsStyle.lastNews_block_text}
+                    onPress={() => handlerNewsClick(news.id)}
+                >
                     <Text style={lastNewsStyle.lastNews_block_text_time}>{news.createdAtTime}</Text>
                     <Text style={lastNewsStyle.lastNews_block_text_title}>{news.title}</Text>
-                    <Text numberOfLines={2} ellipsizeMode="tail">
+                    <Text
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                    >
                         {news.description.length > 100
                             ? news.description.substring(0, 100) + "..."
                             : news.description}

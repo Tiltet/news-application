@@ -40,8 +40,14 @@ export function CategoryPage( {category, title} ) {
         return data.map((item) => (
             <View style={categoryPageStyle.news_item} key={item.id}>
                 <View style={categoryPageStyle.news_item_top}>
-                    <TouchableOpacity style={categoryPageStyle.news_block_text} onPress={() => handlerNewsClick(item.id)}>
-                        <Text numberOfLines={4} style={categoryPageStyle.news_block_text_text}>
+                    <TouchableOpacity
+                        style={categoryPageStyle.news_block_text}
+                        onPress={() => handlerNewsClick(item.id)}
+                    >
+                        <Text
+                            numberOfLines={4}
+                            style={categoryPageStyle.news_block_text_text}
+                        >
                             {item.title.length > 100
                                 ? item.title.substring(0, 100) + "..."
                                 : item.title}

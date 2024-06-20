@@ -148,7 +148,6 @@ export function OpinionPage() {
     return (
         <View style={styles.container}>
             <View style={opinionPageStyle.container}>
-
                 <View style={{ width: "100%" }}>
                     <Dropdown
                         categories={['Экономика', 'Политика', 'Бизнес', 'Мировые новости']}

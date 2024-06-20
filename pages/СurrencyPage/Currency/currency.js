@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, Image, ScrollView, TouchableOpacity} from "react-native";
+import {View, Text, ScrollView, TouchableOpacity} from "react-native";
 import {currencyRequest} from "./currencyRequest";
 import {currencyStyle} from "./currencyStyle";
 import {AntDesign} from "@expo/vector-icons";

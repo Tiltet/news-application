@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {ScrollView, Text, TouchableOpacity, View} from "react-native";
 import CreatContext from "../../../context/context";
-import {currencyRequest} from "../Currency/currencyRequest";
 import {currencyStyle} from "../Currency/currencyStyle";
 import {AntDesign} from "@expo/vector-icons";
 import {cryptoCurrencyRequest} from "./cryptocurrencyRequest";
