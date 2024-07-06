@@ -79,7 +79,7 @@ export default function App() {
               { index === 14 && <WeatherPage/> }
               { index === 15 && <ProfilePage/> }
               { index === 16 && <CurrencyPage/> }
-              { index === 17 && <OneCurrencyPage/> }
+              { index === 17 && <OneCurrencyPage currencyId={searchData}/> }
               { index.toString().length === 36 && <NewsPage id={index} handleScrollToTop={handleScrollToTop} /> }
             </SearchContext.Provider>
           </CreatContext.Provider>

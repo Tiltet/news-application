@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {View, Text, ScrollView, TouchableOpacity} from "react-native";
-import {currencyRequest} from "./currencyRequest";
-import {currencyStyle} from "./currencyStyle";
-import {AntDesign} from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { currencyRequest } from "./currencyRequest";
+import { currencyStyle } from "./currencyStyle";
+import { AntDesign } from "@expo/vector-icons";
 import CreatContext from "../../../context/context";
+import SearchContext from "../../../context/searchContext";
 
 export function Currency() {
 
     const { index, setIndex } = React.useContext(CreatContext)
+    const { searchData, setSearchData } = React.useContext(SearchContext)
     const [ data, setData ] = useState('')
 
     useEffect(() => {
@@ -20,14 +22,19 @@ export function Currency() {
             })
     }, []);
 
-    const renderOneCurrency = ({ name ,rate, percentage, difference}) => {
+    const handlerOneCurrency = (id) => {
+        setSearchData(id)
+        setIndex(17)
+    }
+
+    const renderOneCurrency = ({ id, name ,rate, percentage, difference}) => {
         return (
             <View style={currencyStyle.line}>
                 <TouchableOpacity
                     style={currencyStyle.line_item}
-                    onPress={() => setIndex(17)}
+                    onPress={() => handlerOneCurrency(id)}
                 >
-                    <Text>EUR / USD</Text>
+                    <Text>{name}</Text>
                 </TouchableOpacity>
                 <View style={currencyStyle.line_item}>
                     <Text style={currencyStyle.line_item_text}>{rate}</Text>
@@ -101,42 +108,49 @@ export function Currency() {
                 </View>
                 {renderOneCurrency({
                     name: "EUR / USD",
+                    id: "EURToUSD",
                     rate: parseFloat(data.EURToUSD).toFixed(4),
                     percentage: data.percentageEURToUSD,
                     difference: data.differenceEURToUSD,
                 })}
                 {renderOneCurrency({
                     name: "USD / JPY",
+                    id: "USDToJPY",
                     rate: parseFloat(data.USDToJPY).toFixed(4),
                     percentage: data.percentageUSDToJPY,
                     difference: data.differenceUSDToJPY,
                 })}
                 {renderOneCurrency({
                     name: "GBP / USD",
+                    id: "GBPToUSD",
                     rate: parseFloat(data.GBPToUSD).toFixed(4),
                     percentage: data.percentageGBPToUSD,
                     difference: data.differenceGBPToUSD,
                 })}
                 {renderOneCurrency({
                     name: "USD / RUB",
+                    id: "USDToRUB",
                     rate: parseFloat(data.USDToRUB).toFixed(4),
                     percentage: data.percentageUSDToRUB,
                     difference: data.differenceUSDToRUB,
                 })}
                 {renderOneCurrency({
                     name: "EUR / RUB",
+                    id: "EURToRUB",
                     rate: parseFloat(data.EURToRUB).toFixed(4),
                     percentage: data.percentageEURToRUB,
                     difference: data.differenceEURToRUB,
                 })}
                 {renderOneCurrency({
                     name: "USD / RON",
+                    id: "USDToRON",
                     rate: parseFloat(data.USDToRON).toFixed(4),
                     percentage: data.percentageUSDToRON,
                     difference: data.differenceUSDToRON,
                 })}
                 {renderOneCurrency({
                     name: "EUR / RON",
+                    id: "EURToRON",
                     rate: parseFloat(data.EURToRON).toFixed(4),
                     percentage: data.percentageEURToRON,
                     difference: data.differenceEURToRON,

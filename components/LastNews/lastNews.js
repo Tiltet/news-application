@@ -16,7 +16,7 @@ export function LastNews( {lastNews} ) {
             >
                 <Image
                     style={lastNewsStyle.lastNews_block_img}
-                    source={{ uri: news.imgUrl }}
+                    source={{ uri: news.fullImgUrl }}
                 />
                 <TouchableOpacity
                     style={lastNewsStyle.lastNews_block_text}

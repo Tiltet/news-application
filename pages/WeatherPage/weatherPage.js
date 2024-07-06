@@ -16,7 +16,7 @@ export function WeatherPage() {
   const renderHolidays = () => {
     return holidays.slice(0,4).map((item) => (
       <View
-          id={item.id}
+          key={item.id}
           style={weatherPageStyle.day_event_holiday}
       >
         <Image

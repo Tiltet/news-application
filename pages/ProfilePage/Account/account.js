@@ -38,7 +38,7 @@ export function Account() {
                     login: login || '',
                     email: email || '',
                     age: age || 18,
-                    locationCode: locationCode || "MD",
+                    locationCode: locationCode || 'ML',
                     selectedCountry: location || '',
 
                     selectedCategory: favoriteNewsCategory || ''
@@ -83,7 +83,7 @@ export function Account() {
             ...prevUserInfo,
             age: calculateAge(when)
         }));
-        await AsyncStorage.setItem('age', userInfo.age);
+        await AsyncStorage.setItem('age', calculateAge(when).toString());
         hideDatePicker();
     };
 

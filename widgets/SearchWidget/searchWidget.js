@@ -13,9 +13,9 @@ import { searchWidgetStyle } from "./searchWidgetStyle";
 import CreatContext from "../../context/context";
 import SearchContext from "../../context/searchContext";
 
-export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
+export default function SearchWidget({ isBlurVisible, setIsBlurVisible }) {
 
-  const [inputText, setInputText] = useState('')
+  const [ inputText, setInputText ] = useState('')
   const { index, setIndex } = React.useContext(CreatContext)
   const { searchData, setSearchData } = React.useContext(SearchContext)
 
@@ -59,7 +59,10 @@ export default function SearchWidget({isBlurVisible, setIsBlurVisible}) {
                     onSubmitEditing={handleSearchPress}
                   />
                   <TouchableOpacity onPress={handleSearchPress}>
-                    <Image style={searchWidgetStyle.input_image} source={require('../../assets/icons/search/dark_search.png')}/>
+                    <Image
+                        style={searchWidgetStyle.input_image}
+                        source={require('../../assets/icons/search/dark_search.png')}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
