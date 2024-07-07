@@ -9,11 +9,10 @@ export const graphsStyle = StyleSheet.create({
   },
   graphs_block: {
     display: 'flex',
-    justifyContent: "space-between",
     borderRadius: 5,
     backgroundColor: '#EFEFEF',
     width: '49%',
-    height: 120,
+    height: 140,
   },
   graphs_block_top: {
     padding: 10,
@@ -24,6 +23,9 @@ export const graphsStyle = StyleSheet.create({
     height: undefined,
     resizeMode: 'stretch',
     overflow: 'hidden',
+  },
+  graphs_block_lineChart: {
+    marginHorizontal: "auto",
   },
   graphs_block_line: {
     display: 'flex',
@@ -44,9 +46,14 @@ export const graphsStyle = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
   },
-  graphs_block_line_percent: {
+  graphs_block_line_percent_green: {
     textTransform: "uppercase",
     fontSize: 12,
     color: '#309F63',
+  },
+  graphs_block_line_percent_red: {
+    textTransform: "uppercase",
+    fontSize: 12,
+    color: 'red',
   }
 })

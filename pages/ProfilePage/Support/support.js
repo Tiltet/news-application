@@ -1,8 +1,8 @@
-import {View, Text, TouchableOpacity, Image, TextInput} from "react-native";
+import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import React, { useState } from "react";
-import {accountStyle} from "../Account/accountStyle";
-import  {supportStyle} from "./supportStyle";
-import {loginWidgetStyle} from "../../../widgets/login/loginWidgetStyle";
+import { accountStyle } from "../Account/accountStyle";
+import  {supportStyle } from "./supportStyle";
+import { loginWidgetStyle } from "../../../widgets/login/loginWidgetStyle";
 
 export function Support() {
 
@@ -39,17 +39,14 @@ export function Support() {
                                         style={{ width: 40, height: 40 }}
                                     />
                                 </TouchableOpacity>
-
                                 <TouchableOpacity style={supportStyle.image}>
                                     <Image
                                         source={require('../../../assets/icons/login/twitter.png')}
                                         style={{ width: 40, height: 40 }}
                                     />
                                 </TouchableOpacity>
-
                             </View>
                         </View>
-
                     </View>
                 </View>
             </View>
@@ -72,7 +69,10 @@ export function Support() {
                     />
                 </View>
                 <View style={supportStyle.checkbox_container}>
-                    <TouchableOpacity style={supportStyle.checkbox} onPress={handleCheckboxPress}>
+                    <TouchableOpacity
+                        style={supportStyle.checkbox}
+                        onPress={handleCheckboxPress}
+                    >
                         <View>
                             {isChecked && (
                                 <View
@@ -87,7 +87,9 @@ export function Support() {
                         </View>
                     </TouchableOpacity>
                     <View >
-                        <Text style={loginWidgetStyle.checkbox_text}>Подтверждаю, что я согласен на обработку моих персональных данных в соответствии с </Text>
+                        <Text style={loginWidgetStyle.checkbox_text}>
+                            Подтверждаю, что я согласен на обработку моих персональных данных в соответствии с
+                        </Text>
                         <TouchableOpacity>
                             <Text style={supportStyle.hypertext}>Условиями</Text>
                         </TouchableOpacity>

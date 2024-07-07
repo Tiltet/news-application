@@ -3,7 +3,7 @@ import { Image, ScrollView, Text, View } from "react-native";
 import { styles } from "../../style";
 import { weatherPageStyle } from "./weatherPageStyle";
 import { staticHolidays } from "./staticHolidays";
-import {Calendar, CalendarWeather} from "./calendar/calendar";
+import { Calendar, CalendarWeather } from "./calendar/calendar";
 import { Weather } from "./weather/weather";
 import { Horoscope } from "./horoscope/horoscope";
 import { Championship } from "./championship/championship";
@@ -15,7 +15,10 @@ export function WeatherPage() {
   // РЕНДЕРИТ СОБЫТИЯ ДНЯ
   const renderHolidays = () => {
     return holidays.slice(0,4).map((item) => (
-      <View id={item.id} style={weatherPageStyle.day_event_holiday}>
+      <View
+          key={item.id}
+          style={weatherPageStyle.day_event_holiday}
+      >
         <Image
           style={{ width: 25, height: 27 }}
           source={require("../../assets/icons/weather/holiday_blue.png")}
@@ -57,7 +60,6 @@ export function WeatherPage() {
       <View>
         <Championship/>
       </View>
-
 
     </View>
   )

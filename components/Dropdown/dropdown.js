@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import ModalDropdown from "react-native-modal-dropdown";
-import {AntDesign} from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { dropdownStyle } from "./dropdownStyle";
 
 export function Dropdown({ categories, selectOption, selectedValue, iconSize }) {

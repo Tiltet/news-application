@@ -9,12 +9,17 @@ export  function Menu() {
   // ЭКСПОРТИРУЕМ КОНТЕКСТ, КОТОРЫЙ ОТВЕЧАЕТ ЗА НАВИГАЦИЮ НА СТРАНИЦЕ
   const { index, setIndex } = React.useContext(CreatContext)
 
+  // ПЕРЕХОД НА НОВУЮ СТРАНИЦУ
   const handlerClick = ( value ) => {
     setIndex(value)
   }
 
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={menuStyle.menu_container}>
+    <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={menuStyle.menu_container}
+    >
       <View style={menuStyle.menu_block_first}>
         <TouchableOpacity onPress={() => handlerClick(1)}>
           <Text style={menuStyle.menu_block_text}>ЭКОНОМИКА</Text>
@@ -37,7 +42,11 @@ export  function Menu() {
       </View>
       <View style={menuStyle.menu_block_last}>
         <TouchableOpacity>
-          <AntDesign name="pluscircle" size={15} color="#88A2FF" />
+          <AntDesign
+              name="pluscircle"
+              size={15}
+              color="#88A2FF"
+          />
         </TouchableOpacity>
       </View>
     </ScrollView>

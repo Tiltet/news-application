@@ -3,14 +3,14 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../../style";
 import { searchPageStyle } from "./searchPageStyle";
 import CreatContext from "../../context/context";
-import {searchPageRequest} from "./searchPageRequest";
+import { searchPageRequest } from "./searchPageRequest";
 
 export function SearchPage( {searchItem } ) {
 
-    const [inputText, setInputText] = useState("");
-    const [newsCount, setNewsCount] = useState(3);
-    const [amount, setAmount] = useState(0);
-    const [data, setData] = useState([]);
+    const [ inputText, setInputText ] = useState("");
+    const [ newsCount, setNewsCount ] = useState(3);
+    const [ amount, setAmount ] = useState(0);
+    const [ data, setData ] = useState([]);
     const { index, setIndex } = React.useContext(CreatContext)
 
     const handlerNewsClick = (item) => {
@@ -135,7 +135,8 @@ export function SearchPage( {searchItem } ) {
             { amount !== 0 && amount !== newsCount ? (
                 <TouchableOpacity
                     onPress={handlerButtonMoreNews}
-                    style={searchPageStyle.button_container}>
+                    style={searchPageStyle.button_container}
+                >
                     <Text style={searchPageStyle.button}>Еще 3 новости</Text>
                 </TouchableOpacity>
             ) : (
