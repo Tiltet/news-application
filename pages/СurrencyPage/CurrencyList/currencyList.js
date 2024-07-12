@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { currencyRequest } from "./currencyRequest";
-import { currencyStyle } from "./currencyStyle";
 import { AntDesign } from "@expo/vector-icons";
 import CreatContext from "../../../context/context";
 import SearchContext from "../../../context/searchContext";
+import { currencyListStyle } from "./currencyListStyle";
+import { currencyListRequest } from "./currencyListRequest";
 
-export function Currency() {
+export function CurrencyList() {
 
     const { index, setIndex } = React.useContext(CreatContext)
     const { searchData, setSearchData } = React.useContext(SearchContext)
     const [ data, setData ] = useState('')
 
     useEffect(() => {
-        currencyRequest()
+        currencyListRequest()
             .then(response => {
                 setData(response)
             })
             .catch(error => {
-                console.log("Ошибка при получение Курса Валют")
+                console.error("Ошибка при получение Курса Валют")
             })
     }, []);
 
+    // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ ВАЛЮТЫ
     const handlerOneCurrency = (id) => {
         setSearchData(id)
         setIndex(17)
@@ -29,56 +30,53 @@ export function Currency() {
 
     const renderOneCurrency = ({ id, name ,rate, percentage, difference}) => {
         return (
-            <View style={currencyStyle.line}>
+            <View style={currencyListStyle.line}>
                 <TouchableOpacity
-                    style={currencyStyle.line_item}
+                    style={currencyListStyle.line_item}
                     onPress={() => handlerOneCurrency(id)}
                 >
                     <Text>{name}</Text>
                 </TouchableOpacity>
-                <View style={currencyStyle.line_item}>
-                    <Text style={currencyStyle.line_item_text}>{rate}</Text>
+                <View style={currencyListStyle.line_item}>
+                    <Text style={currencyListStyle.line_item_text}>{rate}</Text>
                 </View>
 
                 { percentage >= 0 && (
-                    <View style={currencyStyle.line_item}>
+                    <View style={currencyListStyle.line_item}>
                         <AntDesign name="caretup" size={8} color="green" style={{ paddingRight: 5}} />
-                        <Text style={currencyStyle.line_item_text_green}>{percentage}%</Text>
+                        <Text style={currencyListStyle.line_item_text_green}>{percentage}%</Text>
                     </View>
                 ) }
                 { percentage < 0 && (
-                    <View style={currencyStyle.line_item}>
+                    <View style={currencyListStyle.line_item}>
                         <AntDesign name="caretup" size={8} color="red" style={{ paddingRight: 5}} />
-                        <Text style={currencyStyle.line_item_text_red}>{percentage * -1}%</Text>
+                        <Text style={currencyListStyle.line_item_text_red}>{percentage * -1}%</Text>
                     </View>
                 ) }
 
-                <View style={currencyStyle.line_item}>
+                { difference < 0 && (
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.line_item_text}>{difference * -1}</Text>
+                    </View>
+                )}
+                { difference >= 0 && (
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.line_item_text}>{difference}</Text>
+                    </View>
+                )}
 
-                    { difference < 0 && (
-                        <Text style={currencyStyle.line_item_text}>{difference * -1}</Text>
-                    )}
-                    { difference >= 0 && (
-                        <Text style={currencyStyle.line_item_text}>{difference}</Text>
-                    )}
-
-                </View>
-                <View style={currencyStyle.line_item}>
-
-                    { percentage >= 0 && (
-                        <View style={currencyStyle.line_item}>
-                            <AntDesign name="up" size={10} color="red" style={{ paddingRight: 5 }} />
-                            <Text style={currencyStyle.line_item_text_red}>Продавать</Text>
-                        </View>
-                    ) }
-                    { percentage < 0 && (
-                        <View style={currencyStyle.line_item}>
-                            <AntDesign name="up" size={10} color="green" style={{ paddingRight: 5 }} />
-                            <Text style={currencyStyle.line_item_text_green}>Покупать</Text>
-                        </View>
-                    ) }
-
-                </View>
+                { percentage >= 0 && (
+                    <View style={currencyListStyle.line_item}>
+                        <AntDesign name="up" size={10} color="red" style={{ paddingRight: 5 }} />
+                        <Text style={currencyListStyle.line_item_text_red}>Продавать</Text>
+                    </View>
+                ) }
+                { percentage < 0 && (
+                    <View style={currencyListStyle.line_item}>
+                        <AntDesign name="up" size={10} color="green" style={{ paddingRight: 5 }} />
+                        <Text style={currencyListStyle.line_item_text_green}>Покупать</Text>
+                    </View>
+                ) }
             </View>
         )
     }
@@ -88,22 +86,22 @@ export function Currency() {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
         >
-            <View style={currencyStyle.container}>
-                <View style={currencyStyle.top_line}>
-                    <View style={currencyStyle.line_item}>
-                        <Text style={currencyStyle.top_line_item_text}>Валюта</Text>
+            <View style={currencyListStyle.container}>
+                <View style={currencyListStyle.top_line}>
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.top_line_item_text}>Валюта</Text>
                     </View>
-                    <View style={currencyStyle.line_item}>
-                        <Text style={currencyStyle.top_line_item_text}>Курс</Text>
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.top_line_item_text}>Курс</Text>
                     </View>
-                    <View style={currencyStyle.line_item}>
-                        <Text style={currencyStyle.top_line_item_text}>Изменение, %</Text>
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.top_line_item_text}>Изменение, %</Text>
                     </View>
-                    <View style={currencyStyle.line_item}>
-                        <Text style={currencyStyle.top_line_item_text}>Изменение</Text>
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.top_line_item_text}>Изменение</Text>
                     </View>
-                    <View style={currencyStyle.line_item}>
-                        <Text style={currencyStyle.top_line_item_text}>Тех. рейтинг</Text>
+                    <View style={currencyListStyle.line_item}>
+                        <Text style={currencyListStyle.top_line_item_text}>Тех. рейтинг</Text>
                     </View>
                 </View>
                 {renderOneCurrency({

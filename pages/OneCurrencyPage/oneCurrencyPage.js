@@ -6,6 +6,7 @@ import { Graph } from "./graph/graph";
 import { Options } from "./options/options";
 import axios from "axios";
 import { Switcher } from "../../components/Switcher/switcher";
+import { CategoryPage } from "../CategoryPage/categoryPage";
 
 export function OneCurrencyPage({ currencyId }) {
 
@@ -21,7 +22,6 @@ export function OneCurrencyPage({ currencyId }) {
     });
 
     useEffect( () => {
-
         axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=1")
             .then(res => {
                 console.log("http://localhost:4000/currency/params/" + currencyId + "?pageSize=1" + " - good");
@@ -31,7 +31,7 @@ export function OneCurrencyPage({ currencyId }) {
                 const formattedDate = moment(dateString, 'M/D/YY').format('DD.MM.YYYY');
 
                 setCurrencyInfo({
-                    rate: res.data[0].rate,
+                    rate: parseFloat(res.data[0].rate).toFixed(4),
                     difference: res.data[0].difference,
                     percentage: res.data[0].percentage,
                     date: formattedDate,
@@ -134,6 +134,8 @@ export function OneCurrencyPage({ currencyId }) {
                 ) : (
                     <Options currencyId={currencyId}/>
                 ) }
+
+                <CategoryPage category={"economy"} title={"Последние новости"} />
 
             </View>
         </View>

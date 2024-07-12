@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function currencyRequest() {
+export function currencyListRequest() {
     return axios.get('http://localhost:4000/currency')
         .then(response => {
             console.log('http://localhost:4000/currency - good');

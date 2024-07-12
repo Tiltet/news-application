@@ -5,7 +5,7 @@ import { pageStyle } from "./newsPageStyle";
 import axios from "axios";
 import staticNews from "../../static/staticNews";
 
-export default function NewsPage( {id, handleScrollToTop} ) {
+export function NewsPage( {id, handleScrollToTop} ) {
 
   const [ data, setData ] = useState(staticNews);
 

@@ -1,18 +1,18 @@
 import React, { useRef, useState } from "react";
 import { styles } from "./style";
 import { View, RefreshControl, Text, StatusBar, Animated } from "react-native";
+import CreatContext from "./context/context";
+import SearchContext from "./context/searchContext";
 import { Header } from "./components/Header/header";
 import { Navigation } from "./components/Navigation/navigation";
 import { Menu } from "./components/Menu/menu";
-import CreatContext from "./context/context";
 import { HomePage } from "./pages/HomePage/homePage";
 import { SearchPage } from "./pages/SearchPage/searchPage";
 import { RegWidget } from "./widgets/registration/regWidget";
 import { PassWidget } from "./widgets/password/passWidget";
 import { RecoveryWidget } from "./widgets/recovery/recoveryWidget";
-import SearchContext from "./context/searchContext";
 import { OpinionPage } from "./pages/OpinionPage/opinionPage";
-import NewsPage from "./pages/NewsPage/newsPage";
+import { NewsPage } from "./pages/NewsPage/newsPage";
 import { ProfilePage} from "./pages/ProfilePage/profilePage";
 import { CategoryPage } from "./pages/CategoryPage/categoryPage";
 import { InstructionWidget } from "./widgets/instruction/instructionWidget";
@@ -22,6 +22,7 @@ import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 import { LoginWidget } from "./widgets/login/loginWidget";
 import { CurrencyPage } from "./pages/СurrencyPage/currencyPage";
 import { OneCurrencyPage } from "./pages/OneCurrencyPage/oneCurrencyPage";
+import { OneCryptoPage } from "./pages/OneCryptoPage/oneCryptoPage";
 
 export default function App() {
 
@@ -79,7 +80,8 @@ export default function App() {
               { index === 14 && <WeatherPage/> }
               { index === 15 && <ProfilePage/> }
               { index === 16 && <CurrencyPage/> }
-              { index === 17 && <OneCurrencyPage currencyId={searchData}/> }
+              { index === 17 && <OneCurrencyPage currencyId={searchData} /> }
+              { index === 18 && <OneCryptoPage currencyId={searchData} /> }
               { index.toString().length === 36 && <NewsPage id={index} handleScrollToTop={handleScrollToTop} /> }
             </SearchContext.Provider>
           </CreatContext.Provider>

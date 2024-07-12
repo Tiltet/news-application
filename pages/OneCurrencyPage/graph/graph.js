@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import {graphStyle} from "./graphStyle";
 import axios from "axios";
 
-export function Graph({ currencyId }) {
+export function Graph({ currencyId, check }) {
 
     const [chartData, setChartData] = useState({
         labels: [],
@@ -16,28 +16,53 @@ export function Graph({ currencyId }) {
     });
 
     useEffect(() => {
-        axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15")
-            .then(res => {
-                let labels = [];
-                let data = [];
-                res.data.forEach((item, index) => {
-                    console.log(parseFloat(item.rate).toFixed(4));
-                    data.push(parseFloat(item.rate).toFixed(4));
+        if (check === "cash") {
+            axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15")
+                .then(res => {
+                    let labels = [];
+                    let data = [];
+                    res.data.forEach((item, index) => {
+                        console.log(parseFloat(item.rate).toFixed(4));
+                        data.push(parseFloat(item.rate).toFixed(4));
+                    })
+
+                    setChartData({
+                        labels: labels,
+                        datasets: [
+                            {
+                                data: data,
+                            },
+                        ],
+                    });
+
                 })
+                .catch(error => {
+                    console.log(error);
+                })
+        } else if (check === "crypto") {
+            axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=15")
+                .then(res => {
+                    let labels = [];
+                    let data = [];
+                    res.data.forEach((item, index) => {
+                        console.log(parseFloat(item.rate).toFixed(4));
+                        data.push(parseFloat(item.rate).toFixed(4));
+                    })
 
-                setChartData({
-                    labels: labels,
-                    datasets: [
-                        {
-                            data: data,
-                        },
-                    ],
-                });
+                    setChartData({
+                        labels: labels,
+                        datasets: [
+                            {
+                                data: data,
+                            },
+                        ],
+                    });
 
-            })
-            .catch(error => {
-                console.log(error);
-            })
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     }, []);
 
     return(
