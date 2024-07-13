@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const currencyPageStyle = StyleSheet.create({
+export const currenciesPageStyle = StyleSheet.create({
     container: {
         height: "110%",
     }

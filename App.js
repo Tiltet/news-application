@@ -20,9 +20,8 @@ import { CodeWidget } from "./widgets/code/codeWidget";
 import { CreatePassWidget } from "./widgets/createPass/createPassWidget";
 import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 import { LoginWidget } from "./widgets/login/loginWidget";
-import { CurrencyPage } from "./pages/СurrencyPage/currencyPage";
-import { OneCurrencyPage } from "./pages/OneCurrencyPage/oneCurrencyPage";
-import { OneCryptoPage } from "./pages/OneCryptoPage/oneCryptoPage";
+import { CurrenciesPage } from "./pages/CurrenciesPage/currenciesPage";
+import { CurrencyPage } from "./pages/CurrencyPage/currencyPage";
 
 export default function App() {
 
@@ -79,9 +78,9 @@ export default function App() {
               { index === 13 && <CreatePassWidget/> }
               { index === 14 && <WeatherPage/> }
               { index === 15 && <ProfilePage/> }
-              { index === 16 && <CurrencyPage/> }
-              { index === 17 && <OneCurrencyPage currencyId={searchData} /> }
-              { index === 18 && <OneCryptoPage currencyId={searchData} /> }
+              { index === 16 && <CurrenciesPage/> }
+              { index === 17 && <CurrencyPage currencyId={searchData} category={"cash"} /> }
+              { index === 18 && <CurrencyPage currencyId={searchData} category={"crypto"} /> }
               { index.toString().length === 36 && <NewsPage id={index} handleScrollToTop={handleScrollToTop} /> }
             </SearchContext.Provider>
           </CreatContext.Provider>

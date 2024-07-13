@@ -17,7 +17,7 @@ export async function requestCode(code) {
                 Alert.alert(errorMessage.message);
             });
         } else {
-            console.error('Error:', error);
+            console.error('Error: ', error);
         }
         return false
     }

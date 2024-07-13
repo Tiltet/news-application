@@ -192,9 +192,7 @@ export function Account() {
                 <View style={accountStyle.container}>
                     <View style={accountStyle.uppercontainer}>
                         <View>
-                            <Text style={accountStyle.container_title}>
-                                Информация об аккаунте
-                            </Text>
+                            <Text style={accountStyle.container_title}>Информация об аккаунте</Text>
                         </View>
                         <View>
                             <View style={accountStyle.info_text}>
@@ -238,9 +236,7 @@ export function Account() {
                         </View>
                     </View>
                     <TouchableOpacity style={accountStyle.info_forgotPassword}>
-                        <Text style={accountStyle.info_forgotPassword_text}>
-                            Забыли пароль?
-                        </Text>
+                        <Text style={accountStyle.info_forgotPassword_text}>Забыли пароль?</Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -254,8 +250,7 @@ export function Account() {
                         <Dropdown
                             categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
                             selectOption={selectCategory}
-                            selectedValue={userInfo.selectedCategory}
-                            iconSize={18}
+                            defaultValue={userInfo.favoriteNewsCategory}
                         />
                     </View>
                 </View>

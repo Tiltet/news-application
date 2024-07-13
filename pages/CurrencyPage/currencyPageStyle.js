@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const oneCurrencyPageStyle = StyleSheet.create({
+export const currencyPageStyle = StyleSheet.create({
     container: {
         marginTop: 5
     },

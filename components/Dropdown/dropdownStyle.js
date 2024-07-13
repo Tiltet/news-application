@@ -15,7 +15,6 @@ export const dropdownStyle = StyleSheet.create({
         alignItems: "center",
     },
     dropdown_list: {
-        height: "auto",
         borderWidth: 1,
         borderRadius: 8
     },

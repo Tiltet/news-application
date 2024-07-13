@@ -4,6 +4,7 @@ import { opinionPageStyle } from "./opinionPageStyle";
 import { styles } from "../../style";
 import { Dropdown } from "../../components/Dropdown/dropdown";
 import { handleCategory } from "../CategoryPage/categoryPageRequest";
+import PollComponent from "../../components/Poll/poll";
 
 export function OpinionPage() {
 
@@ -19,7 +20,7 @@ export function OpinionPage() {
                         setNews([...news, ...newData])
                     })
                     .catch(error => {
-                        console.log('Ошибка при получении данных ОПРОСЫ' + 'policy' + ' ' + error);
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'policy' + ' ' + error);
                     })
                 setPage(page + 1)
                 break
@@ -29,7 +30,7 @@ export function OpinionPage() {
                         setNews([...news, ...newData])
                     })
                     .catch(error => {
-                        console.log('Ошибка при получении данных ОПРОСЫ' + 'economy' + ' ' + error);
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'economy' + ' ' + error);
                     })
                 setPage(page + 1)
                 break
@@ -39,7 +40,7 @@ export function OpinionPage() {
                         setNews([...news, ...newData])
                     })
                     .catch(error => {
-                        console.log('Ошибка при получении данных ОПРОСЫ' + 'world' + ' ' + error);
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'world' + ' ' + error);
                     })
                 setPage(page + 1)
                 break
@@ -77,71 +78,14 @@ export function OpinionPage() {
         getPolls();
     }
 
-    // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ МНЕНИЯ
-    const handlerButtonOpinionClick = (index) => {
-        switch (index) {
-            case 0:
-                console.log("Не поддерживаю")
-                break
-            case 1:
-                console.log("Поддерживаю")
-                break
-            case 2:
-                console.log("Нейтрально")
-                break
-            default:
-                console.error("handlerButtonOpinionClick")
-                break
-        }
-    }
-
     // РЕНДЕРИТ НОВОСТИ
     const renderPolls = () => {
         return news.slice(0, 10 * page).map((item, index) => (
-            <View key={index}>
-                <View style={opinionPageStyle.poll_block}>
-                    <Text style={opinionPageStyle.title}>Как вы относитесь к этому?</Text>
-                    <Text style={opinionPageStyle.description}>{item.title}</Text>
-                    <View style={opinionPageStyle.vote_block}>
-                        <View style={opinionPageStyle.votes}>
-                            <TouchableOpacity
-                                style={opinionPageStyle.vote}
-                                onPress={() => handlerButtonOpinionClick(0)}
-                            >
-                                <Image
-                                    style={{width: 30, height: 30}}
-                                    source={require('../../assets/icons/poll/unlike.png')}
-                                />
-                                <Text style={opinionPageStyle.vote_text}>Не поддерживаю</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={opinionPageStyle.vote}
-                                onPress={() => handlerButtonOpinionClick(1)}
-                            >
-                                <Image
-                                    style={{width: 30, height: 30}}
-                                    source={require('../../assets/icons/poll/like.png')}
-                                />
-                                <Text style={opinionPageStyle.vote_text}>Поддерживаю</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={opinionPageStyle.vote}
-                                onPress={() => handlerButtonOpinionClick(2)}
-                            >
-                                <Image
-                                    style={{width: 30, height: 30}}
-                                    source={require('../../assets/icons/poll/normal.png')}
-                                />
-                                <Text style={opinionPageStyle.vote_text}>Нейтрально</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <Image
-                            style={opinionPageStyle.image}
-                            source={require('../../assets/img/newsImg.png')}
-                        />
-                    </View>
-                </View>
-            </View>
+            <PollComponent
+                key={index}
+                item={item}
+                index={index}
+            />
         ))
     }
 

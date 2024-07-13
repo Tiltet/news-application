@@ -1,28 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
-import {graphStyle} from "./graphStyle";
+import { graphStyle } from "./graphStyle";
 import axios from "axios";
+import { graphCashRequest } from "./graphRequest";
 
-export function Graph({ currencyId, check }) {
+export function Graph({ currencyId, category }) {
 
-    const [chartData, setChartData] = useState({
-        labels: [],
-        datasets: [
-            {
-                data: [1,2,1,3,1,2],
-            },
-        ],
-    });
+    const [ chartData, setChartData ] = useState({
+            labels: [],
+            datasets: [
+                {
+                    data: [1,2,1,3,1,2],
+                },
+            ],
+        });
 
     useEffect(() => {
-        if (check === "cash") {
+        if (category === "cash") {
             axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15")
                 .then(res => {
                     let labels = [];
                     let data = [];
                     res.data.forEach((item, index) => {
-                        console.log(parseFloat(item.rate).toFixed(4));
                         data.push(parseFloat(item.rate).toFixed(4));
                     })
 
@@ -35,17 +35,18 @@ export function Graph({ currencyId, check }) {
                         ],
                     });
 
+                    return chartData
+
                 })
                 .catch(error => {
-                    console.log(error);
+                    console.log("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15 - " + error);
                 })
-        } else if (check === "crypto") {
-            axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=15")
+        } else if (category === "crypto") {
+            axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=10")
                 .then(res => {
                     let labels = [];
                     let data = [];
                     res.data.forEach((item, index) => {
-                        console.log(parseFloat(item.rate).toFixed(4));
                         data.push(parseFloat(item.rate).toFixed(4));
                     })
 
