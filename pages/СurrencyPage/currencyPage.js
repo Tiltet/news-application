@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import { View, StyleSheet } from "react-native";
-import {styles} from "../../style";
+ import React, {useState} from "react";
+import { View } from "react-native";
+import { styles } from "../../style";
+import { currencyPageStyle } from "./currencyPageStyle";
 import { Dropdown } from "../../components/Dropdown/dropdown";
-import { Currency } from "./Currency/currency";
-import {Cryptocurrency} from "./Cryptocurrency/cryptocurrency";
+import { Cryptocurrency } from "./Cryptocurrency/cryptocurrency";
+import { CurrencyList } from "./CurrencyList/currencyList";
 
 export function CurrencyPage() {
 
@@ -15,7 +16,7 @@ export function CurrencyPage() {
 
     return(
         <View style={styles.container}>
-            <View style={style.container}>
+            <View style={currencyPageStyle.container}>
                 <Dropdown
                     categories={["Валюта", "Криптовалюта"]}
                     selectOption={setSelectedCurrency}
@@ -23,7 +24,7 @@ export function CurrencyPage() {
                     iconSize={18}
                 />
                 { currency === "Валюта" && (
-                    <Currency/>
+                    <CurrencyList/>
                 )}
                 { currency === "Криптовалюта" && (
                     <Cryptocurrency/>
@@ -32,9 +33,3 @@ export function CurrencyPage() {
         </View>
     )
 }
-
-export const style = StyleSheet.create({
-    container: {
-        marginTop: 10,
-    }
-})

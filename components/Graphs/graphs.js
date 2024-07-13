@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
 import { graphsStyle } from "./graphsStyle";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -13,6 +13,8 @@ export function Graphs() {
     const [ data, setData ] = useState([])
     const [ percentageEURToUSD, setPercentageEURToUSD ] = useState(0)
     const [ percentageUSDToRON, setPercentageUSDToRON ] = useState(0)
+    const [ first, setFirst ] = useState([1,2,3,4,5]);
+    const [ second, setSecond ] = useState([1,2,3,4,5]);
 
     useEffect(() =>  {
         axios.get("http://localhost:4000/currency/graphic")
@@ -21,6 +23,14 @@ export function Graphs() {
                 setPercentageUSDToRON(parseFloat(response.data[0].percentageUSDToRON))
                 setPercentageEURToUSD(parseFloat(response.data[0].percentageEURToUSD))
                 setData(response.data)
+
+                response.data.forEach(element => {
+                    first.shift()
+                    second.shift()
+                    first.push(element.EURToUSD)
+                    second.push(element.EURToRON)
+                })
+
             })
             .catch(error => {
                 console.error("http://localhost:4000/currency/graphic - ", error)
@@ -37,7 +47,7 @@ export function Graphs() {
         labels: ["1", "2", "3", "4", "5"],
         datasets: [
             {
-                data: [1,2,3,4,5],
+                data: first,
             },
         ],
     };
@@ -46,7 +56,7 @@ export function Graphs() {
         labels: ["1", "2", "3", "4", "5"],
         datasets: [
             {
-                data: [1,2,3,4,5],
+                data: second,
             },
         ],
     };

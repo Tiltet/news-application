@@ -15,21 +15,21 @@ export function Header({ visible, setVisible }) {
 
       </SafeAreaView>
     );
+  } else if (visible) {
+      return (
+          <SafeAreaView style={headerStyle.header}>
+              <Text style={headerStyle.headerText}>Work with us and help Moldova</Text>
+              <TouchableOpacity
+                  style={headerStyle.headerImageContainer}
+                  onPress={handleToggleHeader}
+              >
+                  <Entypo
+                      name="cross"
+                      size={25}
+                      color="white"
+                  />
+              </TouchableOpacity>
+          </SafeAreaView>
+      );
   }
-
-  return (
-    <SafeAreaView style={headerStyle.header}>
-      <Text style={headerStyle.headerText}>Work with us and help Moldova</Text>
-      <TouchableOpacity
-          style={headerStyle.headerImageContainer}
-          onPress={handleToggleHeader}
-      >
-        <Entypo
-            name="cross"
-            size={25}
-            color="white"
-        />
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
 }
