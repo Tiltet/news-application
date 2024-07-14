@@ -4,7 +4,7 @@ import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
 import staticNews from "../../static/staticNews";
 import { NewsRequest } from "./newsRequest";
-import {commentsStyle} from "./comments/commentsStyle";
+import {Comments} from "./comments/comments";
 
 export function NewsPage( {id, handleScrollToTop} ) {
 
@@ -137,25 +137,23 @@ export function NewsPage( {id, handleScrollToTop} ) {
 
             {/* БЛОК С КОММЕНТАРИЯМИ*/}
             <View style={styles.container}>
-                <View>
-                    <View style={pageStyle.count}>
-                        <Text style={pageStyle.count_text}>0</Text>
-                        <Text style={pageStyle.count_text}> комментариев</Text>
-                    </View>
-                    <View style={pageStyle.input}>
-                        <TextInput
-                            style={pageStyle.input_field}
-                            numberOfLines={5}
-                            placeholder={"Написать комментарий..."}
-                            multiline
-                        />
-                        <TouchableOpacity style={pageStyle.input_button}>
-                            <Text style={pageStyle.input_button_text}>Отправить</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={pageStyle.count}>
+                    <Text style={pageStyle.count_text}>0</Text>
+                    <Text style={pageStyle.count_text}> комментариев</Text>
+                </View>
+                <View style={pageStyle.input}>
+                    <TextInput
+                        style={pageStyle.input_field}
+                        numberOfLines={5}
+                        placeholder={"Написать комментарий..."}
+                        multiline
+                    />
+                    <TouchableOpacity style={pageStyle.input_button}>
+                        <Text style={pageStyle.input_button_text}>Отправить</Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
-
+                    <Comments/>
                 </View>
             </View>
 
