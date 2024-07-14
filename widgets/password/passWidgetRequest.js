@@ -15,6 +15,9 @@ export function requestLogin(email, password) {
             await AsyncStorage.setItem("location", response.data.location)
             await AsyncStorage.setItem("favoriteNewsCategory", response.data.favoriteNewsCategory)
 
+            // КОММЕНТАРИЙ С ТОКЕНОМ
+            console.log("Token - " + response.data.accessToken)
+
             console.log("http://localhost:4000/auth/login - good");
 
         })

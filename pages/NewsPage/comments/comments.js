@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { commentsStyle } from "./commentsStyle";
+import {Comment} from "../comment/comment";
 
 export function Comments() {
     return(
         <View>
-            <Text>Comments</Text>
+            <View style={commentsStyle.comments}>
+                <Comment/>
+            </View>
         </View>
     )
 }
