@@ -44,7 +44,7 @@ export function Account() {
                     selectedCategory: favoriteNewsCategory || ''
                 });
             } catch (error) {
-                console.error('Error fetching data from AsyncStorage:', error);
+                console.error('Ошибка во время получения данных из AsyncStorage', error);
             }
         };
         fetchData();
@@ -134,7 +134,13 @@ export function Account() {
 
     // КНОПКА ВЫХОДА
     const handlerExit = () => {
-        AsyncStorage.removeItem("token").then(r => console.log("Exit"));
+        AsyncStorage.removeItem("token").then(r => console.log("Remove token"))
+        AsyncStorage.removeItem("login").then(r => console.log("Remove login"))
+        AsyncStorage.removeItem("email").then(r => console.log("Remove email"))
+        AsyncStorage.removeItem("age").then(r => console.log("Remove age"))
+        AsyncStorage.removeItem("location").then(r => console.log("Remove location"))
+        AsyncStorage.removeItem("locationCode").then(r => console.log("Remove locationCode"))
+        AsyncStorage.removeItem("favoriteNewsCategory").then(r => console.log("Remove favoriteNewsCategory"))
         setIndex(1);
     }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Image, Text, TextInput } from 'react-native';
-import {opinionPageStyle} from "../../pages/OpinionPage/opinionPageStyle";
+import {View, TouchableOpacity, Image, Text, TextInput, Alert} from 'react-native';
+import { opinionPageStyle } from "../../pages/OpinionPage/opinionPageStyle";
+import { getVotes } from "./pollRequest";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PollComponent = ({ item, index }) => {
 
@@ -12,7 +14,26 @@ const PollComponent = ({ item, index }) => {
     });
 
     // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ МНЕНИЯ
-    const handlerButtonOpinionClick = (vote) => {
+    const handlerButtonOpinionClick = async (vote) => {
+
+        // ПРОВЕРКА АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ
+        const token = await AsyncStorage.getItem("token")
+        if (token === null) {
+            Alert.alert("Голосовать могут только авторизованные пользователи!")
+            return
+        }
+
+        // ПОЛУЧАЕМ КОЛИЧЕСТВО ГОЛОСОВ
+        await getVotes(item.id)
+            .then(res => {
+                setVoteCount({
+                    like: res.votePositive,
+                    dislike: res.voteNegative,
+                    neutral: res.voteNeutral
+                })
+            })
+
+
         switch (vote) {
             case "Не поддерживаю":
                 setVoteCount(prevState => ({

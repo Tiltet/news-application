@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {View, Text, ImageBackground, Image, TouchableOpacity, TextInput} from "react-native";
+import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
 import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
 import staticNews from "../../static/staticNews";
-import { NewsRequest } from "./newsRequest";
-import {Comments} from "./comments/comments";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { postComment, getCommentsCount, getNews } from "./newsRequest";
+import { Comments } from "./comments/comments";
 
 export function NewsPage( {id, handleScrollToTop} ) {
 
@@ -12,16 +13,42 @@ export function NewsPage( {id, handleScrollToTop} ) {
     const [ like, setLike ] = useState(0);
     const [ dislike, setDislike ] = useState(0);
     const [ checked, setChecked ] = useState(false);
+    const [ commentText, setCommentText ] = useState('');
+    const [ login, setLogin ] = useState('')
+    const [ commentsCount, setCommentsCount ] = useState('')
+
+    // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
+    const fetchData = async () => {
+        try {
+            return await AsyncStorage.getItem('login')
+        } catch (error) {
+            console.error('Error fetching data from AsyncStorage:', error);
+        }
+    };
 
     // ПОЛУЧАЕМ ДАННЫЕ КОНКРЕТНОЙ СТРАНИЦЫ
-    useEffect(() => {
+    useEffect(  () => {
+
+        // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
+        fetchData()
+            .then(login => setLogin(login));
+
+        // ПОЛУЧАЕМ ЛОГИН ПОЛЬЗОВАТЕЛЯ, ЕСЛИ ЗАРЕГАН
         handleScrollToTop()
-        NewsRequest(id)
+
+        // ПОЛУЧАЕМ ДАННЫЕ СТАТЬИ
+        getNews(id)
             .then(res => {
                 setData(res);
             })
             .catch(error => {
                 console.error(error)
+            })
+
+        // ПОЛУЧАЕМ КОЛИЧЕСТВО КОММЕНТАРИЕВ
+        getCommentsCount(id)
+            .then(res => {
+                setCommentsCount(res)
             })
     }, [id]);
 
@@ -41,6 +68,20 @@ export function NewsPage( {id, handleScrollToTop} ) {
         setChecked(true)
     }
 
+    // ОТПРАВЛЯЕМ КОМЕНТАРИИЙ
+    const handlerAddComment = () => {
+
+        if (commentText.length < 5) {
+            Alert.alert("Комментарий должен быть от 5 символов!")
+            setCommentText('')
+        } if (login === null) {
+            Alert.alert("Комментарии могут оставлять только зарегистрированные пользователи!")
+        } else {
+            console.log(login)
+            postComment(id, commentText, login)
+            setCommentText('')
+        }
+    }
 
     return (
         <View>
@@ -138,7 +179,7 @@ export function NewsPage( {id, handleScrollToTop} ) {
             {/* БЛОК С КОММЕНТАРИЯМИ*/}
             <View style={styles.container}>
                 <View style={pageStyle.count}>
-                    <Text style={pageStyle.count_text}>0</Text>
+                    <Text style={pageStyle.count_text}>{commentsCount}</Text>
                     <Text style={pageStyle.count_text}> комментариев</Text>
                 </View>
                 <View style={pageStyle.input}>
@@ -146,17 +187,21 @@ export function NewsPage( {id, handleScrollToTop} ) {
                         style={pageStyle.input_field}
                         numberOfLines={5}
                         placeholder={"Написать комментарий..."}
-                        multiline
+                        value={commentText}
+                        onChangeText={setCommentText}
+                        multiline={true}
                     />
-                    <TouchableOpacity style={pageStyle.input_button}>
+                    <TouchableOpacity
+                        style={pageStyle.input_button}
+                        onPress={() => handlerAddComment()}
+                    >
                         <Text style={pageStyle.input_button_text}>Отправить</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Comments/>
+                    <Comments newsId={id}/>
                 </View>
             </View>
-
         </View>
     )
 }

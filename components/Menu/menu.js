@@ -21,6 +21,11 @@ export  function Menu() {
         style={menuStyle.menu_container}
     >
       <View style={menuStyle.menu_block_first}>
+        <TouchableOpacity onPress={() => handlerClick(19)}>
+          <Text style={menuStyle.menu_block_text}>О НАС</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={menuStyle.menu_block}>
         <TouchableOpacity onPress={() => handlerClick(1)}>
           <Text style={menuStyle.menu_block_text}>ЭКОНОМИКА</Text>
         </TouchableOpacity>

@@ -22,6 +22,7 @@ import { WeatherPage } from "./pages/WeatherPage/weatherPage";
 import { LoginWidget } from "./widgets/login/loginWidget";
 import { CurrenciesPage } from "./pages/CurrenciesPage/currenciesPage";
 import { CurrencyPage } from "./pages/CurrencyPage/currencyPage";
+import { AboutPage } from "./pages/AboutPage/aboutPage";
 
 export default function App() {
 
@@ -63,6 +64,7 @@ export default function App() {
                 <Menu/>
               </View>
               { index === 0 && <HomePage/> }
+              { index === 19 && <AboutPage/> }
               { index === 1 && <CategoryPage category={"economy"} title={"Экономика"} /> }
               { index === 2 && <CategoryPage category={"policy"} title={"Политика"} /> }
               { index === 3 && <CategoryPage category={"business"} title={"Бизнес"} /> }
