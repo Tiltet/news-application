@@ -21,7 +21,7 @@ export function Account() {
         age: 18,
         selectedCountry: '',
         locationCode: '',
-        selectedCategory: ''
+        selectedCategory: '',
     });
 
     useEffect(() => {
@@ -32,19 +32,18 @@ export function Account() {
                 const age = await AsyncStorage.getItem('age');
                 const location = await AsyncStorage.getItem('location');
                 const locationCode = await AsyncStorage.getItem('locationCode')
-                const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory');
+                const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory')
                 setUserInfo({
                     ...userInfo,
                     login: login || '',
                     email: email || '',
                     age: age || 18,
-                    locationCode: locationCode || 'ML',
+                    locationCode: locationCode || 'MD',
                     selectedCountry: location || '',
-
-                    selectedCategory: favoriteNewsCategory || ''
+                    selectedCategory: favoriteNewsCategory || '',
                 });
             } catch (error) {
-                console.error('Error fetching data from AsyncStorage:', error);
+                console.error('Ошибка во время получения данных из AsyncStorage', error);
             }
         };
         fetchData();
@@ -134,7 +133,13 @@ export function Account() {
 
     // КНОПКА ВЫХОДА
     const handlerExit = () => {
-        AsyncStorage.removeItem("token").then(r => console.log("Exit"));
+        AsyncStorage.removeItem("token").then(r => console.log("Remove token"))
+        AsyncStorage.removeItem("login").then(r => console.log("Remove login"))
+        AsyncStorage.removeItem("email").then(r => console.log("Remove email"))
+        AsyncStorage.removeItem("age").then(r => console.log("Remove age"))
+        AsyncStorage.removeItem("location").then(r => console.log("Remove location"))
+        AsyncStorage.removeItem("locationCode").then(r => console.log("Remove locationCode"))
+        AsyncStorage.removeItem("favoriteNewsCategory").then(r => console.log("Remove favoriteNewsCategory"))
         setIndex(1);
     }
 
@@ -192,9 +197,7 @@ export function Account() {
                 <View style={accountStyle.container}>
                     <View style={accountStyle.uppercontainer}>
                         <View>
-                            <Text style={accountStyle.container_title}>
-                                Информация об аккаунте
-                            </Text>
+                            <Text style={accountStyle.container_title}>Информация об аккаунте</Text>
                         </View>
                         <View>
                             <View style={accountStyle.info_text}>
@@ -238,9 +241,7 @@ export function Account() {
                         </View>
                     </View>
                     <TouchableOpacity style={accountStyle.info_forgotPassword}>
-                        <Text style={accountStyle.info_forgotPassword_text}>
-                            Забыли пароль?
-                        </Text>
+                        <Text style={accountStyle.info_forgotPassword_text}>Забыли пароль?</Text>
                     </TouchableOpacity>
                 </View>
             )}
@@ -254,8 +255,7 @@ export function Account() {
                         <Dropdown
                             categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
                             selectOption={selectCategory}
-                            selectedValue={userInfo.selectedCategory}
-                            iconSize={18}
+                            defaultValue={userInfo.selectedCategory}
                         />
                     </View>
                 </View>

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const currencyListStyle = StyleSheet.create({
+export const currenciesListStyle = StyleSheet.create({
     container: {
         minWidth: "100%",
         marginTop: 20,

@@ -1,12 +1,11 @@
  import React, {useState} from "react";
 import { View } from "react-native";
 import { styles } from "../../style";
-import { currencyPageStyle } from "./currencyPageStyle";
+import { currenciesPageStyle } from "./currenciesPageStyle";
 import { Dropdown } from "../../components/Dropdown/dropdown";
-import { Cryptocurrency } from "./Cryptocurrency/cryptocurrency";
-import { CurrencyList } from "./CurrencyList/currencyList";
+import { CurrenciesList } from "./CurrenciesList/currenciesList";
 
-export function CurrencyPage() {
+export function CurrenciesPage() {
 
     const [ currency, setCurrency ] = useState('Валюта');
 
@@ -16,18 +15,22 @@ export function CurrencyPage() {
 
     return(
         <View style={styles.container}>
-            <View style={currencyPageStyle.container}>
+            <View style={currenciesPageStyle.container}>
                 <Dropdown
                     categories={["Валюта", "Криптовалюта"]}
                     selectOption={setSelectedCurrency}
                     selectedValue={currency}
-                    iconSize={18}
                 />
+
                 { currency === "Валюта" && (
-                    <CurrencyList/>
+                    <CurrenciesList
+                        category={"cash"}
+                    />
                 )}
                 { currency === "Криптовалюта" && (
-                    <Cryptocurrency/>
+                    <CurrenciesList
+                        category={"crypto"}
+                    />
                 )}
             </View>
         </View>

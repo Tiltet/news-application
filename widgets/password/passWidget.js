@@ -42,7 +42,6 @@ export function PassWidget() {
     const continueButtonHandler = async () => {
         try {
             await requestLogin(await AsyncStorage.getItem("email"), password);
-            console.log("Login Success");
             setIndex(0)
         } catch (error) {
             console.error("Error during login:", error);

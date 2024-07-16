@@ -31,6 +31,9 @@ export function Graphs() {
                     second.push(element.EURToRON)
                 })
 
+                first.reverse()
+                second.reverse()
+
             })
             .catch(error => {
                 console.error("http://localhost:4000/currency/graphic - ", error)
@@ -44,7 +47,6 @@ export function Graphs() {
     }
 
     const firstDataset = {
-        labels: ["1", "2", "3", "4", "5"],
         datasets: [
             {
                 data: first,
@@ -53,7 +55,6 @@ export function Graphs() {
     };
 
     const secondDataset = {
-        labels: ["1", "2", "3", "4", "5"],
         datasets: [
             {
                 data: second,

@@ -3,8 +3,8 @@ import { styles } from "../../style";
 import React, { useState } from "react";
 import { Account } from "./Account/account";
 import { Support } from "./Support/support";
-import {Switcher} from "../../components/Switcher/switcher";
-import {profileStyle} from "./profilePageStyle";
+import { Switcher } from "../../components/Switcher/switcher";
+import { profileStyle } from "./profilePageStyle";
 
 export function ProfilePage() {
 
