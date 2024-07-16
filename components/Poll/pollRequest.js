@@ -5,6 +5,7 @@ export function getVotes(id) {
     return axios.get("http://localhost:4000/news/" + id + "/votes")
         .then(res => {
             console.log("http://localhost:4000/news/" + id + "/votes - good")
+            console.log(res.data)
             return res.data
         })
         .catch(err => {
@@ -12,4 +13,17 @@ export function getVotes(id) {
         })
 }
 
-// ОТПРАВЛЯЕМ
+// ОТПРАВЛЯЕМ ГОЛОС ПОЛЬЗОВАТЕЛЯ
+export function postVote(id, vote, login) {
+    return axios.post(`http://localhost:4000/quiz/vote/${id}`, {
+        login: login,
+        inputVote: vote,
+    })
+        .then(res => {
+            console.log(`http://localhost:4000/quiz/vote/${id} - good`)
+        })
+        .catch(err => {
+            console.log(`http://localhost:4000/quiz/vote/${id} - `, err)
+            console.error(err)
+        })
+}

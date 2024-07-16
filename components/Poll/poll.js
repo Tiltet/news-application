@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
-import {View, TouchableOpacity, Image, Text, TextInput, Alert} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, TouchableOpacity, Image, Text, Alert} from 'react-native';
 import { opinionPageStyle } from "../../pages/OpinionPage/opinionPageStyle";
-import { getVotes } from "./pollRequest";
+import { getVotes, postVote } from "./pollRequest";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PollComponent = ({ item, index }) => {
 
     const [ voteVisible, setVoteVisible ] = useState(false);
+    const [ login , setLogin ] = useState(null)
     const [ voteCount, setVoteCount ] = useState({
         like: 0,
         dislike: 0,
         neutral: 0,
     });
+
+    useEffect(() => {
+
+        // ПОЛУЧАЕМ ЛОГИН ИЗ ЛОКАЛЬНОГО ХРАНИЛИЩА
+        fetchLogin()
+            .then(login => setLogin(login))
+    }, []);
+
+    // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
+    const fetchLogin = async () => {
+        try {
+            return await AsyncStorage.getItem('login')
+        } catch (error) {
+            console.error('Poll: Ошибка во время получения логина из AsyncStorage - ', error);
+        }
+    };
 
     // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ МНЕНИЯ
     const handlerButtonOpinionClick = async (vote) => {
@@ -33,25 +50,28 @@ const PollComponent = ({ item, index }) => {
                 })
             })
 
-
+        // ПРОВЕРКА ГОЛОСА ПОЛЬЗОВАТЕЛЯ
         switch (vote) {
             case "Не поддерживаю":
                 setVoteCount(prevState => ({
                     ...prevState,
                     dislike: voteCount.dislike + 1,
                 }))
+                postVote(item.id, 'Не поддерживаю', login)
                 break
             case "Поддерживаю":
                 setVoteCount(prevState => ({
                     ...prevState,
                     like: voteCount.like + 1,
                 }))
+                postVote(item.id, 'Поддерживаю', login)
                 break
             case "Нейтрально":
                 setVoteCount(prevState => ({
                     ...prevState,
                     neutral: voteCount.neutral + 1,
                 }))
+                postVote(item.id, 'Нейтрально', login)
                 break
             default:
                 break
