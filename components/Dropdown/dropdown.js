@@ -3,6 +3,9 @@ import ModalDropdown from "react-native-modal-dropdown";
 import { dropdownStyle } from "./dropdownStyle";
 
 export function Dropdown({ categories, selectOption, defaultValue }) {
+
+    console.log(defaultValue);
+
     return(
         <ModalDropdown
             style={dropdownStyle.dropdown}
@@ -14,8 +17,7 @@ export function Dropdown({ categories, selectOption, defaultValue }) {
             dropdownTextHighlightStyle={dropdownStyle.dropdown_text_selected}
             options={categories}
             onSelect={selectOption}
-            defaultIndex={0}
-            defaultValue={categories[0] || defaultValue}
+            defaultValue={defaultValue || categories[0]}
         >
         </ModalDropdown>
     )

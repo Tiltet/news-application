@@ -5,7 +5,6 @@ export function getVotes(id) {
     return axios.get("http://localhost:4000/news/" + id + "/votes")
         .then(res => {
             console.log("http://localhost:4000/news/" + id + "/votes - good")
-            console.log(res.data)
             return res.data
         })
         .catch(err => {

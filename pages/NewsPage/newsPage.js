@@ -6,6 +6,8 @@ import staticNews from "../../static/staticNews";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { postComment, getCommentsCount, getNews } from "./newsRequest";
 import { Comments } from "./comments/comments";
+import { getVotes, postVote } from "../../components/Poll/pollRequest";
+import { getComments } from "./comments/commentsRequest";
 
 export function NewsPage( {id, handleScrollToTop} ) {
 
@@ -26,7 +28,6 @@ export function NewsPage( {id, handleScrollToTop} ) {
         }
     };
 
-    // ПОЛУЧАЕМ ДАННЫЕ КОНКРЕТНОЙ СТРАНИЦЫ
     useEffect(  () => {
 
         // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
@@ -50,6 +51,16 @@ export function NewsPage( {id, handleScrollToTop} ) {
             .then(res => {
                 setCommentsCount(res)
             })
+
+
+        // ПОЛУЧАЕМ ДАННЫЕ О СТАТЬЕ
+        getVotes(id)
+            .then(res => {
+                console.log(res)
+                setDislike(res.voteNegative)
+                setLike(res.votePositive)
+            })
+
     }, [id]);
 
     // ОТОБРАЖАЕТ СТАТИСТИКУ ЛАКОВ И ДИЗЛАЙКОВ ДЛЯ СТАТЬИ
@@ -57,9 +68,11 @@ export function NewsPage( {id, handleScrollToTop} ) {
         switch (reaction) {
             case "like":
                 setLike(like + 1);
+                postVote(id, "Поддерживаю", login)
                 break
             case "dislike":
                 setDislike(dislike + 1);
+                postVote(id, "Не поддерживаю", login)
                 break
             default:
                 break
@@ -69,16 +82,19 @@ export function NewsPage( {id, handleScrollToTop} ) {
     }
 
     // ОТПРАВЛЯЕМ КОМЕНТАРИИЙ
-    const handlerAddComment = () => {
-
+    const handlerAddComment = async () => {
         if (commentText.length < 5) {
             Alert.alert("Комментарий должен быть от 5 символов!")
             setCommentText('')
-        } if (login === null) {
+        }
+        if (login === null) {
             Alert.alert("Комментарии могут оставлять только зарегистрированные пользователи!")
+            setCommentText('')
         } else {
-            console.log(login)
-            postComment(id, commentText, login)
+            // ОТПРАВЛЯЕМ КОММЕНТ
+            await postComment(id, commentText, login)
+            getComments(id)
+                .then(set)
             setCommentText('')
         }
     }

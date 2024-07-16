@@ -21,7 +21,7 @@ export function Account() {
         age: 18,
         selectedCountry: '',
         locationCode: '',
-        selectedCategory: ''
+        selectedCategory: '',
     });
 
     useEffect(() => {
@@ -32,16 +32,15 @@ export function Account() {
                 const age = await AsyncStorage.getItem('age');
                 const location = await AsyncStorage.getItem('location');
                 const locationCode = await AsyncStorage.getItem('locationCode')
-                const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory');
+                const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory')
                 setUserInfo({
                     ...userInfo,
                     login: login || '',
                     email: email || '',
                     age: age || 18,
-                    locationCode: locationCode || 'ML',
+                    locationCode: locationCode || 'MD',
                     selectedCountry: location || '',
-
-                    selectedCategory: favoriteNewsCategory || ''
+                    selectedCategory: favoriteNewsCategory || '',
                 });
             } catch (error) {
                 console.error('Ошибка во время получения данных из AsyncStorage', error);
@@ -256,7 +255,7 @@ export function Account() {
                         <Dropdown
                             categories={["Политика", "Мировые новости", "Экономика", "Бизнес"]}
                             selectOption={selectCategory}
-                            defaultValue={userInfo.favoriteNewsCategory}
+                            defaultValue={userInfo.selectedCategory}
                         />
                     </View>
                 </View>

@@ -82,7 +82,7 @@ export function SearchPage( {searchItem } ) {
                     <View style={searchPageStyle.news_block_img}>
                         <Image
                             style={searchPageStyle.image}
-                            source={{uri: item.imgUrl}}
+                            source={{ uri: item.fullImgUrl }}
                         />
                     </View>
                 </View>

@@ -1,6 +1,6 @@
-// ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ О СТАТЬЕ
 import axios from "axios";
 
+// ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ О СТАТЬЕ
 export function getNews(id) {
     return axios.get(`http://localhost:4000/news/${id}`)
         .then(res => {

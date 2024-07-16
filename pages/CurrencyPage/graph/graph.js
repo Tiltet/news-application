@@ -18,13 +18,15 @@ export function Graph({ currencyId, category }) {
 
     useEffect(() => {
         if (category === "cash") {
-            axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15")
+            axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=6")
                 .then(res => {
                     let labels = [];
                     let data = [];
                     res.data.forEach((item, index) => {
                         data.push(parseFloat(item.rate).toFixed(4));
                     })
+
+                    data.reverse()
 
                     setChartData({
                         labels: labels,
