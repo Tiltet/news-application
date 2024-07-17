@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import { LineChart } from "react-native-chart-kit";
 import { graphsStyle } from "./graphsStyle";
 import Entypo from "@expo/vector-icons/Entypo";
 import CreatContext from "../../context/context";
-import { LineChart } from "react-native-chart-kit";
 import axios from "axios";
 import staticGraphs from "./staticGraphs";
 
@@ -36,7 +36,7 @@ export function Graphs() {
 
             })
             .catch(error => {
-                console.error("http://localhost:4000/currency/graphic - ", error)
+                console.log("http://localhost:4000/currency/graphic - ", error)
                 setData(staticGraphs)
             })
     }, []);

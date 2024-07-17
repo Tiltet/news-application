@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Alert, Keyboard, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
+import React, { useState } from "react";
+import { Alert, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import CreatContext from "../../context/context";
 import { regWidgetStyle } from "./regWidgetStyle";

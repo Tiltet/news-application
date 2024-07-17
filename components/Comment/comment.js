@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import React from 'react';
+import { View, Text, TouchableOpacity } from "react-native";
 import { commentStyle } from "./commentStyle";
 
 export function Comment({ comment }) {
-
-    useEffect(() => {
-        console.log(comment)
-    }, []);
 
     return(
         <View style={commentStyle.comment}>

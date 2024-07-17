@@ -3,6 +3,7 @@ import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert 
 import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import staticNews from "../../static/staticNews";
 import { postComment, getCommentsCount, getNews } from "./newsRequest";
 import { Comments } from "./comments/comments";
 import { getVotes, postVote } from "../../components/Poll/pollRequest";
@@ -10,13 +11,13 @@ import { getComments } from "./comments/commentsRequest";
 
 export function NewsPage( {id, handleScrollToTop} ) {
 
-    const [ data, setData ] = useState();
+    const [ data, setData ] = useState(staticNews);
     const [ like, setLike ] = useState(0);
     const [ dislike, setDislike ] = useState(0);
     const [ checked, setChecked ] = useState(false);
     const [ commentText, setCommentText ] = useState('');
     const [ login, setLogin ] = useState('')
-    const [ commentsCount, setCommentsCount ] = useState('')
+    const [ commentsCount, setCommentsCount ] = useState(0)
 
     // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
     const fetchData = async () => {
@@ -29,11 +30,10 @@ export function NewsPage( {id, handleScrollToTop} ) {
 
     useEffect(  () => {
 
-        // ПОЛУЧЕНИЕ ДАННЫХ ИЗ ХРАНИЛИЩА
+        // ПОЛУЧАЕМ ЛОГИН ПОЛЬЗОВАТЕЛЯ, ЕСЛИ ЗАРЕГАН
         fetchData()
             .then(login => setLogin(login));
 
-        // ПОЛУЧАЕМ ЛОГИН ПОЛЬЗОВАТЕЛЯ, ЕСЛИ ЗАРЕГАН
         handleScrollToTop()
 
         // ПОЛУЧАЕМ ДАННЫЕ СТАТЬИ
@@ -52,10 +52,9 @@ export function NewsPage( {id, handleScrollToTop} ) {
             })
 
 
-        // ПОЛУЧАЕМ ДАННЫЕ О СТАТЬЕ
+        // ПОЛУЧАЕМ ДАННЫЕ ОПРОСА
         getVotes(id)
             .then(res => {
-                console.log(res)
                 setDislike(res.voteNegative)
                 setLike(res.votePositive)
             })

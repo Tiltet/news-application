@@ -31,7 +31,7 @@ export function HomePage() {
                 console.log("http://localhost:4000/news/home - good");
             })
             .catch(error => {
-                console.error('http://localhost:4000/news/home - ', error)
+                console.log('http://localhost:4000/news/home - ', error)
                 setMainNews(staticMainNews)
                 setBottomNewsThree(staticNewsList)
                 setLastNews(staticLastNews)

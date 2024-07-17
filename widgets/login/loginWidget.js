@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Alert, Keyboard, KeyboardAvoidingView, StatusBar} from "react-native";
+import React, { useState } from "react";
+import { Alert, KeyboardAvoidingView, StatusBar } from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View, Platform } from "react-native";
 import CreatContext from "../../context/context";
 import { loginWidgetStyle } from "./loginWidgetStyle";
@@ -39,12 +39,10 @@ export function LoginWidget() {
             Alert.alert("Подтвердите конфеденциальность")
         }
         else if (!emailRegex.test(email)) {
-            console.log(email)
             Alert.alert("Неправильный email")
         }
         else {
             await AsyncStorage.setItem('email', email);
-            console.log("Email - ", email)
             setIndex(8)
         }
     };

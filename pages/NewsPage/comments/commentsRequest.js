@@ -9,7 +9,7 @@ export function getComments(id) {
             return res.data
         })
         .catch(err => {
-            console.error(`http://localhost:4000/comments/${id}/comments - ` + err)
+            console.log(`http://localhost:4000/comments/${id}/comments - ` + err)
             return staticComments
         })
 }

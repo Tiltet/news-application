@@ -1,6 +1,6 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {Alert} from "react-native";
+import { Alert } from "react-native";
 
 export function requestLogin(email, password) {
     return axios.post("http://localhost:4000/auth/login", {

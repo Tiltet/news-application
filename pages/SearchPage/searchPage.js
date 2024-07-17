@@ -19,7 +19,6 @@ export function SearchPage( {searchItem } ) {
 
     // Отправляем запрос и получаем данные
     useEffect(() => {
-        console.log(searchItem)
         searchPageRequest(searchItem)
             .then((data) => {
                 setData(data)

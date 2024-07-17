@@ -3,7 +3,6 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import Swiper from 'react-native-swiper';
 import { newsSliderStyle } from "./newsSliderStyle";
 import CreatContext from "../../context/context";
-import news from "../../static/staticNews";
 
 export function NewsSlider( { swiperNews } ) {
 

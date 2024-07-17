@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {Alert, Keyboard, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
-import { Image, Modal, Text, TextInput, TouchableOpacity, View,} from "react-native";
+import React, { useEffect, useState } from "react";
+import { Keyboard, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
+import { Image, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import CreatContext from "../../context/context";
 import { passWidgetStyle } from "./passWidgetStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {requestLogin} from "./passWidgetRequest";
+import { requestLogin } from "./passWidgetRequest";
 
 export function PassWidget() {
 
