@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import React, { useState } from "react";
 import { accountStyle } from "../Account/accountStyle";
-import  {supportStyle } from "./supportStyle";
+import { supportStyle } from "./supportStyle";
 import { loginWidgetStyle } from "../../../widgets/login/loginWidgetStyle";
 
 export function Support() {
@@ -30,6 +30,7 @@ export function Support() {
                             <Text style={accountStyle.smalltext}>Наш номер </Text>
                             <Text style={{fontWeight: "700"}}>+7 777 777 77 77</Text>
                         </View>
+                        {/*
                         <View>
                             <Text>Наши соцсети</Text>
                             <View style={supportStyle.images}>
@@ -47,6 +48,7 @@ export function Support() {
                                 </TouchableOpacity>
                             </View>
                         </View>
+                        */}
                     </View>
                 </View>
             </View>

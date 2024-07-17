@@ -16,7 +16,7 @@ export function MainBlock( { bottomNewsThree, mainNews } ) {
 
     // ВЫВОДИМ НА СТРАНИЦУ ЗАГОЛОВКИ НОВОСТЕЙ
     const renderTopThreeNews = () => {
-        return bottomNewsThree.slice(1,4).map((item, index) => {
+        return bottomNewsThree.slice(0,3).map((item, index) => {
             if (index === 2) {
                 return (
                     <View style={mainBlockStyle.main_block_border_last} key={item.id}>
