@@ -1,4 +1,6 @@
 import axios from "axios";
+import staticComments from "../../static/staticComments";
+import staticNews from "../../static/staticNews";
 
 // ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ О СТАТЬЕ
 export function getNews(id) {
@@ -59,5 +61,6 @@ export function getCommentsCount(id) {
         })
         .catch(err => {
             console.error("http://localhost:4000/comments/count-comments/" + id + " - " + err)
+            return staticNews
         })
 }

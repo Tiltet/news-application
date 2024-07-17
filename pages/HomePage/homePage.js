@@ -5,10 +5,10 @@ import { MainBlock } from "../../components/MainBlock/mainBlock";
 import { NewsSlider } from "../../components/NewsSlyder/newsSlider";
 import { Graphs } from "../../components/Graphs/graphs";
 import { LastNews } from "../../components/LastNews/lastNews";
-import axios from "axios";
 import staticNewsList from "../../static/staticNewsList";
 import staticMainNews from "../../static/staticMainNews";
 import staticLastNews from "../../static/staticLastNews";
+import axios from "axios";
 
 export function HomePage() {
 

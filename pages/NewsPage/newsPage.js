@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
 import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
-import staticNews from "../../static/staticNews";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { postComment, getCommentsCount, getNews } from "./newsRequest";
 import { Comments } from "./comments/comments";
@@ -11,7 +10,7 @@ import { getComments } from "./comments/commentsRequest";
 
 export function NewsPage( {id, handleScrollToTop} ) {
 
-    const [ data, setData ] = useState(staticNews);
+    const [ data, setData ] = useState();
     const [ like, setLike ] = useState(0);
     const [ dislike, setDislike ] = useState(0);
     const [ checked, setChecked ] = useState(false);
@@ -94,7 +93,7 @@ export function NewsPage( {id, handleScrollToTop} ) {
             // ОТПРАВЛЯЕМ КОММЕНТ
             await postComment(id, commentText, login)
             getComments(id)
-                .then(set)
+                .then()
             setCommentText('')
         }
     }
@@ -103,7 +102,7 @@ export function NewsPage( {id, handleScrollToTop} ) {
         <View>
             {/* БЛОК С ЗАГОЛОВКОМ СТАТЬИ */}
             <ImageBackground
-                source={{ uri: data.imgUrl }}
+                source={{ uri: data.fullImgUrl }}
             >
                 <View style={[pageStyle.header, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]}>
                     <View style={styles.container}>

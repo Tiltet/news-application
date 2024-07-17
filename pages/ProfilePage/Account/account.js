@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
-import React, {useEffect, useState} from "react";
-import {accountStyle} from "./accountStyle";
+import React, { useEffect, useState } from "react";
+import { accountStyle } from "./accountStyle";
 import ButtonProfile from "../button/button";
 import { Dropdown } from "../../../components/Dropdown/dropdown";
-import CountryPicker from 'react-native-country-picker-modal';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CreatContext from "../../../context/context";
@@ -259,6 +258,7 @@ export function Account() {
                         />
                     </View>
                 </View>
+                {/*
                 <View style={accountStyle.profile_item}>
                     <Text style={accountStyle.profile_item_text}>Местоположение</Text>
                     <View style={accountStyle.profile_item_country_container}>
@@ -274,6 +274,7 @@ export function Account() {
                         </View>
                     </View>
                 </View>
+                */}
                 <View style={accountStyle.profile_item}>
                     <Text style={accountStyle.profile_item_text}>Возраст</Text>
                     <View style={accountStyle.profile_item_country_container}>
