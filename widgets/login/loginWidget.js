@@ -1,41 +1,60 @@
-import React, { useState } from "react";
-import { StatusBar } from "react-native";
-import {
-    Image,
-    Modal,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import React, {useEffect, useState} from "react";
+import {Alert, Keyboard, KeyboardAvoidingView, StatusBar} from "react-native";
+import { Image, Modal, Text, TextInput, TouchableOpacity, View, Platform } from "react-native";
 import CreatContext from "../../context/context";
 import { loginWidgetStyle } from "./loginWidgetStyle";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function LoginWidget() {
 
+    const [ isChecked, setIsChecked ] = useState(false)           // ПРОВЕРКА CHECKBOX
+    const [ email, setEmail ] = useState('')                        // ТЕКСТ В TextInput
+    const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
 
-    const [isChecked, setIsChecked] = useState(false);
+    // НАЖАТИЕ НА CHECKBOX
     const handleCheckboxPress = () => {
         setIsChecked(!isChecked);
     };
 
-    const { index, setIndex } = React.useContext(CreatContext)
-
-    const handleScreenPress = () => {
+    // НАЖАТИЕ НА КРЕСТИК
+    const handleCrossPress = () => {
         setIndex(0)
     };
 
+    // НАЖАТИЕ НА КНОПКУ РЕГИСТРАЦИИ
     const regButtonHandler = () => {
         setIndex(7)
     };
 
-    const continueButtonHandler = () => {
-        setIndex(8)
+    // ИЗМЕНЕНИЕ ТЕКСТА В InputText
+    const handleTextChange = (newEmail) => {
+        setEmail(newEmail);
+    };
+
+    // НАЖАТИЕ НА КНОПКУ ПРОДОЛЖИТЬ
+    const continueButtonHandler = async () => {
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (!isChecked) {
+            Alert.alert("Подтвердите конфеденциальность")
+        }
+        else if (!emailRegex.test(email)) {
+            console.log(email)
+            Alert.alert("Неправильный email")
+        }
+        else {
+            await AsyncStorage.setItem('email', email);
+            console.log("Email - ", email)
+            setIndex(8)
+        }
     };
 
     return (
         <Modal visible={true}>
-            <View style={loginWidgetStyle.view}>
+            <KeyboardAvoidingView
+                style={loginWidgetStyle.view}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
                 <View style={loginWidgetStyle.block}>
                     <View style={loginWidgetStyle.block_container}>
                         <View style={loginWidgetStyle.top}>
@@ -43,7 +62,7 @@ export function LoginWidget() {
                                 source={require('../../assets/img/logo.png')}
                                 style={{ width: 65, height: 20 }}
                             />
-                            <TouchableOpacity onPress={()=>handleScreenPress()}>
+                            <TouchableOpacity onPress={()=> handleCrossPress()}>
                                 <Image
                                     source={require('../../assets/icons/search/cross.png')}
                                     style={{ width: 15, height: 15 }}
@@ -52,10 +71,15 @@ export function LoginWidget() {
 
                         </View>
                         <Text style={loginWidgetStyle.text}>Войти</Text>
-                        <Text style={loginWidgetStyle.subtitle}>Введите свой email, чтобы войти</Text>
+                        <Text style={loginWidgetStyle.subtitle}>
+                            Введите свой email, чтобы войти
+                        </Text>
                         <TextInput
                             style={loginWidgetStyle.inputfiled}
-                            placeholder="E-mail@mail.ru"/>
+                            placeholder="E-mail@mail.ru"
+                            onChangeText={handleTextChange}
+                            value={email}
+                        />
                         <View style={loginWidgetStyle.checkbox_container}>
                             <TouchableOpacity style={loginWidgetStyle.checkbox} onPress={handleCheckboxPress}>
                                 <View>
@@ -71,10 +95,12 @@ export function LoginWidget() {
                                     )}
                                 </View>
                             </TouchableOpacity>
-                            <Text style={loginWidgetStyle.checkbox_text}>Отправляя свои данные, я принимаю политику конфиденциальности</Text>
+                            <Text style={loginWidgetStyle.checkbox_text}>
+                                Отправляя свои данные, я принимаю политику конфиденциальности
+                            </Text>
                         </View>
-                        <TouchableOpacity style={loginWidgetStyle.button} onPress={()=>continueButtonHandler()} >
-                            <Text style={loginWidgetStyle.button_text}> Продолжить</Text>
+                        <TouchableOpacity style={loginWidgetStyle.button} onPress={()=> continueButtonHandler()} >
+                            <Text style={loginWidgetStyle.button_text}>Продолжить</Text>
                         </TouchableOpacity>
                         <View style={loginWidgetStyle.social}>
                             <TouchableOpacity>
@@ -104,13 +130,13 @@ export function LoginWidget() {
                         </View>
                         <View style={loginWidgetStyle.text_bottom}>
                             <Text style={loginWidgetStyle.text_bottom_text}>Еще нет аккаунта?</Text>
-                            <TouchableOpacity onPress={()=>regButtonHandler()}>
+                            <TouchableOpacity onPress={()=> regButtonHandler()}>
                                 <Text style={loginWidgetStyle.reg_text}>Зарегистрируйтесь!</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
             <StatusBar barStyle="dark-content" />
         </Modal>
     );

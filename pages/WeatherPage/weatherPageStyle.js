@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const weatherPageStyle = StyleSheet.create({
   day_events: {
+    marginTop: 5,
     paddingVertical: 15,
     paddingHorizontal: 20,
     width: '100%',

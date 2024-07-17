@@ -1,103 +1,117 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { opinionPageStyle } from "./opinionPageStyle";
 import { styles } from "../../style";
-import staticOpinionNews from "../../static/staticOpinionNews";
-import ModalDropdown from "react-native-modal-dropdown";
-import {AntDesign} from "@expo/vector-icons";
+import { Dropdown } from "../../components/Dropdown/dropdown";
+import { handleCategory } from "../CategoryPage/categoryPageRequest";
+import PollComponent from "../../components/Poll/poll";
 
 export function OpinionPage() {
 
-  const [selectedValue, setSelectedValue] = useState('Экономика');
-  const [pollsCount, setPollsCount] = useState(3);
-  const [news, setNews] = useState(staticOpinionNews);
+    const [ selectedValue, setSelectedValue ] = useState('Экономика');
+    const [ page, setPage ] = useState(1)
+    const [ news, setNews ] = useState([]);
 
-  const categories = ['Экономика', 'Политика', 'Бизнес', 'Мировые новости']
+    const getPolls = () => {
+        switch (selectedValue) {
+            case "Политика":
+                handleCategory({ category: 'policy', page: page })
+                    .then(newData => {
+                        setNews([...news, ...newData])
+                    })
+                    .catch(error => {
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'policy' + ' ' + error);
+                    })
+                setPage(page + 1)
+                break
+            case "Экономика":
+                handleCategory({ category: 'economy', page: page })
+                    .then(newData => {
+                        setNews([...news, ...newData])
+                    })
+                    .catch(error => {
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'economy' + ' ' + error);
+                    })
+                setPage(page + 1)
+                break
+            case "Мировые новости":
+                handleCategory({ category: 'world', page: page })
+                    .then(newData => {
+                        setNews([...news, ...newData])
+                    })
+                    .catch(error => {
+                        console.log('Ошибка при получении данных ОПРОСЫ ' + 'world' + ' ' + error);
+                    })
+                setPage(page + 1)
+                break
+            case "Бизнес":
+                handleCategory({ category: 'business', page: page })
+                    .then(newData => {
+                        setNews([...news, ...newData])
+                    })
+                    .catch(error => {
+                        console.log('Ошибка при получении данных ОПРОСЫ' + 'business' + ' ' + error);
+                    })
+                setPage(page + 1)
+                break
+            default:
+                console.log("Error Opinion category")
+                break
+        }
+        console.log("page = ", page, " length = ", news.length)
+    }
 
-  const selectOption = (index, value) => {
-    setSelectedValue(value);
-  };
+    useEffect(() => {
+        getPolls();
+    }, [selectedValue]);
 
-  const handlerButtonMoreNews = () => {
-    setPollsCount(pollsCount + 3);
-  }
+    // ВЫБИРАЕМ КАТЕГОРИЮ ОПРОСОВ
+    const selectOption = (index, value) => {
+        setPage(1);
+        setNews([])
+        setSelectedValue(value);
+    };
 
-  // РЕНДЕРИТ НОВОСТИ
-  const renderPolls = () => {
-    return news.slice(0, pollsCount).map((item, index) => (
-        <View key={index}>
-          {/*<Text>{selectedValue}</Text>*/}
-          <View style={opinionPageStyle.poll_block}>
-            <Text style={opinionPageStyle.title}>Как вы относитесь к этому?</Text>
-            <Text style={opinionPageStyle.description}>Премьер-министр Молдовы одобрил вступление в ЕС</Text>
-            <View style={opinionPageStyle.vote_block}>
-              <View style={opinionPageStyle.votes}>
-                <TouchableOpacity style={opinionPageStyle.vote}>
-                  <Image
-                    style={{width: 30, height: 30}}
-                    source={require('../../assets/icons/poll/unlike.png')}
-                  />
-                  <Text style={opinionPageStyle.vote_text}>Не поддерживаю</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={opinionPageStyle.vote}>
-                  <Image
-                    style={{width: 30, height: 30}}
-                    source={require('../../assets/icons/poll/like.png')}
-                  />
-                  <Text style={opinionPageStyle.vote_text}>Поддерживаю</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={opinionPageStyle.vote}>
-                  <Image
-                    style={{width: 30, height: 30}}
-                    source={require('../../assets/icons/poll/normal.png')}
-                  />
-                  <Text style={opinionPageStyle.vote_text}>Нейтрально</Text>
-                </TouchableOpacity>
-              </View>
-              <Image
-                style={opinionPageStyle.image}
-                source={require('../../assets/img/newsImg.png')}
-              />
+    // ОБРАБОТЧИК НАЖАТИЯ НА КНОПКУ БОЛЬШЕ НОВОСТЕЙ
+    const handlerButtonMoreNews = () => {
+        setPage(page + 1);
+        getPolls();
+    }
+
+    // РЕНДЕРИТ НОВОСТИ
+    const renderPolls = () => {
+        return news.slice(0, 10 * page).map((item, index) => (
+            <PollComponent
+                key={index}
+                item={item}
+                index={index}
+            />
+        ))
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={opinionPageStyle.container}>
+                <View style={{ width: "100%" }}>
+                    <Dropdown
+                        categories={['Экономика', 'Политика', 'Бизнес', 'Мировые новости']}
+                        selectOption={selectOption}
+                        selectedValue={selectedValue}
+                    />
+                </View>
+                <Text style={opinionPageStyle.count}>{news.length} опроса</Text>
             </View>
-          </View>
+
+            {renderPolls()}
+
+            <TouchableOpacity
+                style={opinionPageStyle.button}
+                onPress={handlerButtonMoreNews}
+            >
+                <Text style={opinionPageStyle.button_text}>
+                    Еще опросы
+                </Text>
+            </TouchableOpacity>
         </View>
-      ))
-  }
-
-  return (
-    <View style={styles.container}>
-      <View style={opinionPageStyle.container}>
-
-        <ModalDropdown
-            style={opinionPageStyle.dropdown}
-            dropdownStyle={{  }}
-            dropdownTextStyle={{ fontSize: 16 }}
-            textStyle={opinionPageStyle.dropdown_text}
-            saveScrollPosition={false}
-            isFullWidth={true}
-            defaultIndex={0}
-            options={categories}
-            onSelect={selectOption}
-        >
-          <View style={opinionPageStyle.dropdown_container}>
-            <Text style={opinionPageStyle.dropdown_text}>{selectedValue}</Text>
-            <AntDesign name="down" size={24} color="black" />
-          </View>
-        </ModalDropdown>
-
-        <Text style={opinionPageStyle.count}>24534 опроса</Text>
-      </View>
-
-      {renderPolls(selectedValue)}
-
-      <TouchableOpacity
-        style={opinionPageStyle.button}
-        onPress={handlerButtonMoreNews}
-      >
-        <Text style={opinionPageStyle.button_text}>
-          Еще 3 опроса
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
+    );
 }

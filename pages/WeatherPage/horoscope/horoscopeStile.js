@@ -65,14 +65,16 @@ export const horoscopeStile = StyleSheet.create({
   horoscope_title: {
     fontSize: 20,
     fontWeight: "600",
+    textDecorationLine: "underline",
+    textDecorationColor: "#88A2FF",
   },
   horoscope_title_border: {
-    width: 100,
+    display: "flex",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 10,
-    borderBottomColor: "#88A2FF",
-    borderBottomWidth: 2,
   },
   horoscope_text: {
-    paddingTop: 10,
+
   }
 })

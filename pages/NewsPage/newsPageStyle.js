@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const pageStyle =  StyleSheet.create({
-  container: {
-    backgroundColor: '#000',
-  },
   header: {
     paddingVertical: 30,
   },
@@ -42,6 +39,7 @@ export const pageStyle =  StyleSheet.create({
     justifyContent: 'space-between',
   },
   main_text: {
+    flex: 1,
     paddingVertical: 10,
     lineHeight: 25,
     fontSize: 18,
@@ -69,14 +67,13 @@ export const pageStyle =  StyleSheet.create({
     color: "#50544F",
   },
   buttons: {
-    paddingHorizontal: 5,
-    marginTop: 30,
+    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
   },
   button: {
-    width: "45%",
+    width: "49%",
     borderRadius: 5,
     display: "flex",
     flexDirection: "row",
@@ -86,7 +83,38 @@ export const pageStyle =  StyleSheet.create({
     padding: 10,
   },
   button_text: {
-    fontSize: 18,
+    fontSize: 16,
     paddingLeft: 10,
+  },
+  count: {
+    marginTop: 15,
+    display: "flex",
+    flexDirection: "row",
+  },
+  count_text: {
+    fontWeight: "700",
+    fontSize: 24,
+  },
+  input: {
+    marginTop: 10,
+  },
+  input_field: {
+    height: 140,
+    padding: 12,
+    borderRadius: 8,
+    backgroundColor: "#EFEFEF",
+  },
+  input_button: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+    backgroundColor: "#88A2FF",
+    borderRadius: 5,
+  },
+  input_button_text: {
+    color: "#fff",
+    fontWeight: "600"
   }
 })

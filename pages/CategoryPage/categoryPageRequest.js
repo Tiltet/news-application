@@ -1,47 +1,14 @@
 import axios from "axios";
 import staticCategory from "./staticCategory";
 
-export function handleEconomy() {
-  return axios.get('http://localhost:4000/news/economika')
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      console.log("http://localhost:4000/news/economika - ", error);
-      return staticCategory
-    });
-}
-
-export function handlePolitics() {
-  return axios.get('http://localhost:4000/news/policy')
-    .then(response => {
-      console.log("http://localhost:4000/news/policy - good");
-      return response.data;
-    })
-    .catch(error => {
-      console.log("http://localhost:4000/news/policy - ", error);
-      return staticCategory
-    });
-}
-
-export function handleBusiness() {
-  return axios.get('http://localhost:4000/news/business')
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      console.log("http://localhost:4000/news/business - ", error);
-      return staticCategory
-    });
-}
-
-export function handleWorldNews() {
-  return axios.get('http://localhost:4000/news/world')
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      console.log("http://localhost:4000/news/world - ", error);
-      return staticCategory
-    });
+export function handleCategory({ category, page }) {
+    return axios.get('http://localhost:4000/news/' + category + '?pageNumber=' + page)
+        .then(response => {
+            console.log('http://localhost:4000/news/' + category + '?pageNumber=' + page + ' - good');
+            return response.data;
+        })
+        .catch(error => {
+            console.log('http://localhost:4000/news/' + category + '?pageNumber=' + page + error);
+            return staticCategory
+        });
 }

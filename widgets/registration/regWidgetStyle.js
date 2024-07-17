@@ -89,7 +89,7 @@ export const regWidgetStyle= StyleSheet.create({
     display:"flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 40
+    marginTop: 20
   },
   text_bottom: {
     marginTop: 20,
