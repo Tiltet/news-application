@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const categoryPageStyle = StyleSheet.create({
   title: {
     marginVertical: 10,
-    fontSize: 36,
+    fontSize: 28,
     color: "#374883",
     fontWeight: "700",
   },

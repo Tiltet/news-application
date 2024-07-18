@@ -9,8 +9,8 @@ export const navigationStyle = StyleSheet.create({
         justifyContent: 'space-between',
     },
     nav_logo: {
-        width: 120,
-        height: 39,
+        width: 110,
+        height: 35,
     },
     nav_icon_container: {
         paddingLeft: 78,
@@ -21,7 +21,7 @@ export const navigationStyle = StyleSheet.create({
         alignItems: 'center',
     },
     nav_icon: {
-        marginRight: 10,
+        marginRight: 8,
         width: 30,
         height: 30,
     },

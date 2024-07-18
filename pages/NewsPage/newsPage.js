@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert, Keyboard} from "react-native";
+import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
 import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,6 +15,7 @@ export function NewsPage( {id, handleScrollToTop} ) {
     const [ like, setLike ] = useState(0);
     const [ dislike, setDislike ] = useState(0);
     const [ checked, setChecked ] = useState(false);
+    const [ commentCheck, setCommentCheck ] = useState(false)
     const [ commentText, setCommentText ] = useState('');
     const [ login, setLogin ] = useState('')
     const [ commentsCount, setCommentsCount ] = useState(0)
@@ -62,20 +63,25 @@ export function NewsPage( {id, handleScrollToTop} ) {
 
     // ОТОБРАЖАЕТ СТАТИСТИКУ ЛАКОВ И ДИЗЛАЙКОВ ДЛЯ СТАТЬИ
     const handleReaction = (reaction) => {
-        switch (reaction) {
-            case "like":
-                setLike(like + 1);
-                postVote(id, "Поддерживаю", login)
-                break
-            case "dislike":
-                setDislike(dislike + 1);
-                postVote(id, "Не поддерживаю", login)
-                break
-            default:
-                break
-        }
 
-        setChecked(true)
+        if (login === null) {
+            Alert.alert("Голосовать могут только зарегистрированные пользователи!")
+        } else {
+            switch (reaction) {
+                case "like":
+                    setLike(like + 1);
+                    postVote(id, "Поддерживаю", login)
+                    break
+                case "dislike":
+                    setDislike(dislike + 1);
+                    postVote(id, "Не поддерживаю", login)
+                    break
+                default:
+                    break
+            }
+
+            setChecked(true)
+        }
     }
 
     // ОТПРАВЛЯЕМ КОМЕНТАРИИЙ
@@ -91,7 +97,10 @@ export function NewsPage( {id, handleScrollToTop} ) {
             // ОТПРАВЛЯЕМ КОММЕНТ
             await postComment(id, commentText, login)
             getComments(id)
-                .then()
+                .then(() => {
+                    setCommentCheck(!commentCheck)
+                    setCommentsCount(commentsCount + 1)
+                })
             setCommentText('')
         }
     }
@@ -212,7 +221,10 @@ export function NewsPage( {id, handleScrollToTop} ) {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Comments newsId={id}/>
+                    <Comments
+                        newsId={id}
+                        newCommentCheck={commentCheck}
+                    />
                 </View>
             </View>
         </View>

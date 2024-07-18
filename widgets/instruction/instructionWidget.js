@@ -4,7 +4,6 @@ import {
     Image,
     Modal,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
 } from "react-native";
@@ -46,7 +45,7 @@ export function InstructionWidget() {
 
                             <View style={instructionWidgetStyle.lower_text_container}>
                                 <View>
-                                    <Text>Ничего не пришло?</Text>
+                                    <Text style={{ fontSize: 12 }}>Ничего не пришло?</Text>
                                 </View>
                                 <TouchableOpacity>
                                     <Text

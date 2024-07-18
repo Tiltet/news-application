@@ -36,10 +36,14 @@ export function Comment({ comment }) {
                         <Text style={commentStyle.comment_bottom_button_text}>Ответить</Text>
                     </TouchableOpacity>
                 ) : (
+                    // ФОРМА ОТВЕТА НА КОММЕНТАРИЙ
                     <View style={commentStyle.comment_answer}>
                         <TouchableOpacity
                             style={commentStyle.comment_answer_cross}
-                            onPress={() => setIsAnswer(!isAnswer)}
+                            onPress={() => {
+                                setCommentText('')
+                                setIsAnswer(!isAnswer)}
+                        }
                         >
                             <Entypo name="cross" size={24} color="black" />
                         </TouchableOpacity>
