@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, View } from "react-native";
-import { LineChart } from "react-native-chart-kit";
+// import { LineChart } from "react-native-chart-kit";
 import { graphStyle } from "./graphStyle";
 import axios from "axios";
 
@@ -69,6 +69,7 @@ export function Graph({ currencyId, category }) {
 
     return(
         <View style={graphStyle.container}>
+            {/*
             <LineChart
                 data={{
                     labels: chartData.labels.slice(0, 6),
@@ -90,6 +91,7 @@ export function Graph({ currencyId, category }) {
                 }}
                 bezier // сглаживание графика
             />
+            */}
         </View>
     )
 }
