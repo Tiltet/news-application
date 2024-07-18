@@ -9,7 +9,6 @@ export function MainBlock( { bottomNewsThree, mainNews } ) {
     const { index, setIndex } = React.useContext(CreatContext)
     const { searchData, setSearchData } = React.useContext(SearchContext)
 
-    //
     const handlerNewsClick = (item) => {
         setIndex(item.id)
     }

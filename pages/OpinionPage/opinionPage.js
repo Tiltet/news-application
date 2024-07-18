@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { opinionPageStyle } from "./opinionPageStyle";
 import { styles } from "../../style";
 import { Dropdown } from "../../components/Dropdown/dropdown";
@@ -58,7 +58,6 @@ export function OpinionPage() {
                 console.log("Error Opinion category")
                 break
         }
-        console.log("page = ", page, " length = ", news.length)
     }
 
     useEffect(() => {

@@ -22,7 +22,6 @@ export function postVote(id, vote, login) {
             console.log(`http://localhost:4000/quiz/vote/${id} - good`)
         })
         .catch(err => {
-            console.log(`http://localhost:4000/quiz/vote/${id} - `, err)
-            console.error(err)
+            console.error(`http://localhost:4000/quiz/vote/${id} - `, err)
         })
 }

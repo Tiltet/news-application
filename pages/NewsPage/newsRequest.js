@@ -1,5 +1,4 @@
 import axios from "axios";
-import staticComments from "../../static/staticComments";
 import staticNews from "../../static/staticNews";
 
 // ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ О СТАТЬЕ
@@ -29,15 +28,13 @@ export function getNews(id) {
             return res.data;
         })
         .catch(error => {
-            console.error(error);
+            console.log(error);
+            return staticNews
         })
 }
 
 // ОТПРАВЛЯЮ КОММЕНТАРИЙ К СТАТЬЕ
 export function postComment(id, text, login) {
-
-    console.log(text, " ", login)
-
     return axios.post("http://localhost:4000/comments/" + id, {
         data: {
             text: text,
@@ -48,7 +45,7 @@ export function postComment(id, text, login) {
             console.log("http://localhost:4000/comments/" + id  + " - good")
         })
         .catch(err => {
-            console.error("http://localhost:4000/comments/" + id + " - " + err)
+            console.log("http://localhost:4000/comments/" + id + " - " + err)
         })
 }
 
@@ -60,7 +57,7 @@ export function getCommentsCount(id) {
             return res.data
         })
         .catch(err => {
-            console.error("http://localhost:4000/comments/count-comments/" + id + " - " + err)
-            return staticNews
+            console.log("http://localhost:4000/comments/count-comments/" + id + " - " + err)
+            return 1
         })
 }

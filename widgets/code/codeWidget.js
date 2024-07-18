@@ -3,7 +3,7 @@ import CreatContext from "../../context/context";
 import { KeyboardAvoidingView, Platform, StatusBar} from "react-native";
 import { Image, Modal, Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
-import { innstructionidgetStyle } from "../instruction/instructionWidgetStyle";
+import { instructionWidgetStyle } from "../instruction/instructionWidgetStyle";
 import { useRef } from "react";
 import { codeWidgetStyle } from "./codeWidgetStyle";
 import { requestCode } from "./codeWidgetRequest";
@@ -47,7 +47,7 @@ export function CodeWidget() {
                 style={loginWidgetStyle.view}
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             >
-                <View style={innstructionidgetStyle.container}>
+                <View style={instructionWidgetStyle.container}>
                     <View style={loginWidgetStyle.block}>
                         <View style={loginWidgetStyle.block_container}>
                             <View style={loginWidgetStyle.top}>

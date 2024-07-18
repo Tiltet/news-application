@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import React, {useState} from 'react';
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { commentStyle } from "./commentStyle";
+import Entypo from "@expo/vector-icons/Entypo";
+import {pageStyle} from "../../pages/NewsPage/newsPageStyle";
 
 export function Comment({ comment }) {
 
-    useEffect(() => {
-        console.log(comment)
-    }, []);
+    const [ isAnswer, setIsAnswer ] = useState(true)
+    const [ commentText, setCommentText ] = useState('')
 
     return(
         <View style={commentStyle.comment}>
@@ -27,9 +28,36 @@ export function Comment({ comment }) {
                     <Text style={commentStyle.comment_bottom_like_text}>5</Text>
                 </TouchableOpacity>
                 */}
-                <TouchableOpacity style={commentStyle.comment_bottom_button}>
-                    <Text style={commentStyle.comment_bottom_button_text}>Ответить</Text>
-                </TouchableOpacity>
+                { isAnswer === true ? (
+                    <TouchableOpacity
+                        onPress={() => setIsAnswer(!isAnswer)}
+                        style={commentStyle.comment_bottom_button}
+                    >
+                        <Text style={commentStyle.comment_bottom_button_text}>Ответить</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={commentStyle.comment_answer}>
+                        <TouchableOpacity
+                            style={commentStyle.comment_answer_cross}
+                            onPress={() => setIsAnswer(!isAnswer)}
+                        >
+                            <Entypo name="cross" size={24} color="black" />
+                        </TouchableOpacity>
+                        <TextInput
+                            numberOfLines={5}
+                            style={commentStyle.comment_answer_input}
+                            placeholder={"Ответить..."}
+                            value={commentText}
+                            onChangeText={setCommentText}
+                            multiline={true}
+                        />
+                        <TouchableOpacity
+                            style={pageStyle.input_button}
+                        >
+                            <Text style={pageStyle.input_button_text}>Отправить</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
             </View>
         </View>
     )

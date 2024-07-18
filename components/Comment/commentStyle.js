@@ -36,5 +36,23 @@ export const commentStyle = StyleSheet.create({
     },
     comment_bottomComments: {
         marginTop: 5,
+    },
+    // ОТВЕТ НА КОММЕНТАРИЙ
+    comment_answer: {
+        width: "100%",
+    },
+    comment_answer_cross: {
+        top: 2,
+        right: 2,
+        position: "absolute",
+        zIndex: 1
+    },
+    comment_answer_input: {
+        borderRadius: 5,
+        padding: 12,
+        paddingRight: 120,
+        width: "100%",
+        height: 100,
+        backgroundColor: "#EFEFEF",
     }
 })

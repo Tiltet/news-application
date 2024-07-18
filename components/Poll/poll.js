@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Image, Text, Alert} from 'react-native';
+import { View, TouchableOpacity, Image, Text, Alert } from 'react-native';
 import { opinionPageStyle } from "../../pages/OpinionPage/opinionPageStyle";
 import { getVotes, postVote } from "./pollRequest";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,7 +15,6 @@ const PollComponent = ({ item, index }) => {
     });
 
     useEffect(() => {
-
         // ПОЛУЧАЕМ ЛОГИН ИЗ ЛОКАЛЬНОГО ХРАНИЛИЩА
         fetchLogin()
             .then(login => setLogin(login))

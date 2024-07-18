@@ -1,32 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {Alert, Keyboard, KeyboardAvoidingView, Platform, StatusBar} from "react-native";
-import { Image, Modal, Text, TextInput, TouchableOpacity, View,} from "react-native";
+import React, { useEffect, useState } from "react";
+import { Keyboard, KeyboardAvoidingView, Platform, StatusBar } from "react-native";
+import { Image, Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
 import CreatContext from "../../context/context";
 import { passWidgetStyle } from "./passWidgetStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {requestLogin} from "./passWidgetRequest";
+import { requestLogin } from "./passWidgetRequest";
 
 export function PassWidget() {
 
     const [ keyboardHeight, setKeyboardHeight ] = useState(0);    // ОТСТУП ОТ КЛАВИАТУРЫ
     const [ password, setPassword ] = useState('')                  // ПАРОЛЬ
     const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
-
-    // НУЖНО ДЛЯ ОТСТУПА КЛАВИАТУРЫ
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-            setKeyboardHeight(event.endCoordinates.height);
-        });
-
-        const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-            setKeyboardHeight(0);
-        });
-
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
 
     // НАЖАТИЕ НА КРЕСТИК
     const handleCrossPress = () => {

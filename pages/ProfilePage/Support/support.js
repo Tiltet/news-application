@@ -1,16 +1,48 @@
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import React, { useState } from "react";
+import {View, Text, TouchableOpacity, TextInput, Alert} from "react-native";
+import React, {useEffect, useState} from "react";
 import { accountStyle } from "../Account/accountStyle";
 import { supportStyle } from "./supportStyle";
 import { loginWidgetStyle } from "../../../widgets/login/loginWidgetStyle";
+import * as Location from "expo-location";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {postQuestion} from "./supportRequest";
 
 export function Support() {
 
     const [ isChecked, setIsChecked ] = useState(false);
+    const [ text, setText ] = useState("")
+    const [ name, setName ] = useState("")
+    const [ city, setCity ] = useState('Kishinev')
+    const [ email, setEmail ] = useState("")
 
-    const handleCheckboxPress = () => {
+    const getLocation = async () => {
+        let {status} = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            console.log('Разрешение на доступ к местоположению отклонено');
+            return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        const {latitude, longitude} = location.coords;
+        const reverseGeocodedLocation = await Location.reverseGeocodeAsync({latitude, longitude});
+        setCity(reverseGeocodedLocation[0].city);
+        await AsyncStorage.setItem("city", reverseGeocodedLocation[0].city)
+    }
+
+    const handleCheckboxPress = async () => {
         setIsChecked(!isChecked);
+        await getLocation()
+        const emailStorage = await AsyncStorage.getItem("email")
+        setEmail(emailStorage)
     };
+
+    const handlerSendButton = async () => {
+        if (!isChecked) {
+            Alert.alert("Подтвердите Условия!")
+        } else {
+            postQuestion(name, city, text, email)
+        }
+    }
 
     return (
         <View style={supportStyle.container}>
@@ -56,17 +88,25 @@ export function Support() {
             <View style={supportStyle.middlecontainer}>
                 <Text style={supportStyle.headtext}> Есть вопросы?</Text>
                 <View style={supportStyle.input}>
-                    <TextInput placeholder={"ФИО"}/>
+                    <TextInput
+                        placeholder={"ФИО"}
+                        value={name}
+                        onChangeText={setName}
+                    />
                 </View>
 
+                {/*
                 <View style={supportStyle.input}>
                     <TextInput placeholder={"Местоположение"}/>
                 </View>
+                */}
 
                 <View
                     style={supportStyle.inputlarge}>
                     <TextInput
                         placeholder={"Введите вопрос"}
+                        value={text}
+                        onChangeText={setText}
                         multiline={true}
                     />
                 </View>
@@ -98,8 +138,11 @@ export function Support() {
 
                     </View>
                 </View>
-                <TouchableOpacity style={supportStyle.sendbutton}>
-                    <Text style={{color:"white"}}> Отправить</Text>
+                <TouchableOpacity
+                    style={supportStyle.sendbutton}
+                    onPress={() => handlerSendButton()}
+                >
+                    <Text style={supportStyle.sendbutton_text}>Отправить</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -3,9 +3,6 @@ import ModalDropdown from "react-native-modal-dropdown";
 import { dropdownStyle } from "./dropdownStyle";
 
 export function Dropdown({ categories, selectOption, defaultValue }) {
-
-    console.log(defaultValue);
-
     return(
         <ModalDropdown
             style={dropdownStyle.dropdown}
