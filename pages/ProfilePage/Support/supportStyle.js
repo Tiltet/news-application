@@ -100,6 +100,10 @@ export const supportStyle = StyleSheet.create({
         marginBottom: 15,
         color: "white"
     },
+    sendbutton_text: {
+        color: "white",
+        fontWeight: "500",
+    },
     hypertext:{
         color: "#374883",
         textDecorationLine: "underline",
@@ -130,5 +134,5 @@ export const supportStyle = StyleSheet.create({
         borderRadius: 4,
         marginRight: 5,
         marginTop: 4
-    },
+    }
 })

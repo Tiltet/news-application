@@ -9,7 +9,7 @@ import { newsPageLink } from "../NewsPage/newsPageLink";
 export function CategoryPage( {category, title} ) {
 
     const [ data, setData ] = useState([]);
-    const [ selectedCategory, setSelectedCategory ] = useState("За все время");
+    const [ selectedCategory, setSelectedCategory ] = useState("Сортировать");
     const [ page, setPage ] = useState(1)
 
     const handlerNewsClick = newsPageLink();
@@ -86,7 +86,7 @@ export function CategoryPage( {category, title} ) {
                 </View>
                 <View style={{ width: "60%" }}>
                     <Dropdown
-                        categories={["За период", "За неделю", "За месяц", "За год", "За все время"]}
+                        categories={["Новые", "Популярные"]}
                         selectOption={selectCategory}
                         defaultValue={selectedCategory}
                     />

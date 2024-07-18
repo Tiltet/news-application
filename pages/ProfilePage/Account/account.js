@@ -6,6 +6,7 @@ import { Dropdown } from "../../../components/Dropdown/dropdown";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CreatContext from "../../../context/context";
+import {postQuestion} from "./accountRequest";
 
 export function Account() {
 
@@ -15,29 +16,28 @@ export function Account() {
     const [ loginChange, setLoginChange ] = useState('');
     const [ emailChange, setEmailChange ] = useState('');
     const [ userInfo, setUserInfo] = useState({
+        id: '',
         login: '',
         email: '',
-        age: 18,
+        age: '',
         selectedCountry: '',
-        locationCode: '',
         selectedCategory: '',
     });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const id = await AsyncStorage.getItem('id');
                 const login = await AsyncStorage.getItem('login');
                 const email = await AsyncStorage.getItem('email');
                 const age = await AsyncStorage.getItem('age');
                 const location = await AsyncStorage.getItem('location');
-                const locationCode = await AsyncStorage.getItem('locationCode')
                 const favoriteNewsCategory = await AsyncStorage.getItem('favoriteNewsCategory')
                 setUserInfo({
-                    ...userInfo,
+                    id: id || '',
                     login: login || '',
                     email: email || '',
                     age: age || 18,
-                    locationCode: locationCode || 'MD',
                     selectedCountry: location || '',
                     selectedCategory: favoriteNewsCategory || '',
                 });
@@ -85,19 +85,6 @@ export function Account() {
         hideDatePicker();
     };
 
-    // КНОПКА ВЫБОРА СТРАНЫ
-    const handlerCountry = async (code, country) => {
-        setUserInfo({
-            ...userInfo,
-            selectedCountry: country,
-        })
-        setUserInfo({
-            ...userInfo,
-            locationCode: code,
-        })
-        await AsyncStorage.setItem('locationCode', code)
-    }
-
     // КНОПКА РЕДАКТИРОВАТЬ
     const handleEditPress = async () => {
         setIsEditing(true);
@@ -130,16 +117,22 @@ export function Account() {
         await AsyncStorage.setItem('favoriteNewsCategory', category);
     };
 
+    // ЗАБЫЛИ ПАРОЛЬ
+    const handlerForgotPassword = () => {
+        setIndex(9)
+    }
+
     // КНОПКА ВЫХОДА
     const handlerExit = () => {
-        AsyncStorage.removeItem("token").then(r => console.log("Remove token"))
-        AsyncStorage.removeItem("login").then(r => console.log("Remove login"))
-        AsyncStorage.removeItem("email").then(r => console.log("Remove email"))
-        AsyncStorage.removeItem("age").then(r => console.log("Remove age"))
-        AsyncStorage.removeItem("location").then(r => console.log("Remove location"))
-        AsyncStorage.removeItem("locationCode").then(r => console.log("Remove locationCode"))
-        AsyncStorage.removeItem("favoriteNewsCategory").then(r => console.log("Remove favoriteNewsCategory"))
-        setIndex(1);
+        AsyncStorage.removeItem("token").then()
+        AsyncStorage.removeItem("login").then()
+        AsyncStorage.removeItem("email").then()
+        AsyncStorage.removeItem("age").then()
+        AsyncStorage.removeItem("location").then()
+        AsyncStorage.removeItem("locationCode").then()
+        AsyncStorage.removeItem("favoriteNewsCategory").then()
+        postQuestion(userInfo)
+        setIndex(0);
     }
 
     return (
@@ -239,7 +232,10 @@ export function Account() {
                             </View>
                         </View>
                     </View>
-                    <TouchableOpacity style={accountStyle.info_forgotPassword}>
+                    <TouchableOpacity
+                        style={accountStyle.info_forgotPassword}
+                        onPress={() => handlerForgotPassword()}
+                    >
                         <Text style={accountStyle.info_forgotPassword_text}>Забыли пароль?</Text>
                     </TouchableOpacity>
                 </View>

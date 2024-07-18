@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const  innstructionidgetStyle = StyleSheet.create({
+export const  instructionWidgetStyle = StyleSheet.create({
     container:{
         display: "flex",
         justifyContent: "center",
@@ -11,32 +11,25 @@ export const  innstructionidgetStyle = StyleSheet.create({
         height: "100%",
         width: "100%",
     },
-    text_container:{
-        alignItems: "center",
-        justifyContent:"center",
+    text_container: {
         marginTop: 150
     },
-    upper_text:{
-        fontSize: 30,
-        fontWeight: "500",
-        alignSelf:"center",
+    upper_text: {
+        textAlign: "center",
+        fontSize: 23,
+        fontWeight: "600",
     },
-    middle_text_container:{
-        alignItems: "center",
-        justifyContent:"center",
-        width:"80%",
+    info_text: {
+        textAlign: "center",
+        paddingTop: 5,
+        fontSize: 12,
     },
     lower_text_container:{
-        marginTop:150,
-        display:"flex",
-        alignItems: "center",
-        alignSelf:"flex-end",
-        flexDirection:"row",
-        alignContent:"stretch",
-    },
-    nothingtext_container:{
-        alignContent:"flex-start",
-        height:"100%",
+        marginTop: 150,
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        overflow: "hidden"
     },
     text_underline:{
         textDecorationLine:"underline",

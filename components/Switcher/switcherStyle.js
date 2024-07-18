@@ -25,5 +25,6 @@ export default StyleSheet.create({
     },
     activatedText: {
         color: "#88A2FF",
+        textColor: "#88A2FF",
     }
 })

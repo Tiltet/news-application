@@ -3,6 +3,7 @@ import { weatherStyle } from "./weatherStyle";
 import { useEffect, useState } from "react";
 import { handlerWeather } from "../weatherPageRequest";
 import * as Location from 'expo-location';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Weather() {
 
@@ -23,6 +24,7 @@ export function Weather() {
             const { latitude, longitude } = location.coords;
             const reverseGeocodedLocation = await Location.reverseGeocodeAsync({ latitude, longitude });
             setCity(reverseGeocodedLocation[0].city);
+            await AsyncStorage.setItem("city", reverseGeocodedLocation[0].city)
         })();
 
         handlerWeather()

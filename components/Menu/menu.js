@@ -45,6 +45,11 @@ export  function Menu() {
                     <Text style={menuStyle.menu_block_text}>МИРОВЫЕ НОВОСТИ</Text>
                 </TouchableOpacity>
             </View>
+            <View style={menuStyle.menu_block}>
+                <TouchableOpacity onPress={() => handlerClick(20)}>
+                    <Text style={menuStyle.menu_block_text}>СПОРТ</Text>
+                </TouchableOpacity>
+            </View>
             <View style={menuStyle.menu_block_last}>
                 <TouchableOpacity>
                     <AntDesign

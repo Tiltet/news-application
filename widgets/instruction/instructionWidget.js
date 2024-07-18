@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import CreatContext from "../../context/context";
 import { loginWidgetStyle } from "../login/loginWidgetStyle";
-import {innstructionidgetStyle} from "./instructionWidgetStyle";
+import {instructionWidgetStyle} from "./instructionWidgetStyle";
 
 export function InstructionWidget() {
 
@@ -22,9 +22,10 @@ export function InstructionWidget() {
 
     return (
         <Modal visible={true}>
-            <View style={innstructionidgetStyle.container}>
+            <View style={instructionWidgetStyle.container}>
                 <View style={loginWidgetStyle.block}>
                     <View style={loginWidgetStyle.block_container}>
+
                         <View style={loginWidgetStyle.top}>
                             <Image
                                 source={require('../../assets/img/logo.png')}
@@ -36,29 +37,28 @@ export function InstructionWidget() {
                                     style={{ width: 15, height: 15 }}
                                 />
                             </TouchableOpacity>
-
                         </View>
-                        <View style={innstructionidgetStyle.text_container}>
-                            <Text style={innstructionidgetStyle.upper_text}>Инструкция отправлена!</Text>
-                            <View style={innstructionidgetStyle.middle_text_container}>
-                                <Text style={{fontSize:15}} > На вашу почту отправлена инструкция</Text>
-                                <Text style={{fontSize:15}}> по восстановлению пароля</Text>
-                            </View>
-                            <View style={innstructionidgetStyle.lower_text_container}>
-                                <View style={innstructionidgetStyle.nothingtext_container}>
-                                    <Text> Ничего не пришло?</Text>
-                                </View>
+
+                        <View style={instructionWidgetStyle.text_container}>
+
+                            <Text style={instructionWidgetStyle.upper_text}>Инструкция отправлена!</Text>
+                            <Text style={instructionWidgetStyle.info_text}>На вашу почту отправлена инструкция по восстановлению пароля</Text>
+
+                            <View style={instructionWidgetStyle.lower_text_container}>
                                 <View>
-                                    <TouchableOpacity>
-                                        <Text style={innstructionidgetStyle.text_underline}> Нажмите сюда, чтобы прислать </Text>
-                                        <Text style={innstructionidgetStyle.text_underline}> заново</Text>
-                                    </TouchableOpacity>
-
+                                    <Text>Ничего не пришло?</Text>
                                 </View>
-
+                                <TouchableOpacity>
+                                    <Text
+                                        style={instructionWidgetStyle.text_underline}
+                                        ellipsizeMode="tail"
+                                    >
+                                        Нажмите сюда, чтобы прислать заново
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
-
                         </View>
+
                     </View>
                 </View>
             </View>

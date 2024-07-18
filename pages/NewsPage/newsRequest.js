@@ -35,9 +35,6 @@ export function getNews(id) {
 
 // ОТПРАВЛЯЮ КОММЕНТАРИЙ К СТАТЬЕ
 export function postComment(id, text, login) {
-
-    console.log(text, " ", login)
-
     return axios.post("http://localhost:4000/comments/" + id, {
         data: {
             text: text,

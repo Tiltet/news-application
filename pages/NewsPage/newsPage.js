@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert } from "react-native";
+import {View, Text, ImageBackground, Image, TouchableOpacity, TextInput, Alert, Keyboard} from "react-native";
 import { styles } from "../../style";
 import { pageStyle } from "./newsPageStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -58,7 +58,6 @@ export function NewsPage( {id, handleScrollToTop} ) {
                 setDislike(res.voteNegative)
                 setLike(res.votePositive)
             })
-
     }, [id]);
 
     // ОТОБРАЖАЕТ СТАТИСТИКУ ЛАКОВ И ДИЗЛАЙКОВ ДЛЯ СТАТЬИ

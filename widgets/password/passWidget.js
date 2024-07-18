@@ -12,22 +12,6 @@ export function PassWidget() {
     const [ password, setPassword ] = useState('')                  // ПАРОЛЬ
     const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
 
-    // НУЖНО ДЛЯ ОТСТУПА КЛАВИАТУРЫ
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-            setKeyboardHeight(event.endCoordinates.height);
-        });
-
-        const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-            setKeyboardHeight(0);
-        });
-
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
-
     // НАЖАТИЕ НА КРЕСТИК
     const handleCrossPress = () => {
         setIndex(0)

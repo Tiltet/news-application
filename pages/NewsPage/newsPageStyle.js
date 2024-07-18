@@ -103,6 +103,7 @@ export const pageStyle =  StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     backgroundColor: "#EFEFEF",
+    paddingRight: 120,
   },
   input_button: {
     position: "absolute",

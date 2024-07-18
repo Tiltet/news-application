@@ -18,7 +18,7 @@ export function Switcher({ isChecked, setChecked, firstLabel, secondLabel }) {
                 style={[switcherStyle.switcherButtons, isChecked ? [switcherStyle.activated, switcherStyle.activatedText] : null]}
                 onPress={() => setChecked(true)}
             >
-                <Text style={[switcherStyle.switcherButtons_text, isChecked ? [switcherStyle.activated, profileStyle.activatedText] : null]}>
+                <Text style={[switcherStyle.switcherButtons_text, isChecked ? [switcherStyle.activated, switcherStyle.activatedText] : null]}>
                     {secondLabel}
                 </Text>
             </TouchableOpacity>
