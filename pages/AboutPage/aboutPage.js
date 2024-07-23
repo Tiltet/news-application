@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ImageBackground } from "react-native";
 import { styles } from "../../style";
 import { aboutPageStyle } from "./aboutPageStyle";
-import { Support } from "../ProfilePage/Support/support";
+import { Support } from "../../components/Support/support";
 
 export function AboutPage() {
     return(

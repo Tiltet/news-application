@@ -109,9 +109,9 @@ export const supportStyle = StyleSheet.create({
         textDecorationLine: "underline",
     },
     images: {
-        marginTop: 15,
+        display: "flex",
         flexDirection: "row",
-        marginLeft: 5,
+        marginTop: 10,
         marginBottom: 15,
     },
     image: {

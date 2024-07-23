@@ -19,10 +19,18 @@ export function Comments({ newsId, newCommentCheck }) {
 
     const renderComments = () => {
         return commentsData.map((comment) => (
-            <View style={commentsStyle.comment}>
-                <Comment comment={comment}/>
+            <View
+                key={comment.id}
+                style={commentsStyle.comment}
+            >
+                <Comment
+                    comment={comment}
+                    Answer={false}
+                />
                 <View style={commentsStyle.comment_bottom}>
-                    <BottomComments/>
+                    <BottomComments
+                        commnetId={comment.id}
+                    />
                 </View>
             </View>
         ))

@@ -27,11 +27,11 @@ import { SportPage } from "./pages/SportPage/sportPage";
 
 export default function App() {
 
-    const [refreshing, setRefreshing] = useState(false)
-    const [visible, setVisible] = useState(true)
-    const [index, setIndex] = useState(0)
-    const [searchData, setSearchData] = useState(0)
-    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    const [ refreshing, setRefreshing ] = useState(false)
+    const [ visible, setVisible ] = useState(true)
+    const [ index, setIndex ] = useState(0)
+    const [ searchData, setSearchData ] = useState(0)
+    const [ keyboardHeight, setKeyboardHeight ] = useState(0);
 
     const scrollViewRef = useRef(null);
 

@@ -1,11 +1,13 @@
-import {View, Text, TouchableOpacity, TextInput, Alert} from "react-native";
-import React, {useEffect, useState} from "react";
-import { accountStyle } from "../Account/accountStyle";
+import {View, Text, TouchableOpacity, TextInput, Alert, Image, Linking} from "react-native";
+import React, { useState } from "react";
+import { accountStyle } from "../../pages/ProfilePage/Account/accountStyle";
 import { supportStyle } from "./supportStyle";
-import { loginWidgetStyle } from "../../../widgets/login/loginWidgetStyle";
+import { loginWidgetStyle } from "../../widgets/login/loginWidgetStyle";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {postQuestion} from "./supportRequest";
+import Entypo from "@expo/vector-icons/Entypo";
+import {FontAwesome, Fontisto} from "@expo/vector-icons";
 
 export function Support() {
 
@@ -44,6 +46,10 @@ export function Support() {
         }
     }
 
+    const handleLink = (url) => {
+        Linking.openURL(url)
+    };
+
     return (
         <View style={supportStyle.container}>
             <Text style={accountStyle.title}>Свяжитесь с нами</Text>
@@ -51,36 +57,47 @@ export function Support() {
                 <View>
                     <View style={supportStyle.uppercontainer}>
                         <View>
-                            <Text style={supportStyle.headtext}>Контакты
-                            </Text>
+                            <Text style={supportStyle.headtext}>Контакты</Text>
                         </View>
                         <View style={supportStyle.textcontainer}>
-                            <Text style={supportStyle.smalltext}>Наш email </Text>
-                            <Text style={{fontWeight: "700"}}>ааааа0303@gmail.com </Text>
+                            <Text style={supportStyle.smalltext}>Наш email</Text>
+                            <Text style={{fontWeight: "700"}}>opozitia@gmail.com</Text>
                         </View>
+                        {/*
                         <View style={supportStyle.textcontainer}>
                             <Text style={accountStyle.smalltext}>Наш номер </Text>
                             <Text style={{fontWeight: "700"}}>+7 777 777 77 77</Text>
                         </View>
-                        {/*
+                        */}
                         <View>
                             <Text>Наши соцсети</Text>
                             <View style={supportStyle.images}>
-                                <TouchableOpacity>
-                                    <Image
-                                        source={require('../../../assets/icons/login/facebook.png')}
-                                        style={{ width: 40, height: 40 }}
-                                    />
+                                <TouchableOpacity
+                                    style={{ marginRight: 10 }}
+                                    onPress={() => handleLink("https://www.instagram.com/opozitia_md?igsh=MW95enJsd2hpMDEyYQ%3D%3D&utm_source=qr")}
+                                >
+                                    <Entypo name="instagram-with-circle" size={34} color="#374883" />
                                 </TouchableOpacity>
-                                <TouchableOpacity style={supportStyle.image}>
-                                    <Image
-                                        source={require('../../../assets/icons/login/twitter.png')}
-                                        style={{ width: 40, height: 40 }}
-                                    />
+                                <TouchableOpacity
+                                    style={{ marginRight: 10 }}
+                                    onPress={() => handleLink("https://t.me/+UCduDNfmDl82ZTUy")}
+                                >
+                                    <Entypo name="facebook-with-circle" size={34} color="#374883" />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={{ marginRight: 10 }}
+                                    onPress={() => handleLink("https://t.me/+UCduDNfmDl82ZTUy")}
+                                >
+                                    <FontAwesome name="telegram" size={34} color="#374883" />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={{ marginRight: 10 }}
+                                    onPress={() => handleLink("https://chat.whatsapp.com/KCzk91cGR2625dhw70DSaj")}
+                                >
+                                    <Fontisto name="whatsapp" size={34} color="#374883" />
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        */}
                     </View>
                 </View>
             </View>

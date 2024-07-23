@@ -1,16 +1,28 @@
-import React, {useState} from 'react';
-import { View } from "react-native";
+import React, {useEffect, useState} from 'react';
+import { View, Text } from "react-native";
 import { bottomCommentsStyle } from "./bottomCommentsStyle";
 import { Comment } from "../../../components/Comment/comment";
+import { getBottomComments } from "./bottomCommentsRequest";
 
-export function BottomComments() {
+export function BottomComments( commentId ) {
 
-    const [ comments, setComments ] = useState([])
+    const [ comments, setComments ] = useState([1])
+
+    useEffect(() => {
+        getBottomComments(commentId.commnetId)
+            .then(res => {
+                setComments(res)
+            })
+    }, []);
 
     const renderItems = () => {
+
         return comments.map((comment, i) => (
             <View style={bottomCommentsStyle.comment}>
-                <Comment/>
+                <Comment
+                    comment={comment}
+                    Answer={true}
+                />
             </View>
         ))
     }
