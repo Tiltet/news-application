@@ -1,22 +1,32 @@
 import React, {useState} from 'react';
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import {View, Text, TouchableOpacity, TextInput, Alert} from "react-native";
 import { commentStyle } from "./commentStyle";
 import Entypo from "@expo/vector-icons/Entypo";
 import { pageStyle } from "../../pages/NewsPage/newsPageStyle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {postBottomComment} from "./commentRequest";
 
 export function Comment({ comment, Answer }) {
 
-    const [ isAnswer, setIsAnswer ] = useState(true)
+    const [ isAnswer, setIsAnswer ] = useState(false)
     const [ commentText, setCommentText ] = useState('')
 
     const handlerAnswer = async () => {
 
         const login = await AsyncStorage.getItem("login")
 
-        if (commentText.length <= 5) {
+        console.log(login)
+        console.log(commentText)
 
+        if (commentText.length <= 5) {
+            Alert.alert("Комментарий должен быть не менее 5 символов!")
         }
+
+        postBottomComment(comment.id, commentText, login)
+            .then(() => {
+                setCommentText("")
+                setIsAnswer(false)
+            })
     }
 
     return(
@@ -42,14 +52,14 @@ export function Comment({ comment, Answer }) {
                 */}
 
                 {
-                    ( Answer === false && isAnswer === true ) ? (
+                    ( Answer === false && isAnswer === false ) ? (
                         <TouchableOpacity
                             onPress={() => setIsAnswer(!isAnswer)}
                             style={commentStyle.comment_bottom_button}
                         >
                             <Text style={commentStyle.comment_bottom_button_text}>Ответить</Text>
                         </TouchableOpacity>
-                    ) : ( Answer === false && isAnswer === false ) ? (
+                    ) : ( Answer === false && isAnswer === true ) ? (
                         // ФОРМА ОТВЕТА НА КОММЕНТАРИЙ
                         <View style={commentStyle.comment_answer}>
                             <TouchableOpacity

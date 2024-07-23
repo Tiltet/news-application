@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// ПОЛУЧАЕМ ВСЕ ОТВЕТЫ НА КОММЕНТАРИЙ
+// ОТПРАВЛЯЕМ ОТВЕТ НА КОММЕНТАРИЙ
 export function postBottomComment( id, text, login ) {
     return axios.post("http://localhost:4000/comments/createBottom/" + id, {
         data: {
