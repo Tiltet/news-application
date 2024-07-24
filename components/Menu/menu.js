@@ -45,11 +45,12 @@ export  function Menu() {
                     <Text style={menuStyle.menu_block_text}>МИРОВЫЕ НОВОСТИ</Text>
                 </TouchableOpacity>
             </View>
-            <View style={menuStyle.menu_block}>
+            <View style={menuStyle.menu_block_last}>
                 <TouchableOpacity onPress={() => handlerClick(20)}>
                     <Text style={menuStyle.menu_block_text}>СПОРТ</Text>
                 </TouchableOpacity>
             </View>
+            {/*
             <View style={menuStyle.menu_block_last}>
                 <TouchableOpacity>
                     <AntDesign
@@ -59,6 +60,7 @@ export  function Menu() {
                     />
                 </TouchableOpacity>
             </View>
+            */}
         </ScrollView>
     );
 }

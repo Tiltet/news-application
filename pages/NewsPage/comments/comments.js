@@ -5,7 +5,7 @@ import { BottomComments } from "../bottomComments/bottomComments";
 import { commentsStyle } from "./commentsStyle";
 import { getComments } from "./commentsRequest";
 
-export function Comments({ newsId }) {
+export function Comments({ newsId, newCommentCheck }) {
 
     const [ commentsData, setCommentsData ] = useState([])
 
@@ -14,15 +14,23 @@ export function Comments({ newsId }) {
             .then(res => {
                 setCommentsData(res)
             })
-    }, []);
+    }, [newCommentCheck]);
 
 
     const renderComments = () => {
-        return commentsData.map((comment, index) => (
-            <View style={commentsStyle.comment}>
-                <Comment comment={comment}/>
+        return commentsData.map((comment) => (
+            <View
+                key={comment.id}
+                style={commentsStyle.comment}
+            >
+                <Comment
+                    comment={comment}
+                    Answer={false}
+                />
                 <View style={commentsStyle.comment_bottom}>
-                    <BottomComments/>
+                    <BottomComments
+                        commnetId={comment.id}
+                    />
                 </View>
             </View>
         ))

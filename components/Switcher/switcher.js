@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from "react-native";
-import {profileStyle} from "../../pages/ProfilePage/profilePageStyle";
 import switcherStyle from "./switcherStyle";
 
 export function Switcher({ isChecked, setChecked, firstLabel, secondLabel }) {

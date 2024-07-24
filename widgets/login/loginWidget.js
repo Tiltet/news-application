@@ -11,27 +11,22 @@ export function LoginWidget() {
     const [ email, setEmail ] = useState('')                        // ТЕКСТ В TextInput
     const { index, setIndex } = React.useContext(CreatContext)              // КОНТЕКСТ ДЛЯ НАВИГАЦИИ
 
-    // НАЖАТИЕ НА CHECKBOX
     const handleCheckboxPress = () => {
         setIsChecked(!isChecked);
     };
 
-    // НАЖАТИЕ НА КРЕСТИК
     const handleCrossPress = () => {
         setIndex(0)
     };
 
-    // НАЖАТИЕ НА КНОПКУ РЕГИСТРАЦИИ
     const regButtonHandler = () => {
         setIndex(7)
     };
 
-    // ИЗМЕНЕНИЕ ТЕКСТА В InputText
     const handleTextChange = (newEmail) => {
         setEmail(newEmail);
     };
 
-    // НАЖАТИЕ НА КНОПКУ ПРОДОЛЖИТЬ
     const continueButtonHandler = async () => {
         const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -100,6 +95,7 @@ export function LoginWidget() {
                         <TouchableOpacity style={loginWidgetStyle.button} onPress={()=> continueButtonHandler()} >
                             <Text style={loginWidgetStyle.button_text}>Продолжить</Text>
                         </TouchableOpacity>
+                        {/*
                         <View style={loginWidgetStyle.social}>
                             <TouchableOpacity>
                                 <Image
@@ -126,6 +122,7 @@ export function LoginWidget() {
                                 />
                             </TouchableOpacity>
                         </View>
+                        */}
                         <View style={loginWidgetStyle.text_bottom}>
                             <Text style={loginWidgetStyle.text_bottom_text}>Еще нет аккаунта?</Text>
                             <TouchableOpacity onPress={()=> regButtonHandler()}>

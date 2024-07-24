@@ -98,6 +98,7 @@ export function RegWidget() {
                             >
                                 <Text style={regWidgetStyle.button_text}>Продолжить</Text>
                             </TouchableOpacity>
+                            {/*
                             <View style={regWidgetStyle.social}>
                                 <TouchableOpacity>
                                     <Image
@@ -124,6 +125,7 @@ export function RegWidget() {
                                     />
                                 </TouchableOpacity>
                             </View>
+                            */}
                             <View style={regWidgetStyle.text_bottom}>
                                 <Text style={regWidgetStyle.text_bottom_text}>Уже есть аккаунт?</Text>
                                 <TouchableOpacity onPress={()=> loginButtonHandler()}>
