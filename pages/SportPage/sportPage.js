@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "../../style";
 import { championshipStyle } from "./sportPageStyle";
 import {getChampionship} from "./sportPageRequest";
@@ -8,6 +8,8 @@ export function SportPage() {
 
     const [ championship, setChampionship ] = useState([])
     const [ championshipIndex, setChampionshipIndex ] = useState(0)
+    const [ championshipImg, setChampionshipImg ] = useState(require("../../assets/icons/football/Spain.png"));
+    const [ championshipName, setChampionshipName ] = useState("Чемпионат Испании")
 
     useEffect(() => {
         switch (championshipIndex) {
@@ -15,30 +17,40 @@ export function SportPage() {
                 getChampionship("Испания")
                     .then(res => {
                         setChampionship(res)
+                        setChampionshipImg(require("../../assets/icons/football/Spain.png"))
+                        setChampionshipName("Чемпионат Испании")
                     })
                 break
             case 1:
                 getChampionship("Германия")
                     .then(res => {
                         setChampionship(res)
+                        setChampionshipImg(require("../../assets/icons/football/Germany.png"))
+                        setChampionshipName("Чемпионат Германии")
                     })
                 break
             case 2:
                 getChampionship("Италия")
                     .then(res => {
                         setChampionship(res)
+                        setChampionshipImg(require("../../assets/icons/football/Italy.png"))
+                        setChampionshipName("Чемпионат Италии")
                     })
                 break
             case 3:
                 getChampionship("Франция")
                     .then(res => {
                         setChampionship(res)
+                        setChampionshipImg(require("../../assets/icons/football/France.png"))
+                        setChampionshipName("Чемпионат Франции")
                     })
                 break
             default:
                 getChampionship("Англия")
                     .then(res => {
                         setChampionship(res)
+                        setChampionshipImg(require("../../assets/icons/football/England.png"))
+                        setChampionshipName("Чемпионат Англии")
                     })
                 break
         }
@@ -113,10 +125,10 @@ export function SportPage() {
                 {/* ЗАГОЛОВОК */}
                 <View style={championshipStyle.header}>
                     <View style={championshipStyle.header_title}>
-                        <Text style={championshipStyle.header_title_text}>Чемпионат Германии</Text>
+                        <Text style={championshipStyle.header_title_text}>{championshipName}</Text>
                         <Image
-                            style={{ width: 50, height: 30, marginLeft: 20}}
-                            source={require('../../assets/img/championship.png')}
+                            style={{ width: 50, height: 40, marginLeft: 20}}
+                            source={championshipImg}
                         />
                     </View>
                     <View style={championshipStyle.header_icons}>
