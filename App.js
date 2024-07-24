@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styles } from "./style";
 import { View, RefreshControl, Text, StatusBar, Animated, Keyboard, Platform } from "react-native";
 import CreatContext from "./context/context";

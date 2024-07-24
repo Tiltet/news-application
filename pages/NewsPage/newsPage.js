@@ -224,6 +224,7 @@ export function NewsPage( {id, handleScrollToTop} ) {
                     <Comments
                         newsId={id}
                         newCommentCheck={commentCheck}
+                        commentsCount={commentsCount}
                     />
                 </View>
             </View>
