@@ -1,9 +1,10 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
+import config from "../../config.json";
 
 export function requestLogin(email, password) {
-    return axios.post("http://localhost:4000/auth/login", {
+    return axios.post(`${config.API_BASE_URL}/auth/login`, {
         email: email,
         password: password,
     })
@@ -18,11 +19,11 @@ export function requestLogin(email, password) {
             // КОММЕНТАРИЙ С ТОКЕНОМ
             console.log("Token - " + response.data.accessToken)
 
-            console.log("http://localhost:4000/auth/login - good");
+            console.log(`${config.API_BASE_URL}/auth/login - good`);
 
         })
         .catch((error) => {
-            console.error("http://localhost:4000/auth/login - ", error);
+            console.error(`${config.API_BASE_URL}/auth/login - `, error);
             Alert.alert("Неправильный логин или пароль!")
             throw error
         })

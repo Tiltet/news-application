@@ -1,27 +1,28 @@
 import axios from "axios";
+import config from "../../config.json";
 
 // ПОЛУЧАЕМ ГОЛОСА ДЛЯ ОПРОСА
 export function getVotes(id) {
-    return axios.get("http://localhost:4000/news/" + id + "/votes")
+    return axios.get(`${config.API_BASE_URL}/news/` + id + "/votes")
         .then(res => {
-            console.log("http://localhost:4000/news/" + id + "/votes - good")
+            console.log(`${config.API_BASE_URL}/news/` + id + "/votes - good")
             return res.data
         })
         .catch(err => {
-            console.log("http://localhost:4000/news/" + id + "/votes - ", err)
+            console.log(`${config.API_BASE_URL}/news/` + id + "/votes - ", err)
         })
 }
 
 // ОТПРАВЛЯЕМ ГОЛОС ПОЛЬЗОВАТЕЛЯ
 export function postVote(id, vote, login) {
-    return axios.post(`http://localhost:4000/quiz/vote/${id}`, {
+    return axios.post(`${config.API_BASE_URL}/quiz/vote/${id}`, {
         login: login,
         inputVote: vote,
     })
         .then(res => {
-            console.log(`http://localhost:4000/quiz/vote/${id} - good`)
+            console.log(`${config.API_BASE_URL}/quiz/vote/${id} - good`)
         })
         .catch(err => {
-            console.error(`http://localhost:4000/quiz/vote/${id} - `, err)
+            console.error(`${config.API_BASE_URL}/quiz/vote/${id} - `, err)
         })
 }

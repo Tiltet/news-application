@@ -1,3 +1,4 @@
+import config from '../../../config.json';
 import axios from "axios";
 
 // ФУНКЦИЯ НОРМАЛИЗАЦИИ ДАННЫХ ВАЛЮТЫ С СЕРВЕРА
@@ -57,13 +58,13 @@ function normalizeCashData(data) {
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ИНФОРМАЦИИ ДЛЯ ВСЕЙ ВАЛЮТЫ
 export function cashRequest() {
-    return axios.get('http://localhost:4000/currency')
+    return axios.get(`${config.API_BASE_URL}/currency`)
         .then(response => {
-            console.log('http://localhost:4000/currency - good');
+            console.log(`${config.API_BASE_URL}/currency - good`);
             return normalizeCashData(response.data)
         })
         .catch(error => {
-            console.error('http://localhost:4000/currency' + error);
+            console.error(`${config.API_BASE_URL}/currency` + error);
         });
 }
 
@@ -124,12 +125,12 @@ function normalizeCryptoData(data) {
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ИНФОРМАЦИИ ДЛЯ ВСЕЙ КРИПТОВАЛЮТЫ
 export function cryptoRequest() {
-    return axios.get("http://localhost:4000/crypto/last")
+    return axios.get(`${config.API_BASE_URL}/crypto/last`)
         .then(response => {
-            console.log("http://localhost:4000/crypto/last - good")
+            console.log(`${config.API_BASE_URL}/crypto/last - good`)
             return normalizeCryptoData(response.data)
         })
         .catch(error => {
-            console.error("http://localhost:4000/crypto/last - " + error)
+            console.error(`${config.API_BASE_URL}/crypto/last - ` + error)
         })
 }

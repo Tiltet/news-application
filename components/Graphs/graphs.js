@@ -6,6 +6,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import CreatContext from "../../context/context";
 import axios from "axios";
 import staticGraphs from "./staticGraphs";
+import config from "../../config.json";
 
 export function Graphs() {
 
@@ -17,9 +18,9 @@ export function Graphs() {
     const [ second, setSecond ] = useState([1,2,3,4,5]);
 
     useEffect(() =>  {
-        axios.get("http://localhost:4000/currency/graphic")
+        axios.get(`${config.API_BASE_URL}/currency/graphic`)
             .then(response => {
-                console.log("http://localhost:4000/currency/graphic - good")
+                console.log(`${config.API_BASE_URL}/currency/graphic - good`)
                 setPercentageUSDToRON(parseFloat(response.data[0].percentageUSDToRON))
                 setPercentageEURToUSD(parseFloat(response.data[0].percentageEURToUSD))
                 setData(response.data)
@@ -36,7 +37,7 @@ export function Graphs() {
 
             })
             .catch(error => {
-                console.log("http://localhost:4000/currency/graphic - ", error)
+                console.log(`${config.API_BASE_URL}/currency/graphic - `, error)
                 setData(staticGraphs)
             })
     }, []);

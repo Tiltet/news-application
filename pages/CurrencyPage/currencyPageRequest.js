@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../config.json";
 
 // ФУНКЦИЯ НОРМАЛИЗАЦИИ
 function normalizeOneCashData(data, formattedDate, label) {
@@ -15,9 +16,9 @@ function normalizeOneCashData(data, formattedDate, label) {
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ИНФОРМАЦИИ ДЛЯ ОДНОЙ ВАЛЮТЫ
 export function oneCashRequest( currencyId ) {
-    return axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=1")
+    return axios.get(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=1")
         .then(res => {
-            console.log("http://localhost:4000/currency/params/" + currencyId + "?pageSize=1" + " - good");
+            console.log(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=1" + " - good");
 
             const moment = require('moment');
             const dateString = '7/11/24';
@@ -54,15 +55,15 @@ export function oneCashRequest( currencyId ) {
 
         })
         .catch(error => {
-            console.error("http://localhost:4000/currency/" + currencyId + error)
+            console.error(`${config.API_BASE_URL}/currency/` + currencyId + error)
         })
 }
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ИНФОРМАЦИИ ДЛЯ ОДНОЙ КРИПТОВАЛЮТОЙ
 export function oneCryptoRequest( currencyId ) {
-    return axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=1")
+    return axios.get(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=1")
         .then(res => {
-            console.log("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=1 - good");
+            console.log(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=1 - good");
 
             const moment = require('moment');
             const dateString = '7/11/24';
@@ -72,6 +73,6 @@ export function oneCryptoRequest( currencyId ) {
 
         })
         .catch(error => {
-            console.error("http://localhost:4000/currency/" + currencyId + error)
+            console.error(`${config.API_BASE_URL}/currency/` + currencyId + error)
         })
 }

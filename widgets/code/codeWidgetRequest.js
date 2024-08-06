@@ -1,13 +1,14 @@
 import axios from "axios";
 import { Alert } from "react-native";
+import config from "../../config.json";
 
 export async function requestCode(code) {
     try {
-        const response = await axios.post('http://localhost:4000/auth/registration-code', {
+        const response = await axios.post(`${config.API_BASE_URL}/auth/registration-code`, {
             confirmationCode: code,
         });
 
-        console.log('http://localhost:4000/auth/registration-code - good');
+        console.log(`${config.API_BASE_URL}/auth/registration-code - good`);
         return true
 
     } catch (error) {

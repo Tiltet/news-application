@@ -3,6 +3,7 @@ import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { graphStyle } from "./graphStyle";
 import axios from "axios";
+import config from "../../../config.json";
 
 export function Graph({ currencyId, category }) {
 
@@ -17,7 +18,7 @@ export function Graph({ currencyId, category }) {
 
     useEffect(() => {
         if (category === "cash") {
-            axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=6")
+            axios.get(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=6")
                 .then(res => {
                     let labels = [];
                     let data = [];
@@ -40,10 +41,10 @@ export function Graph({ currencyId, category }) {
 
                 })
                 .catch(error => {
-                    console.log("http://localhost:4000/currency/params/" + currencyId + "?pageSize=15 - " + error);
+                    console.log(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=15 - " + error);
                 })
         } else if (category === "crypto") {
-            axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=10")
+            axios.get(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=10")
                 .then(res => {
                     let labels = [];
                     let data = [];

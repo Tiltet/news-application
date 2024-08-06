@@ -9,6 +9,7 @@ import staticNewsList from "../../static/staticNewsList";
 import staticMainNews from "../../static/staticMainNews";
 import staticLastNews from "../../static/staticLastNews";
 import axios from "axios";
+import config from "../../config.json";
 
 export function HomePage() {
 
@@ -21,17 +22,17 @@ export function HomePage() {
 
     // ОТПРАВЛЯЕМ ЗАПРОС И ПОЛУЧАЕМ ДАННЫЕ
     useEffect(() => {
-        axios.get('http://localhost:4000/news/home')
+        axios.get(`${config.API_BASE_URL}/news/home`)
             .then(response => {
                 setData(response.data);
                 setBottomNewsThree(response.data.bottomNewsThree);
                 setLastNews(response.data.mainNews);
                 setSwiperNews(response.data.swipeNews);
                 setMainNews(response.data.news[0]);
-                console.log("http://localhost:4000/news/home - good");
+                console.log(`${config.API_BASE_URL}/news/home - good`);
             })
             .catch(error => {
-                console.log('http://localhost:4000/news/home - ', error)
+                console.log(`${config.API_BASE_URL}/news/home - `, error)
                 setMainNews(staticMainNews)
                 setBottomNewsThree(staticNewsList)
                 setLastNews(staticLastNews)

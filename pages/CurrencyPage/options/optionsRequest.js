@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../../../config.json";
 
 // ФУНКЦИЯ НОРМАЛИЗАЦИИ
 function normalizeOneCashOptions(past, present, average, weeklyMin, weeklyMax, monthlyMin, monthlyMax, now) {
@@ -18,9 +19,9 @@ function normalizeOneCashOptions(past, present, average, weeklyMin, weeklyMax, m
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ПАРАМЕТРОВ ДЛЯ ОДНОЙ ВАЛЮТЫ
 export function optionsCashRequest(currencyId) {
-    return axios.get("http://localhost:4000/currency/params/" + currencyId + "?pageSize=10")
+    return axios.get(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=10")
         .then(res => {
-            console.log("http://localhost:4000/currency/params/" + currencyId + "?pageSize=10 - good");
+            console.log(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=10 - good");
 
             let sum = 0;
             let weeklyMin = parseFloat(res.data[0].rate).toFixed(4);
@@ -56,15 +57,15 @@ export function optionsCashRequest(currencyId) {
 
         })
         .catch(error => {
-            console.error("http://localhost:4000/currency/params/" + currencyId + "?pageSize=10 - " + error)
+            console.error(`${config.API_BASE_URL}/currency/params/` + currencyId + "?pageSize=10 - " + error)
         })
 }
 
 // ЗАПРОС ДЛЯ ПОЛУЧЕНИЕ ПАРАМЕТРОВ ДЛЯ ОДНОЙ КРИПТОВАЛЮТЫ
 export function optionsCryptoRequest(currencyId) {
-    return axios.get("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=10")
+    return axios.get(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=10")
         .then(res => {
-            console.log("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=10 - good");
+            console.log(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=10 - good");
 
             let sum = 0;
             let weeklyMin = parseFloat(res.data[0].rate).toFixed(4);
@@ -102,6 +103,6 @@ export function optionsCryptoRequest(currencyId) {
 
         })
         .catch(error => {
-            console.error("http://localhost:4000/crypto/full/" + currencyId + "?pageSize=10 - " + error)
+            console.error(`${config.API_BASE_URL}/crypto/full/` + currencyId + "?pageSize=10 - " + error)
         })
 }

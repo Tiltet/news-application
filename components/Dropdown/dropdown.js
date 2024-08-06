@@ -2,6 +2,7 @@ import React from "react";
 import ModalDropdown from "react-native-modal-dropdown";
 import { dropdownStyle } from "./dropdownStyle";
 
+// ВЫПОДАЮЩЕЕ МЕНЯ
 export function Dropdown({ categories, selectOption, defaultValue }) {
     return(
         <ModalDropdown

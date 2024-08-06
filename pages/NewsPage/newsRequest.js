@@ -1,12 +1,13 @@
 import axios from "axios";
 import staticNews from "../../static/staticNews";
+import config from "../../config.json";
 
 // ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ДАННЫХ О СТАТЬЕ
 export function getNews(id) {
-    return axios.get(`http://localhost:4000/news/${id}`)
+    return axios.get(`${config.API_BASE_URL}/news/${id}`)
         .then(res => {
 
-            console.log(`http://localhost:4000/news/${id}` + " - good");
+            console.log(`${config.API_BASE_URL}/news/${id}` + " - good");
 
             switch (res.data.category) {
                 case "World":
@@ -35,29 +36,29 @@ export function getNews(id) {
 
 // ОТПРАВЛЯЮ КОММЕНТАРИЙ К СТАТЬЕ
 export function postComment(id, text, login) {
-    return axios.post("http://localhost:4000/comments/" + id, {
+    return axios.post(`${config.API_BASE_URL}/comments/` + id, {
         data: {
             text: text,
             login: login
         }
     })
         .then(res => {
-            console.log("http://localhost:4000/comments/" + id  + " - good")
+            console.log(`${config.API_BASE_URL}/comments/` + id  + " - good")
         })
         .catch(err => {
-            console.log("http://localhost:4000/comments/" + id + " - " + err)
+            console.log(`${config.API_BASE_URL}/comments/` + id + " - " + err)
         })
 }
 
 // ПОЛУЧАЕМ КОЛИЧЕСТВА КОММЕНТАРИЕВ СТАТЬИ
 export function getCommentsCount(id) {
-    return axios.get(`http://localhost:4000/comments/count-comments/${id}`)
+    return axios.get(`${config.API_BASE_URL}/comments/count-comments/${id}`)
         .then(res => {
-            console.log("http://localhost:4000/comments/count-comments/" + id + " - good")
+            console.log(`${config.API_BASE_URL}/comments/count-comments/` + id + " - good")
             return res.data
         })
         .catch(err => {
-            console.log("http://localhost:4000/comments/count-comments/" + id + " - " + err)
+            console.log(`${config.API_BASE_URL}/comments/count-comments/` + id + " - " + err)
             return 1
         })
 }
